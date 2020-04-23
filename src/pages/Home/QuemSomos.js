@@ -39,10 +39,10 @@ export default function QuemSomos(props) {
 
     <div className='rootContainer rootInfo'>
 
-      <Container className='h-100' style={{margin: "20px"}}>
-        <Row className="">
+      <Container className='h-100'>
+        <Row>
           <Col>
-            <h1>QUEM SOMOS?</h1>
+            <h1 style={{"margin-top": "75px"}}>QUEM SOMOS?</h1>
             <div className='infoLine' />
           </Col>
         </Row>
