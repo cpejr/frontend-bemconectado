@@ -52,6 +52,7 @@ export default function Register({ className, fileName, onSubmit }) {
     addToData('cnpj', cnpj);
     addToData('picpay', picpay);
     addToData('facebook', facebook);
+    addToData('inatagram', instagram);
     addToData('email', email);
     addToData('ddd', ddd);
     addToData('phoneNumber', phoneNumber);
