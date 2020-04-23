@@ -6,6 +6,19 @@
   border-radius: 400px;
 }
 
+.botaoCadastrar{
+  background-color: #4272d7;
+  margin-right: 10px;
+  align-self: center;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  font-family: Poppins;
+  padding: 0 50px;
+  line-height: 50px;
+}
+
 .card-5 .card-body {
   padding: 52px 85px;
   padding-bottom: 73px;

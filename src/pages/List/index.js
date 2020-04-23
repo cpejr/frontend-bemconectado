@@ -224,7 +224,7 @@ export default function List(props) {
           <div className="header text-center d-flex flex-wrap justify-content-between">
             <img src="logo cpe.png" className="logo" alt="Logo"></img>
             <h2 className="title d-flex align-items-center">Bem Conectado</h2>
-            <Link className="btn1 redondo btn--blue m-2 mr-4 justify-content-end align-self-center" to="/register" type="submit">
+            <Link className=" redondo botaoCadastrar" to="/register" >
               Cadastre sua instituição
             </Link>
           </div>
