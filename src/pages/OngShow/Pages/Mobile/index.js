@@ -185,7 +185,7 @@ export default function Mobile(props) {
 
   const getImage = () => {
     if (ong.imageSrc) {
-      return `url(http://localhost:3333/images/${ong.imageSrc})`;
+      return `url(${process.env.REACT_APP_API_URL}/images/${ong.imageSrc})`;
     }
   }
 

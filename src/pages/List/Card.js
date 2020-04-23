@@ -42,7 +42,7 @@ export default function OngCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={`http://localhost:3333/images/${ong.imageSrc}`}
+          image={`${process.env.REACT_APP_API_URL}/images/${ong.imageSrc}`}
           title="Contemplative Reptile"
         />
         <CardContent>

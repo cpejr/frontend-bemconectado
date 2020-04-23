@@ -4,7 +4,7 @@ import ImageUpload from '../../components/ImageUpload';
 
 export default function UploadTest() {
   const handleSubmit = (formData) => {
-    axios.post('http://localhost:3333/teste', formData);
+    axios.post(`${process.env.REACT_APP_API_URL}/teste`, formData);
   };
 
   return <ImageUpload fileName="teste" onSubmit={handleSubmit} />;
