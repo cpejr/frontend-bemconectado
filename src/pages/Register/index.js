@@ -19,7 +19,7 @@ export default function Register({ className, fileName, onSubmit }) {
   const [cnpj, setCnpj] = useState('');
   const [picpay, setPicpay] = useState('');
   const [facebook, setFacebook] = useState('');
-  const [instagram, setInstsgram] = useState('');
+  const [instagram, setInstagram] = useState('');
   const [email, setEmail] = useState('');
   const [ddd, setDdd] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -52,7 +52,7 @@ export default function Register({ className, fileName, onSubmit }) {
     addToData('cnpj', cnpj);
     addToData('picpay', picpay);
     addToData('facebook', facebook);
-    addToData('inatagram', instagram);
+    addToData('instagram', instagram);
     addToData('email', email);
     addToData('ddd', ddd);
     addToData('phoneNumber', phoneNumber);
@@ -285,7 +285,7 @@ export default function Register({ className, fileName, onSubmit }) {
                     <input className="input--style-5" type="text"
                       name="company"
                       value={instagram}
-                      onChange={e => setInstsgram(e.target.value)}
+                      onChange={e => setInstagram(e.target.value)}
                     />
                   </div>
                 </div>
