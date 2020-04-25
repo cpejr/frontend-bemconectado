@@ -51,7 +51,7 @@ export default function BemConectado(props) {
               provocada pelo COVID-19. Nesse contexto, a solidariedade é fundamental para diminuir o impacto na
               população. Sabemos que já existem inúmeras iniciativas que estão movendo seus esforços para ajudar o
               próximo, oferecendo suporte às pessoas que estão sendo impactados por esta pandemia, como médicos,
-              enfermeiros, familia que perderam suas fontes de renda, microempreendedores, etc. Porém, muitas vezes elas
+              enfermeiros, familias que perderam suas fontes de renda, microempreendedores, etc. Porém, muitas vezes elas
               acabam se perdendo na internet e não chegam nas pessoas que deveriam ser alcançadas. Assim, criamos essa
               plataforma para auxiliar a sua interação com diversas ONGs e outras instituiçõs de caridade, facilitar a obtenção de informações sobre elas
               e incentivar o surgimento de novas.
