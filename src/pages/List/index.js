@@ -6,6 +6,7 @@ import api from '../../services/api';
 import SelectState from '../../components/SelectStates';
 import { FaFilter } from 'react-icons/fa';
 import CategSelector from '../../components/Categ/CategSelector';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function shuffle(array) {
@@ -13,6 +14,8 @@ function shuffle(array) {
 }
 
 export default function List(props) {
+
+  const [loader, setLoader] = useState(true)
 
   const ONGSPERPAGE = 10;
 
@@ -33,6 +36,7 @@ export default function List(props) {
   useEffect(() => {
     const getOngs = async () => {
       try {
+        setLoader(true);
         let queryParams = [];
 
         if (stateFilter)
@@ -92,7 +96,8 @@ export default function List(props) {
           newOngsData.pagesVector = pagesVector;
           newOngsData.ongs = newOngs;
           newOngsData.currentPageIndex = currentPageIndex;
-          setOngsData(newOngsData)
+          setOngsData(newOngsData);
+          setLoader(false);
         } else {
           let newOngsData = { ...ongsData };
 
@@ -101,6 +106,7 @@ export default function List(props) {
           newOngsData.currentPageIndex = 0;
 
           setOngsData(newOngsData)
+          setLoader(false);
         }
       } catch (err) {
         console.warn(err);
@@ -246,6 +252,14 @@ export default function List(props) {
           </div>
 
           <div className="card-body d-flex flex-wrap justify-content-center">
+            {loader && (
+                <ClipLoader
+                  size={150}
+                  color={"#123abc"}
+                  loading={loader}
+                />
+              )
+            }
             {ongs}
           </div>
         </div>

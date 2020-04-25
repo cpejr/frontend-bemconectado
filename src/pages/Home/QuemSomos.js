@@ -68,8 +68,8 @@ export default function QuemSomos(props) {
               lucrativos e que realiza projetos para incentivar o empreendedorismo no Brasil.
               Nosso corpo de membros é formado apenas por alunos destes cursos.
               <br /><br />
-              &nbsp;&nbsp;&nbsp;A CPE participa o Movimento Empresa Júnior, que está presente em todo o Brasil e é composto
-              por empresas dos mais variados cursos de graduação. Esse movimento é muito caracterizado pela
+              &nbsp;&nbsp;&nbsp;A CPE participa o Movimento Empresa Júnior, que está presente em todo o mundo, sendo o brasileiro 
+              o maior, e é composto por empresas dos mais variados cursos de graduação. Esse movimento é muito caracterizado pela
               conexão entre suas partes, e que as empresas costumam realizar projetos em conjunto e compartilhar
               experiência entre si.
             </Textfit>
