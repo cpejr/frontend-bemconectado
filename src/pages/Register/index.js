@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import api from '../../services/api';
 import ImageUpload from '../../components/ImageUpload';
 import SelectStates from '../../components/SelectStates';
@@ -64,7 +64,7 @@ export default function Register({ className, fileName, onSubmit }) {
     try {
       const response = await api.post('registerOng', data);
       alert(`Olá ${response.data.name}, seu cadastro foi realizado com sucesso`);
-      history.push('/');
+      history.push('/list');
     } catch (err) {
       console.log(err.response)
       alert(`${err.response.data}`);
@@ -85,11 +85,12 @@ export default function Register({ className, fileName, onSubmit }) {
             <div className="card-heading">
                <h2 className="title">Cadastre a sua instituição abaixo</h2>
                <div id="bttn1">
-                    <button
-                        onClick={event => window.location.href = '/list'}
-                        className="btn3 btn--radius btn--blue"
-                        type="submit">VOLTAR A PÁGINA INICIAL
-                    </button>
+                    <Link
+                      to="/list"
+                      className="btn3 btn--radius btn--blue"
+                      >
+                      VOLTAR A LISTA
+                    </Link>
                 </div>
             </div>
             <div className="card-body">

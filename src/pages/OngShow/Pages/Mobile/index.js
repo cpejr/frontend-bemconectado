@@ -234,7 +234,7 @@ export default function Mobile(props) {
               <MdCall />
             </IconContext.Provider>
             <Typography variant="body1">
-              ({ong.ddd}) {ong.phoneNumber}
+              <a href={`tel:${ong.ddd}${ong.phoneNumber}`}>({ong.ddd}) {ong.phoneNumber}</a>
             </Typography>
           </div>
 

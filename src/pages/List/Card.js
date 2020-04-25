@@ -29,7 +29,6 @@ export default function OngCard(props) {
     api.get(`categ/${ong._id}`).then((resultVector) => {
       if (resultVector) {
         setCategs(resultVector.data);
-        console.log(resultVector.data);
       }
     });
   }, [ong]);
