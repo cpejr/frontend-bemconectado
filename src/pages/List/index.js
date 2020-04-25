@@ -24,6 +24,8 @@ export default function List(props) {
   const [nameFilter, setNameFilter] = useState();
   const [categFilter, setCategFilter] = useState();
   const [activeFilter, setActiveFilter] = useState(false);
+  const [FcityFilter, setFcityFilter] = useState();
+  const [FnameFilter, setFnameFilter] = useState();
 
   const [categs, setCategs] = useState([]);
 
@@ -42,11 +44,11 @@ export default function List(props) {
         if (stateFilter)
           queryParams.push(`state=${stateFilter}`);
 
-        if (cityFilter)
-          queryParams.push(`city=${cityFilter}`);
+        if (FcityFilter)
+          queryParams.push(`city=${FcityFilter}`);
 
-        if (nameFilter)
-          queryParams.push(`name=${nameFilter}`);
+        if (FnameFilter)
+          queryParams.push(`name=${FnameFilter}`);
 
         if (categFilter)
           queryParams.push(`categs=${categFilter}`);
@@ -114,7 +116,7 @@ export default function List(props) {
     }
     getOngs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateFilter, cityFilter, nameFilter, categFilter]);
+  }, [stateFilter, FcityFilter, FnameFilter, categFilter]);
 
   useEffect(() => {
     const updateOngs = () => {
@@ -135,11 +137,11 @@ export default function List(props) {
               if (stateFilter)
                 queryParams.push(`state=${stateFilter}`);
 
-              if (cityFilter)
-                queryParams.push(`city=${cityFilter}`);
+              if (FcityFilter)
+                queryParams.push(`city=${FcityFilter}`);
 
-              if (nameFilter)
-                queryParams.push(`name=${nameFilter}`);
+              if (FnameFilter)
+                queryParams.push(`name=${FnameFilter}`);
 
               if (categFilter)
                 queryParams.push(`categs=${categFilter}`);
@@ -188,7 +190,7 @@ export default function List(props) {
       window.removeEventListener('scroll', updateOngs);
     }
 
-  }, [cityFilter, nameFilter, ongsData, stateFilter, categFilter]);
+  }, [FcityFilter, FnameFilter, ongsData, stateFilter, categFilter]);
 
   useEffect(() => {
     api.get('categ').then((categNamesResponse) => {
@@ -223,6 +225,14 @@ export default function List(props) {
     setActiveFilter(!activeFilter);
   }
 
+  function handleCity(){
+    setFcityFilter(cityFilter);
+  }
+
+  function handleName(){
+    setFnameFilter(nameFilter)
+  }
+
   return (
     <div className="page-wrapper">
       <div className="wrapper wrapper--w960">
@@ -243,9 +253,13 @@ export default function List(props) {
               <p>Selecione o estado: </p>
               <SelectState className="input--style-5 selectStates col-12 mb-2" onChange={handleOnChangeState} nullable={true} />
               <p>Digite o nome da cidade: </p>
-              <input className="input--style-5" type='text' onChange={handleOnChangeCity}></input>
+              <div className="d-flex">
+              <input className="input--style-6" type='text' onChange={handleOnChangeCity}></input><button className="btn1 btn--blue" onClick={handleCity}>Go</button>
+              </div>
               <p>Digite o nome da instituição: </p>
-              <input className="input--style-5" type='text' onChange={handleOnChangeName}></input>
+              <div className="d-flex">
+              <input className="input--style-6" type='text' onChange={handleOnChangeName}></input><button className="btn1 btn--blue" onClick={handleName}>Go</button>
+              </div>
               <p>Selecione a categoria: </p>
               <CategSelector className="input--style-5 selectStates col-12 mb-2" onChange={handleOnChangeCateg} categNames={categs} />
             </div>
