@@ -5,6 +5,7 @@ import './styles.css';
 import Main from './Main';
 import QuemSomos from './QuemSomos';
 import BemConectado from './BemConectado';
+import Header from './Header'
 
 export default function Home(props) {
   const [currentPage, setCurrentPage] = useState(null);
@@ -15,6 +16,7 @@ export default function Home(props) {
 
   return (
     <React.Fragment>
+      <Header currentPage={currentPage}/>
       <ReactPageScroller pageOnChange={handlePageChange} customPageNumber={currentPage}>
         <Main handlePageChange={handlePageChange} saibaMais={true}/>
         <BemConectado />

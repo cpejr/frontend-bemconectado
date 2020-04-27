@@ -112,3 +112,13 @@
     height: 100%;
 }
 }
+
+.Toolbar{
+  justify-content: space-evenly;
+  background-color: #2C67E4;
+  color: #ffff
+}
+
+.highlight{
+  border: 2px solid #CEC000;
+}
