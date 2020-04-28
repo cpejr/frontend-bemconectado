@@ -65,10 +65,10 @@ export default function FAQ(){
                                 aria-controls={`${each.number}-content`}
                                 id={`${each.number}-header`}
                             >
-                                <Typography >{each.question}</Typography>
+                                <Typography style={{"font-size": "2vh"}}>{each.question}</Typography>
                             </ExpansionPanelSummary>
-                            <ExpansionPanelDetails style={{"background-color": "#aba6a6", color: "#fff", "font-size": "small"}}>
-                                <Typography>
+                            <ExpansionPanelDetails style={{"background-color": "#aba6a6", color: "#fff"}}>
+                                <Typography style={{"font-size": "2vh"}}>
                                     {each.answer}
                                 </Typography>
                             </ExpansionPanelDetails>
