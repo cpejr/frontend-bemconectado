@@ -9,6 +9,7 @@ import Main from './Main';
 import QuemSomos from './QuemSomos';
 import BemConectado from './BemConectado';
 import SideBar from './SideBar'
+import Contato from './Contato'
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(null);
@@ -32,15 +33,16 @@ export default function Home() {
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            style={{position: "fixed", "z-index": "1"}}
+            style={{position: "fixed", "z-index": "1", "margin-top": "45px"}}
           >
         <MenuIcon fontSize="large"/>
       </IconButton>
       <SideBar drawer={drawer} handleDrawerClose={handleDrawerClose} handlePageChange={handlePageChange}/>
       <ReactPageScroller pageOnChange={handlePageChange} customPageNumber={currentPage} renderAllPagesOnFirstRender={true}>
         <Main handlePageChange={handlePageChange} saibaMais={true}/>
-        <BemConectado />
-        <QuemSomos />
+        <BemConectado handlePageChange={handlePageChange}/>
+        <QuemSomos handlePageChange={handlePageChange}/>
+        <Contato/>
         <Main saibaMais={false}/>
       </ReactPageScroller>
     </React.Fragment>

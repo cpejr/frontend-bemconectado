@@ -122,3 +122,41 @@
 .highlight{
   border: 2px solid #CEC000;
 }
+
+.contatoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: left;
+}
+
+.centerContainer > div {
+  margin: 10px;
+}
+
+.iconContainer{
+  border-radius: 100%;
+  border: 2px solid #544B4B;
+  background-color: #CEC000;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoContainer{
+  display: flex;
+  align-items: center;
+}
+
+.infoData{
+  margin-left: 8px;
+  font-size: 3vh;
+}

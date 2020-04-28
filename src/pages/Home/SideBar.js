@@ -44,14 +44,20 @@ export default function SideBar(props){
 
                 <Divider/>
 
-                <ListItem>
+                <ListItem button onClick={() => {
+                        props.handlePageChange(3);
+                        props.handleDrawerClose();
+                    }}>
                     <ListItemIcon> <MailOutlineIcon/> </ListItemIcon>
                     <ListItemText>CONTATO</ListItemText>
                 </ListItem>
 
                 <Divider/>
 
-                <ListItem>
+                <ListItem button onClick={() => {
+                        props.handlePageChange(4);
+                        props.handleDrawerClose();
+                    }}>
                     <ListItemIcon> <QuestionAnswerIcon/> </ListItemIcon>
                     <ListItemText>FAQ</ListItemText>
                 </ListItem>
