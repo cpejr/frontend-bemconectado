@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Textfit } from 'react-textfit';
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { IconContext } from 'react-icons';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -26,13 +28,16 @@ export default function QuemSomos(props) {
         setShowImage(true);
       else 
         setShowImage(false);
-      console.log("oioioioio");
     }
     
     
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  function handleNextPage(){
+    props.handlePageChange(3)
+  }
 
   return (
 
@@ -72,6 +77,13 @@ export default function QuemSomos(props) {
               o maior, e é composto por empresas dos mais variados cursos de graduação. Esse movimento é muito caracterizado pela
               conexão entre suas partes, e que as empresas costumam realizar projetos em conjunto e compartilhar
               experiência entre si.
+              <br /><br />
+              <div style={{cursor: "pointer", color: "#CEC000"}} onClick={handleNextPage}>
+                CONTATO
+                <IconContext.Provider value={{ size: '1.5em', color: "#CEC000" }} >
+                  <MdKeyboardArrowDown />
+                </IconContext.Provider>
+              </div>
             </Textfit>
           </Col>
         </Row>

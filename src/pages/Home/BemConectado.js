@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { Textfit } from 'react-textfit';
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { IconContext } from 'react-icons';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -25,13 +27,16 @@ export default function BemConectado(props) {
         setShowImage(true);
       else 
         setShowImage(false);
-      console.log("oioioioio");
     }
     
     
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  function handleNextPage(){
+    props.handlePageChange(2)
+  }
 
   return (
     <div className='rootContainer rootInfo'>
@@ -58,6 +63,13 @@ export default function BemConectado(props) {
               <br/> <br/>
               &nbsp;&nbsp;&nbsp;Aqui será possível encontrar iniciativas que contam com seu apoio! Você é muito importante nessa luta!
               Faça parte dela também!
+              <br/> <br/>
+              <div style={{cursor: "pointer", color: "#CEC000"}} onClick={handleNextPage}>
+                SOBRE NÓS
+                <IconContext.Provider value={{ size: '1.5em', color: "#CEC000" }} >
+                  <MdKeyboardArrowDown />
+                </IconContext.Provider>
+              </div>
             </Textfit>
           </div>
             {  

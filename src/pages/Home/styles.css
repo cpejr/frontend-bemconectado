@@ -112,3 +112,69 @@
     height: 100%;
 }
 }
+
+.Toolbar{
+  justify-content: space-evenly;
+  background-color: #2C67E4;
+  color: #ffff
+}
+
+.highlight{
+  border: 2px solid #CEC000;
+}
+
+.contatoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: left;
+}
+
+.centerContainer > div {
+  margin: 10px;
+}
+
+.iconContainer{
+  border-radius: 100%;
+  border: 2px solid #544B4B;
+  background-color: #CEC000;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoContainer{
+  display: flex;
+  align-items: center;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .infoData{
+    font-size: 3vh;
+  }
+.infoData {
+  font-size: 5vh;
+}
+}
+
+.littleMargin{
+  margin-left: 8px;
+}
+
+.logoFinal{
+  height: 15vh;
+  width: auto;
+}
+
+.question{
+  cursor: pointer;
+}
