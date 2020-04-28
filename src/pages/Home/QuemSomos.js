@@ -26,7 +26,6 @@ export default function QuemSomos(props) {
         setShowImage(true);
       else 
         setShowImage(false);
-      console.log("oioioioio");
     }
     
     

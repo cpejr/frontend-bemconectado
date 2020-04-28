@@ -2,27 +2,47 @@ import React, { useState } from 'react';
 import ReactPageScroller from "react-page-scroller";
 import './styles.css';
 
+import {IconButton, Drawer} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+
 import Main from './Main';
 import QuemSomos from './QuemSomos';
 import BemConectado from './BemConectado';
-import Header from './Header'
+import SideBar from './SideBar'
 
-export default function Home(props) {
+export default function Home() {
   const [currentPage, setCurrentPage] = useState(null);
+  const [drawer, setDrawer] = useState(false)
 
   const handlePageChange = number => {
     setCurrentPage(number); // set currentPage number, to reset it from the previous selected.
   };
 
+  function handleDrawerOpen() {
+    setDrawer(true)
+  }
+
+  function handleDrawerClose() {
+    setDrawer(false)
+  }
+  
   return (
     <React.Fragment>
-      <Header currentPage={currentPage}/>
-      <ReactPageScroller pageOnChange={handlePageChange} customPageNumber={currentPage}>
+      <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            style={{position: "fixed", "z-index": "1"}}
+          >
+        <MenuIcon fontSize="large"/>
+      </IconButton>
+      <SideBar drawer={drawer} handleDrawerClose={handleDrawerClose} handlePageChange={handlePageChange}/>
+      <ReactPageScroller pageOnChange={handlePageChange} customPageNumber={currentPage} renderAllPagesOnFirstRender={true}>
         <Main handlePageChange={handlePageChange} saibaMais={true}/>
         <BemConectado />
         <QuemSomos />
         <Main saibaMais={false}/>
-      </ReactPageScroller >
+      </ReactPageScroller>
     </React.Fragment>
   )
 }

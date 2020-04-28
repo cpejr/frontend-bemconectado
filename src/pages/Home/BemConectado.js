@@ -25,7 +25,6 @@ export default function BemConectado(props) {
         setShowImage(true);
       else 
         setShowImage(false);
-      console.log("oioioioio");
     }
     
     
