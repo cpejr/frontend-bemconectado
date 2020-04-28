@@ -44,7 +44,7 @@ export default function FAQ(){
     }
 
     return(
-        <Container style={{height: "100%"}}>
+        <Container style={{height: "auto"}}>
             <Row style={{"margin-top": "75px", "margin-bottom": "20px"}}>
                 <Col>
                     <h1>PERGUNTAS FREQUENTES</h1>
