@@ -157,13 +157,9 @@
 }
 
 
-@media screen and (min-width: 1200px) {
-  .infoData{
-    font-size: 3vh;
-  }
+
 .infoData {
-  font-size: 5vh;
-}
+  font-size: 3vh;
 }
 
 .littleMargin{
