@@ -56,24 +56,26 @@ export default function FAQ(){
                     </IconContext.Provider>
                 </Col>
             </Row>
-            {perguntas.map((each)=>{
-                return (
-                    <ExpansionPanel expanded={expanded === each.number} onChange={handleChange(each.number)}>
-                        <ExpansionPanelSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls={`${each.number}-content`}
-                            id={`${each.number}-header`}
-                        >
-                            <Typography >{each.question}</Typography>
-                        </ExpansionPanelSummary>
-                        <ExpansionPanelDetails style={{"background-color": "#aba6a6", color: "#fff"}}>
-                            <Typography>
-                                {each.answer}
-                            </Typography>
-                        </ExpansionPanelDetails>
-                    </ExpansionPanel>
-                )
-            })}
+            <div>
+                {perguntas.map((each)=>{
+                    return (
+                        <ExpansionPanel expanded={expanded === each.number} onChange={handleChange(each.number)}>
+                            <ExpansionPanelSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls={`${each.number}-content`}
+                                id={`${each.number}-header`}
+                            >
+                                <Typography >{each.question}</Typography>
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails style={{"background-color": "#aba6a6", color: "#fff"}}>
+                                <Typography>
+                                    {each.answer}
+                                </Typography>
+                            </ExpansionPanelDetails>
+                        </ExpansionPanel>
+                    )
+                })}
+            </div>
 
         </Container>
     )
