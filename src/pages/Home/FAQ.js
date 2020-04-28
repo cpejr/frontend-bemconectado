@@ -44,8 +44,8 @@ export default function FAQ(){
     }
 
     return(
-        <Container style={{heoght: "100%"}}>
-            <Row style={{"margin-top": "75px", "margin-bottom": "75px"}}>
+        <Container style={{height: "100%"}}>
+            <Row style={{"margin-top": "75px", "margin-bottom": "20px"}}>
                 <Col>
                     <h1>PERGUNTAS FREQUENTES</h1>
                     <div className='infoLine' />

@@ -34,7 +34,7 @@ export default function Home() {
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            style={{position: "fixed", "z-index": "1", "margin-top": "45px"}}
+            style={{position: "fixed", "z-index": "1"}}
           >
         <MenuIcon fontSize="large"/>
       </IconButton>
