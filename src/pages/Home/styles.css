@@ -156,7 +156,21 @@
   align-items: center;
 }
 
-.infoData{
+
+@media screen and (min-width: 1200px) {
+  .infoData{
+    font-size: 3vh;
+  }
+.infoData {
+  font-size: 5vh;
+}
+}
+
+.littleMargin{
   margin-left: 8px;
-  font-size: 3vh;
+}
+
+.logoFinal{
+  height: 15vh;
+  width: auto;
 }
