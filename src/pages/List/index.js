@@ -247,6 +247,7 @@ export default function List(props) {
           <div className="searchBar d-flex flex-wrap">
             <button className="btn1 redondo btn--blue m-2 mr-4 justify-content-end align-self-center" onClick={handleClickFilter} type="submit">
               <FaFilter />
+              &nbsp;&nbsp;&nbsp;FILTRO
             </button>
 
             <div className="col-12" style={{ display: (activeFilter ? "block" : "none") }}>

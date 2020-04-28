@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import ReactPageScroller from "react-page-scroller";
 import './styles.css';
 
-import {IconButton, Drawer} from '@material-ui/core';
+import {IconButton} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Main from './Main';
 import QuemSomos from './QuemSomos';
 import BemConectado from './BemConectado';
-import SideBar from './SideBar'
-import Contato from './Contato'
+import SideBar from './SideBar';
+import Contato from './Contato';
+import FAQ from './FAQ';
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(null);
@@ -43,6 +44,7 @@ export default function Home() {
         <BemConectado handlePageChange={handlePageChange}/>
         <QuemSomos handlePageChange={handlePageChange}/>
         <Contato/>
+        <FAQ/>
         <Main saibaMais={false}/>
       </ReactPageScroller>
     </React.Fragment>
