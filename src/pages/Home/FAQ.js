@@ -10,8 +10,8 @@ import { IconContext } from "react-icons";
 
 const perguntas = [
     {
-        question: "Como o Bem-conectado verifica as ongs?",
-        answer: "Atravez do sistema de verificação.",
+        question: "Como o Bem-conectado verifica as instituições?",
+        answer: "Um processo de validação da instituição é feito após o cadastro em nosso site. Antes de ser de fato exibida, ela passa por um processo de aprovação feito pela equipe. As informações enviadas são verificadas e pesquisamos o histórico dessa instituição. Validamos os sites e redes sociais. A avaliação é feita para verificarmos a instituição tem boas práticas sociais e está alinhada com nossos valores, tendo em vista garantir maior segurança e confiança do usuário.",
         number: "pergunta1",
     },
     {
