@@ -80,7 +80,7 @@ export default function Desktop({ ong, categs }) {
                     </IconContext.Provider>
                   </div>
                   <div className="fieldInfo">
-                    <a href="www.meusite.com">{ong.site}</a>
+                    <a target="_blank" href="www.meusite.com">{ong.site}</a>
                   </div>
                 </div>
               )}
@@ -102,7 +102,7 @@ export default function Desktop({ ong, categs }) {
 
             <div className="divButtons">
               {ong.facebook && (
-                <Button variant="outlined" href={`https://${ong.facebook}`} className="iconButton facebookBorder">
+                <Button variant="outlined" target="_blank" href={`https://${ong.facebook}`} className="iconButton facebookBorder">
                   <div>
                     <IconContext.Provider value={{ color: "#3b5998", size: '1.7em' }}>
                       <FaFacebookF />
@@ -112,7 +112,7 @@ export default function Desktop({ ong, categs }) {
               )}
 
               {ong.instagram && (
-                <Button variant="outlined" href={`https://${ong.instagram}`} className="iconButton instagramBorder">
+                <Button variant="outlined" target="_blank" href={`https://${ong.instagram}`} className="iconButton instagramBorder">
                   <div className="center">
                     <i className="fa fa-instagram" />
                   </div>
@@ -158,7 +158,7 @@ export default function Desktop({ ong, categs }) {
             </div>
 
             {ong.picpay && (
-              <Button variant="outlined" href={`https://${ong.picpay}`} className="iconButton PicPayBorder">
+              <Button variant="outlined" target="_blank" href={`https://${ong.picpay}`} className="iconButton PicPayBorder">
                 <div>
                   <IconContext.Provider value={{ color: "#11C76F", size: '1.7em' }}>
                     <img src={picpayIcon} alt="PicPay" className="icon" />

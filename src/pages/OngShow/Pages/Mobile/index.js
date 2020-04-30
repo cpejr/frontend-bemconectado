@@ -268,7 +268,7 @@ export default function Mobile(props) {
 
         <div className={classes.divButtons}>
           {ong.facebook && (
-            <Button variant="outlined" href={`https://${ong.facebook}`} className={`${classes.iconButton} ${classes.facebookBorder} instagramBorder`}>
+            <Button target="_blank" variant="outlined" href={`https://${ong.facebook}`} className={`${classes.iconButton} ${classes.facebookBorder} instagramBorder`}>
               <div>
                 <IconContext.Provider value={{ color: "#3b5998", size: '1.7em' }}>
                   <FaFacebookF />
@@ -278,7 +278,7 @@ export default function Mobile(props) {
           )}
 
           {ong.instagram && (
-            <Button variant="outlined" href={`https://${ong.instagram}`} className={`${classes.iconButton} instagramBorder`}>
+            <Button target="_blank" variant="outlined" href={`https://${ong.instagram}`} className={`${classes.iconButton} instagramBorder`}>
               <div className={classes.center}>
                 <i className="fa fa-instagram" />
               </div>
@@ -296,7 +296,7 @@ export default function Mobile(props) {
               </div>
               <div className={classes.link}>
                 <Typography>
-                  <a href={ong.site}>{ong.site}</a>
+                  <a target="_blank" href={ong.site}>{ong.site}</a>
                 </Typography>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function Mobile(props) {
           </div>
           <div className={classes.divButtons}>
             {ong.picpay && (
-              <Button variant="outlined" href={`https://${ong.picpay}`} className={`${classes.iconButton} ${classes.PicPayBorder}`}>
+              <Button variant="outlined" target="_blank" href={`https://${ong.picpay}`} className={`${classes.iconButton} ${classes.PicPayBorder}`}>
                 <div>
                   <IconContext.Provider value={{ color: "#11C76F", size: '1.7em' }}>
                     <img src={picpayIcon} alt="logo" className={classes.icon} />
