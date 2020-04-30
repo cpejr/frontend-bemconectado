@@ -237,9 +237,8 @@ export default function List(props) {
     <div className="page-wrapper">
       <div className="wrapper wrapper--w960">
         <div className="card card-5">
-          <div className="header text-center d-flex flex-wrap justify-content-between">
-            <img src="logo cpe.png" className="logo" alt="Logo"></img>
-            <h2 className="title d-flex align-items-center">Bem Conectado</h2>
+          <div className="Header">
+            <img src="./logos/8.png" className="logo" alt="Logo"></img>
             <Link className=" redondo botaoCadastrar" to="/register" >
               Cadastre sua instituição
             </Link>
