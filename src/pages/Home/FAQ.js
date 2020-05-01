@@ -50,10 +50,25 @@ export default function FAQ(){
             <div style={{"margin-bottom": "20px"}}>
                 <div>
                     <div style={{display: "flex"}}>
-                        {IOS ? <h1 style={{"margin-top": "100px"}}>FAQ</h1> : <h1>FAQ</h1>}
-                        <IconContext.Provider value={{ size: '2.5em' }}>
-                            <IoIosChatboxes />
-                        </IconContext.Provider>
+                        {IOS ? 
+                        (
+                            <div style={{"margin-top": "150px", display: "flex"}}>
+                                <h1>FAQ</h1>
+                                <IconContext.Provider value={{ size: '2.5em' }}>
+                                    <IoIosChatboxes />
+                                </IconContext.Provider>
+                            </div>
+                        ) 
+                        :
+                        (
+                            <div style={{"margin-top": "40px", display: "flex"}}>
+                                <h1>FAQ</h1>
+                                <IconContext.Provider value={{ size: '2.5em' }}>
+                                    <IoIosChatboxes />
+                                </IconContext.Provider>
+                            </div>
+                        )
+                        }
                     </div>
                     <div className='infoLine' />
                 </div>

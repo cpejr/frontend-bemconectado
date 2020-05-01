@@ -46,7 +46,7 @@ export default function BemConectado(props) {
 
         <Row>
             <Col>
-              {IOS ? <h1 style={{"margin-top": "100px"}}>O QUE É O BEM CONECTADO</h1> : <h1>O QUE É O BEM CONECTADO</h1>}
+              {IOS ? <h1 style={{"margin-top": "150px"}}>O QUE É O BEM CONECTADO</h1> : <h1 style={{"margin-top": "40px"}}>O QUE É O BEM CONECTADO</h1>}
               <div className='infoLine' />
             </Col>
         </Row>

@@ -47,7 +47,7 @@ export default function QuemSomos(props) {
       <Container className='h-100'>
         <Row>
           <Col>
-            {IOS ? <h1 style={{"margin-top": "100px"}}>QUEM SOMOS?</h1> : <h1>QUEM SOMOS?</h1>}
+            {IOS ? <h1 style={{"margin-top": "150px"}}>QUEM SOMOS?</h1> : <h1 style={{"margin-top": "40px"}}>QUEM SOMOS?</h1>}
             
             <div className='infoLine' />
           </Col>
@@ -63,7 +63,7 @@ export default function QuemSomos(props) {
             )
           }
 
-          <Col style={{height: "70%"}}>
+          <Col style={{height: "90%"}}>
             <Textfit mode="multi" className='text-justify fullHeight'>
               &nbsp;&nbsp;&nbsp;Nós somos a &nbsp;
               <a href="https://cpejr.com.br/site/" style={{color: "#CEC000"}}>
