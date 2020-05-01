@@ -49,16 +49,6 @@ export default function OngCard(props) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        {/* <CardMedia
-          className={classes.media}
-          overlay={<CardTitle title={'loading...'} />}>
-          {!this.props.coverPhotoLoading && coverPhoto ?
-            <img src={coverPhoto} width="100%" height="400px" /> :
-            this.renderLoading()}
-          image={}
-          title="Contemplative Reptile"
-        /> */}
-
         <CardMedia className={classes.media}>
           <div className={classes.loader}>
             <ClipLoader
