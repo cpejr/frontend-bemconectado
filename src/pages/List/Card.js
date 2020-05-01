@@ -6,6 +6,7 @@ import api from '../../services/api';
 
 import { MdLocationOn } from "react-icons/md";
 import { IconContext } from "react-icons";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const useStyles = makeStyles({
   root: {
@@ -17,13 +18,22 @@ const useStyles = makeStyles({
     flexDirection: 'column',
   },
   media: {
+    position: 'relative',
     height: 140,
+    justifyContent: 'center',
+    display: 'flex',
+    alignItens: 'center',
   },
+  loader: {
+    position: 'absolute',
+    alignSelf: 'center',
+  }
 });
 
 export default function OngCard(props) {
   let ong = props.ong;
   const [categs, setCategs] = useState([]);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     api.get(`categ/${ong._id}`).then((resultVector) => {
@@ -39,11 +49,27 @@ export default function OngCard(props) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
+        {/* <CardMedia
           className={classes.media}
-          image={`${process.env.REACT_APP_API_URL}/images/${ong.imageSrc}`}
+          overlay={<CardTitle title={'loading...'} />}>
+          {!this.props.coverPhotoLoading && coverPhoto ?
+            <img src={coverPhoto} width="100%" height="400px" /> :
+            this.renderLoading()}
+          image={}
           title="Contemplative Reptile"
-        />
+        /> */}
+
+        <CardMedia className={classes.media}>
+          <div className={classes.loader}>
+            <ClipLoader
+              size={50}
+              color={"#123abc"}
+              loading={!imgLoaded}
+            />
+          </div>
+          <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt='logo' onLoad={() => { setImgLoaded(true) }} style={{ width: 'auto', height: '140px' }} />
+        </CardMedia>
+
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {ong.name}
@@ -72,14 +98,14 @@ export default function OngCard(props) {
       </CardActionArea>
 
       <CardActions className="mt-auto">
-        <Link style={{"border-radius": "400px"}}
+        <Link style={{ "border-radius": "400px" }}
           className="btn btn btn-warning mx-auto" to={{
-          pathname: '/ongshow',
-          state: {
-            ong: ong,
-            categs: categs
-          }
-        }}>Saiba mais</Link>
+            pathname: '/ongshow',
+            state: {
+              ong: ong,
+              categs: categs
+            }
+          }}>Saiba mais</Link>
       </CardActions>
     </Card>
   )

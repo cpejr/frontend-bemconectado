@@ -124,7 +124,7 @@ export default function Desktop({ ong, categs }) {
 
           <div className="rightHalf ">
 
-            <img src={`${process.env.REACT_APP_API_URL}/images/${ong.imageSrc}`} alt="Logo" className="ongLogo" />
+            <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt="Logo" className="ongLogo" />
 
             <div className="donationInfo">
               <div><b>INFORMAÇÕES PARA DOAÇÃO</b></div>

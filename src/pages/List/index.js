@@ -232,7 +232,7 @@ export default function List(props) {
   function handleName(){
     setFnameFilter(nameFilter)
   }
-
+  
   return (
     <div className="page-wrapper">
       <div className="wrapper wrapper--w960">

@@ -7,7 +7,7 @@ export default function OngView({ ong, handleSelect, token}) {
     <div className="ONGrid">
       <div className="ONGcard1">
         <div className="container">
-          <img src={`${process.env.REACT_APP_API_URL}/images/${ong.imageSrc}`} alt="Foto da ONG" />
+          <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt="Foto da ONG" />
           <div className="forms-row">
             <div className="name">Nome da ONG/Projeto: </div>
             <div className="info style-5">{ong.name}</div>

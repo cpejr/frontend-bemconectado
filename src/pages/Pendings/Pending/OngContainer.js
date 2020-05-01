@@ -58,7 +58,7 @@ export default function OngContainer({ ong, onChange }) {
 
   return (
     <div className="container">
-      <img src={`${process.env.REACT_APP_API_URL}/images/${ong.imageSrc}`} alt="Foto da ONG" />
+      <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt="Foto da ONG" />
       <div className="forms-row">
         <TextField variant="filled" label="Nome da ONG/Projeto" onChange={(e) => setName(e.target.value)} value={name} />
       </div>
