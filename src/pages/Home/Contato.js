@@ -12,7 +12,7 @@ export default function Contato(){
         <Container style={{height: "100%"}}>
             <Row >
                 <Col>
-                    {IOS ? <h1 style={{"margin-top": "120px"}}>CONTATO</h1> : <h1 style={{"margin-top": "40px"}}>CONTATO</h1>}
+                    {IOS ? <h1 style={{"margin-top": "150px"}}>CONTATO</h1> : <h1 style={{"margin-top": "40px"}}>CONTATO</h1>}
                     <div className='infoLine' />
                 </Col>
                 <Col>
