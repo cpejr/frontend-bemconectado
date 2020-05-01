@@ -5,11 +5,14 @@ import { IconContext } from "react-icons";
 import { Container, Col, Row } from 'react-bootstrap';
 
 export default function Contato(){
+
+    var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
     return (
         <Container style={{height: "100%"}}>
             <Row >
                 <Col>
-                    <h1>CONTATO</h1>
+                    {IOS ? <h1 style={{"margin-top": "100px"}}>CONTATO</h1> : <h1>CONTATO</h1>}
                     <div className='infoLine' />
                 </Col>
                 <Col>

@@ -38,13 +38,15 @@ export default function BemConectado(props) {
     props.handlePageChange(2)
   }
 
+  var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
   return (
     <div className='rootContainer rootInfo'>
       <Container className='h-100'>
 
         <Row>
             <Col>
-              <h1 >O QUE É O BEM CONECTADO?</h1>
+              {IOS ? <h1 style={{"margin-top": "100px"}}>O QUE É O BEM CONECTADO</h1> : <h1>O QUE É O BEM CONECTADO</h1>}
               <div className='infoLine' />
             </Col>
         </Row>

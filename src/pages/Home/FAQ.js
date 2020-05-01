@@ -43,12 +43,14 @@ export default function FAQ(){
         setExpanded(isExpanded ? panel : false);
     }
 
+    var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
     return(
         <Container style={{height: "auto"}}>
             <div style={{"margin-bottom": "20px"}}>
                 <div>
                     <div style={{display: "flex"}}>
-                        <h1>FAQ</h1>
+                        {IOS ? <h1 style={{"margin-top": "100px"}}>FAQ</h1> : <h1>FAQ</h1>}
                         <IconContext.Provider value={{ size: '2.5em' }}>
                             <IoIosChatboxes />
                         </IconContext.Provider>
