@@ -45,7 +45,7 @@ export default function FAQ(){
 
     return(
         <Container style={{height: "auto"}}>
-            <div style={{"margin-top": "75px", "margin-bottom": "20px"}}>
+            <div style={{"margin-bottom": "20px"}}>
                 <div>
                     <div style={{display: "flex"}}>
                         <h1>FAQ</h1>

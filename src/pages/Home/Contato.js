@@ -7,7 +7,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 export default function Contato(){
     return (
         <Container style={{height: "100%"}}>
-            <Row style={{"margin-top": "75px"}}>
+            <Row >
                 <Col>
                     <h1>CONTATO</h1>
                     <div className='infoLine' />

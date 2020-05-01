@@ -47,7 +47,7 @@ export default function QuemSomos(props) {
       <Container className='h-100'>
         <Row>
           <Col>
-            <h1 style={{"margin-top": "75px"}}>QUEM SOMOS?</h1>
+            <h1 >QUEM SOMOS?</h1>
             <div className='infoLine' />
           </Col>
         </Row>
