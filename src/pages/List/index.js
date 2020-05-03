@@ -254,11 +254,11 @@ export default function List(props) {
               <SelectState className="input--style-5 selectStates col-12 mb-2" onChange={handleOnChangeState} nullable={true} />
               <p>Digite o nome da cidade: </p>
               <div className="d-flex">
-              <input className="input--style-6" type='text' onChange={handleOnChangeCity}></input><button className="btn1 btn--blue" onClick={handleCity}><FaSearch/></button>
+              <input className="input--style-6" type='text' onChange={handleOnChangeCity}></input><button className="radiusRight btn1 btn--blue" onClick={handleCity}><FaSearch/></button>
               </div>
               <p>Digite o nome da instituição: </p>
               <div className="d-flex">
-              <input className="input--style-6" type='text' onChange={handleOnChangeName}></input><button className="btn1 btn--blue" onClick={handleName}><FaSearch/></button>
+              <input className="input--style-6" type='text' onChange={handleOnChangeName}></input><button className="radiusRight btn1 btn--blue" onClick={handleName}><FaSearch/></button>
               </div>
               <p>Selecione a categoria: </p>
               <CategSelector className="input--style-5 selectStates col-12 mb-2" onChange={handleOnChangeCateg} categNames={categs} />
