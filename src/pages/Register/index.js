@@ -4,6 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import api from '../../services/api';
 import ImageUpload from '../../components/ImageUpload';
 import SelectStates from '../../components/SelectStates';
+import TextField from '@material-ui/core/TextField';
 
 
 export default function Register({ className, fileName, onSubmit }) {
@@ -28,10 +29,13 @@ export default function Register({ className, fileName, onSubmit }) {
   const [branch, setBranch] = useState('');
   const [bankAccount, setBankAccount] = useState('');
   const [selectedFile, setSelectedFile] = useState();
+  const [uploadPressed, setUploadPressed] = useState(false);
   const history = useHistory();
 
   async function handleRegister(e) {
     e.preventDefault();
+    
+    setUploadPressed(true);
 
     let data = new FormData();
     function addToData(key, value) {
@@ -94,17 +98,19 @@ export default function Register({ className, fileName, onSubmit }) {
                 </div>
             </div>
             <div className="card-body">
-                <form onSubmit={handleRegister}>
+            <form onSubmit={handleRegister}>
 
               <div className="form-row">
                 <div className="name">Nome da instituição</div>
                 <div className="value">
-                  <div className="input-group">
-                    <input className="input--style-5" type="text" name="company"
+                    <TextField
+                      error={name==="" && uploadPressed}
+                      name="company"
+                      helperText={(name==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                       value={name}
-                      onChange={e => setName(e.target.value)}
+                      onChange={e => {setName(e.target.value)}}
+                      variant="filled"
                     />
-                  </div>
                 </div>
               </div>
 
@@ -140,12 +146,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     </div>
                     <div className="col-6">
                       <div className="input-group-desc">
-                        <input className="input--style-5" type="text"
-                          name="first_name"
+                        <TextField
+                          error={city==="" && uploadPressed}
+                          helperText={(city==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                           value={city}
                           onChange={e => setCity(e.target.value)}
+                          variant="filled"
                         />
-                        <label className="label--desc">Cidade</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Cidade</label>
                       </div>
                     </div>
                   </div>
@@ -155,10 +163,12 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="name">CEP</div>
                 <div className="value">
                   <div className="input-group">
-                    <input className="input--style-5" type="text"
-                      name="company"
+                    <TextField
+                      error={cep==="" && uploadPressed}
+                      helperText={(cep==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                       value={cep}
                       onChange={e => setCep(e.target.value)}
+                      variant="filled"
                     />
                   </div>
                 </div>
@@ -170,29 +180,28 @@ export default function Register({ className, fileName, onSubmit }) {
                   <div className="row row-space">
                     <div className="col-6">
                       <div className="input-group-desc">
-                        <input className="input--style-5" type="text"
-                          name="first_name"
+                        <TextField
+                          error={neighborhood==="" && uploadPressed}
+                          helperText={(neighborhood==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                           value={neighborhood}
                           onChange={e => setNeighborhood(e.target.value)}
+                          variant="filled"
                         />
-                        <label className="label--desc">Bairro</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Bairro</label>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="input-group-desc">
-
-
-                        <input className="input--style-5" type="text"
-                          name="last_name"
+                        <TextField
+                          error={street==="" && uploadPressed}
+                          helperText={(street==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                           value={street}
                           onChange={e => setStreet(e.target.value)}
+                          variant="filled"
                         />
-                        <label className="label--desc">Rua</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Rua</label>
                       </div>
                     </div>
-
-
-
                   </div>
                 </div>
               </div>
@@ -203,12 +212,14 @@ export default function Register({ className, fileName, onSubmit }) {
                   <div className="row row-space">
                     <div className="col-6">
                       <div className="input-group-desc">
-                        <input className="input--style-5" type="text"
-                          name="first_name"
+                        <TextField
+                          error={number==="" && uploadPressed}
+                          helperText={(number==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                           value={number}
                           onChange={e => setNumber(e.target.value)}
+                          variant="filled"
                         />
-                        <label className="label--desc">Número</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Número</label>
                       </div>
                     </div>
                     <div className="col-6">
@@ -231,10 +242,12 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="name">CNPJ</div>
                 <div className="value">
                   <div className="input-group">
-                    <input className="input--style-5" type="text"
-                      name="company"
+                    <TextField
+                      error={cnpj==="" && uploadPressed}
+                      helperText={(cnpj==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                       value={cnpj}
                       onChange={e => setCnpj(e.target.value)}
+                      variant="filled"
                     />
                   </div>
                 </div>
@@ -296,10 +309,12 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="name">Email</div>
                 <div className="value">
                   <div className="input-group">
-                    <input className="input--style-5" type="email"
-                      name="email"
+                    <TextField
+                      error={email==="" && uploadPressed}
+                      helperText={(email==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
                       value={email}
                       onChange={e => setEmail(e.target.value)}
+                      variant="filled"
                     />
                   </div>
                 </div>
