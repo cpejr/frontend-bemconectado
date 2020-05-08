@@ -209,7 +209,7 @@ export default function Mobile(props) {
           <div className={classes.center}>
             <Typography variant="h4">{ong.name}</Typography>
             <Typography variant="body2" className={classes.textCnpj}>
-              cnpj: {ong.cnpj}
+              CNPJ/CPF: {ong.cnpj}
             </Typography>
           </div>
         </div>

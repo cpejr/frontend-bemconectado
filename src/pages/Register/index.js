@@ -239,7 +239,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">CNPJ</div>
+                <div className="name">CNPJ/CPF</div>
                 <div className="value">
                   <div className="input-group">
                     <TextField

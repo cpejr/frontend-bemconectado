@@ -38,7 +38,7 @@ export default function Desktop({ ong, categs }) {
 
             <div>
               <h2>{ong.name}</h2>
-              <p>CNPJ: {ong.cnpj}</p>
+              <p>CNPJ/CPF: {ong.cnpj}</p>
               <div style={{ display: 'flex' }}>
                 {
                   _categs && _categs.map((name) => {
