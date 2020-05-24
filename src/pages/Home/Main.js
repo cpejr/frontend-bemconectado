@@ -3,6 +3,7 @@ import { makeStyles, Button } from '@material-ui/core';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const useStyles = makeStyles({
   root: {
@@ -15,22 +16,14 @@ const useStyles = makeStyles({
   bgImage: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#888',
-    backgroundImage: `url(BackGround.jpg)`,
-    backgroundSize: 'cover',
-    backgroundPositionX: 'center',
   },
 });
 
 export default function Main(props) {
 
-  function handleNextPage(){
-    props.handlePageChange(1)
-  }
-
   const classes = useStyles();
   return (
-    <div className={classes.bgImage}>
+    <div className={classes.bgImage} id='main'>
       <div className='overlay rootContainer rootInfo'>
         <p className='title1'>
           BEM CONECTADO
@@ -46,12 +39,12 @@ export default function Main(props) {
         </Link>
         {
           props.saibaMais && (
-            <div className='saibaMais' onClick={handleNextPage} style={{cursor: "pointer"}}>
+            <HashLink smooth to="#saibaMais" className='saibaMais' style={{cursor: "pointer"}}>
               Saiba mais
               <IconContext.Provider value={{ size: '1.5em', color: "#ffff" }} >
                 <MdKeyboardArrowDown />
               </IconContext.Provider>
-            </div>
+            </HashLink>
           )
         }
       </div>

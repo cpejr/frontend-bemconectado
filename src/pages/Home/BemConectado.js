@@ -3,6 +3,8 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { Textfit } from 'react-textfit';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IconContext } from 'react-icons';
+import {Link} from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -34,15 +36,11 @@ export default function BemConectado(props) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  function handleNextPage(){
-    props.handlePageChange(2)
-  }
-
   var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   return (
-    <div className='rootContainer rootInfo'>
-      <Container className='h-100'>
+    <div className='rootContainer rootInfo' id='saibaMais'>
+      <div className='h-100 w-100 m-0'>
 
         <Row>
             <Col>
@@ -51,8 +49,8 @@ export default function BemConectado(props) {
             </Col>
         </Row>
 
-        <div style={{height: "100%", display: "flex"}}>
-          <div style={{height: "70%", "margin-top": "45px"}}>
+        <div style={{height: "100%", display: "flex", width: '100%'}}>
+          <div style={{height: "70%", "margin-top": "45px", display: 'flex'}}>
             <Textfit mode="multi" className="text-justify" style={{height: "80%"}}>
               &nbsp;&nbsp;&nbsp;Sabemos que nosso país, atualmente, enfrenta uma crise sem precedentes
               provocada pelo COVID-19. Nesse contexto, a solidariedade é fundamental para diminuir o impacto na
@@ -66,24 +64,24 @@ export default function BemConectado(props) {
               &nbsp;&nbsp;&nbsp;Aqui será possível encontrar iniciativas que contam com seu apoio! Você é muito importante nessa luta!
               Faça parte dela também!
               <br/> <br/>
-              <div style={{cursor: "pointer", color: "#CEC000"}} onClick={handleNextPage}>
+              <HashLink  smooth to="#sobreNos" style={{cursor: "pointer", color: "#CEC000"}}  >
                 SOBRE NÓS
                 <IconContext.Provider value={{ size: '1.5em', color: "#CEC000" }} >
                   <MdKeyboardArrowDown />
                 </IconContext.Provider>
-              </div>
+              </HashLink>
             </Textfit>
           </div>
             {  
               showImage && (
-                <div  style={{height: "80%", display: "flex", width: "30%"}} >
+                <div  style={{height: "80%", display: "flex", width: "18%"}} >
                   <img src='network.png' alt='Network' className='imgFullHeight' />
                 </div>
               )
             }
         </div>
           
-      </Container>
+      </div>
     </div>
   )
 }

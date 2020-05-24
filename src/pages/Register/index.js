@@ -101,7 +101,7 @@ export default function Register({ className, fileName, onSubmit }) {
             <form onSubmit={handleRegister}>
 
               <div className="form-row">
-                <div className="name">Nome da instituição</div>
+                <div className="name">Nome da instituição*</div>
                 <div className="value">
                     <TextField
                       error={name==="" && uploadPressed}
@@ -141,7 +141,7 @@ export default function Register({ className, fileName, onSubmit }) {
                           className="input--style-5 col-lg-12 selectStates"
                           onChange={e => setState(e)}
                         />
-                        <label className="label--desc">Estado</label>
+                        <label className="label--desc">Estado*</label>
                       </div>
                     </div>
                     <div className="col-6">
@@ -153,14 +153,14 @@ export default function Register({ className, fileName, onSubmit }) {
                           onChange={e => setCity(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Cidade</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Cidade*</label>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="form-row">
-                <div className="name">CEP</div>
+                <div className="name">CEP*</div>
                 <div className="value">
                   <div className="input-group">
                     <TextField
@@ -187,7 +187,7 @@ export default function Register({ className, fileName, onSubmit }) {
                           onChange={e => setNeighborhood(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Bairro</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Bairro*</label>
                       </div>
                     </div>
                     <div className="col-6">
@@ -199,7 +199,7 @@ export default function Register({ className, fileName, onSubmit }) {
                           onChange={e => setStreet(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Rua</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Rua*</label>
                       </div>
                     </div>
                   </div>
@@ -219,7 +219,7 @@ export default function Register({ className, fileName, onSubmit }) {
                           onChange={e => setNumber(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Número</label>
+                        <label className="label--desc" style={{"margin-top": "-20px"}}>Número*</label>
                       </div>
                     </div>
                     <div className="col-6">
@@ -239,7 +239,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">CNPJ/CPF</div>
+                <div className="name">CNPJ/CPF*</div>
                 <div className="value">
                   <div className="input-group">
                     <TextField
@@ -306,7 +306,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">Email</div>
+                <div className="name">Email*</div>
                 <div className="value">
                   <div className="input-group">
                     <TextField
@@ -398,7 +398,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">Logo da Empresa</div>
+                <div className="name">Logo da Empresa*</div>
                 <div className="value">
                   <div className="input-group">
                   <ImageUpload onChange={handleImage} fileName={'imageFile'} />

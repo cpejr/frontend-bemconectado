@@ -22,7 +22,7 @@
 }
 
 .overlay{
-  background-color: rgba(255, 207, 79,  0.73);
+  background-color: rgba(255, 207, 79);
   display: flex;
   align-items: center;
   flex-direction: column;

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactPageScroller from "react-page-scroller";
 import './styles.css';
 
 import {IconButton} from '@material-ui/core';
@@ -13,12 +12,8 @@ import Contato from './Contato';
 import FAQ from './FAQ';
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(null);
   const [drawer, setDrawer] = useState(false)
 
-  const handlePageChange = number => {
-    setCurrentPage(number); // set currentPage number, to reset it from the previous selected.
-  };
 
   function handleDrawerOpen() {
     setDrawer(true)
@@ -38,15 +33,13 @@ export default function Home() {
           >
         <MenuIcon fontSize="large"/>
       </IconButton>
-      <SideBar drawer={drawer} handleDrawerClose={handleDrawerClose} handlePageChange={handlePageChange}/>
-      <ReactPageScroller pageOnChange={handlePageChange} customPageNumber={currentPage} renderAllPagesOnFirstRender={true}>
-        <Main handlePageChange={handlePageChange} saibaMais={true}/>
-        <BemConectado handlePageChange={handlePageChange}/>
-        <QuemSomos handlePageChange={handlePageChange}/>
+      <SideBar drawer={drawer} handleDrawerClose={handleDrawerClose}/>
+        <Main saibaMais={true}/>
+        <BemConectado/>
+        <QuemSomos />
         <Contato/>
         <FAQ/>
         <Main saibaMais={false}/>
-      </ReactPageScroller>
     </React.Fragment>
   )
 }

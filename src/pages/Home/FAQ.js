@@ -46,7 +46,7 @@ export default function FAQ(){
     var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
     return(
-        <Container style={{height: "auto"}}>
+        <Container style={{height: "100%"}} id="faq">
             <div style={{"margin-bottom": "20px"}}>
                 <div>
                     <div style={{display: "flex"}}>

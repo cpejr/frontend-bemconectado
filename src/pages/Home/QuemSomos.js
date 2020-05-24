@@ -3,6 +3,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { Textfit } from 'react-textfit';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IconContext } from 'react-icons';
+import { HashLink } from 'react-router-hash-link';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -35,14 +36,10 @@ export default function QuemSomos(props) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  function handleNextPage(){
-    props.handlePageChange(3)
-  }
-
   var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   return (
-    <div className='rootContainer rootInfo'>
+    <div className='rootContainer rootInfo' id='sobreNos'>
 
       <Container className='h-100'>
         <Row>
@@ -79,12 +76,12 @@ export default function QuemSomos(props) {
               conexão entre suas partes, e que as empresas costumam realizar projetos em conjunto e compartilhar
               experiência entre si.
               <br /><br />
-              <div style={{cursor: "pointer", color: "#CEC000"}} onClick={handleNextPage}>
+              <HashLink smooth to="#contato" style={{cursor: "pointer", color: "#CEC000"}}>
                 CONTATO
                 <IconContext.Provider value={{ size: '1.5em', color: "#CEC000" }} >
                   <MdKeyboardArrowDown />
                 </IconContext.Provider>
-              </div>
+              </HashLink>
             </Textfit>
           </Col>
         </Row>

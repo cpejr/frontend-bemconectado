@@ -5,6 +5,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import { HashLink } from 'react-router-hash-link';
 
 
 export default function SideBar(props){
@@ -13,55 +14,48 @@ export default function SideBar(props){
     return (
         <Drawer open={props.drawer} onClose={props.handleDrawerClose} >
             <List>
-                    <ListItem button onClick={() => {
-                            props.handlePageChange(0);
-                            props.handleDrawerClose();
-                        }}>
+                <HashLink smooth to="#main" style={{'text-decoration': 'none', color: 'black'}}>
+                    <ListItem button onClick={props.handleDrawerClose}>
                         <ListItemIcon> <AccessibilityNewIcon/> </ListItemIcon>
                         <ListItemText>AJUDE AGORA</ListItemText>
                     </ListItem>
-                
+                </HashLink>
 
                 <Divider/>
 
-                <ListItem button onClick={() => {
-                        props.handlePageChange(1);
-                        props.handleDrawerClose();
-                    }}>
-                    <ListItemIcon> <HelpOutlineIcon/> </ListItemIcon>
-                    <ListItemText>O QUE É</ListItemText>
-                </ListItem>
+                <HashLink smooth to="#saibaMais" style={{'text-decoration': 'none', color: 'black'}}>
+                    <ListItem button onClick={props.handleDrawerClose}>
+                        <ListItemIcon> <HelpOutlineIcon/> </ListItemIcon>
+                        <ListItemText>O QUE É</ListItemText>
+                    </ListItem>
+                </HashLink>
 
                 <Divider/>
 
-                <ListItem button onClick={() => {
-                        props.handlePageChange(2);
-                        props.handleDrawerClose();
-                    }}>
-                    <ListItemIcon> <EmojiObjectsIcon/> </ListItemIcon>
-                    <ListItemText>QUEM SOMOS</ListItemText>
-                </ListItem>
+                <HashLink smooth to="#sobreNos" style={{'text-decoration': 'none', color: 'black'}}>
+                    <ListItem button onClick={props.handleDrawerClose}>
+                        <ListItemIcon> <EmojiObjectsIcon/> </ListItemIcon>
+                        <ListItemText>QUEM SOMOS</ListItemText>
+                    </ListItem>
+                </HashLink>
 
                 <Divider/>
 
-                <ListItem button onClick={() => {
-                        props.handlePageChange(3);
-                        props.handleDrawerClose();
-                    }}>
-                    <ListItemIcon> <MailOutlineIcon/> </ListItemIcon>
-                    <ListItemText>CONTATO</ListItemText>
-                </ListItem>
+                <HashLink smooth to="#contato" style={{'text-decoration': 'none', color: 'black'}}>
+                    <ListItem button onClick={props.handleDrawerClose}>
+                        <ListItemIcon> <MailOutlineIcon/> </ListItemIcon>
+                        <ListItemText>CONTATO</ListItemText>
+                    </ListItem>
+                </HashLink>
 
                 <Divider/>
 
-                <ListItem button onClick={() => {
-                        props.handlePageChange(4);
-                        props.handleDrawerClose();
-                    }}>
-                    <ListItemIcon> <QuestionAnswerIcon/> </ListItemIcon>
-                    <ListItemText>FAQ</ListItemText>
-                </ListItem>
-                
+                <HashLink smooth to="#contato" style={{'text-decoration': 'none', color: 'black'}}>
+                    <ListItem button onClick={props.handleDrawerClose}>
+                        <ListItemIcon> <QuestionAnswerIcon/> </ListItemIcon>
+                        <ListItemText>FAQ</ListItemText>
+                    </ListItem>
+                </HashLink>
 
             </List>
         </Drawer>

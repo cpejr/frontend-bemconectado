@@ -9,7 +9,7 @@ export default function Contato(){
     var IOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
     return (
-        <Container style={{height: "100%"}}>
+        <Container style={{height: "100%"}} id='contato'>
             <Row >
                 <Col>
                     {IOS ? <h1 style={{"margin-top": "150px"}}>CONTATO</h1> : <h1 style={{"margin-top": "40px"}}>CONTATO</h1>}
