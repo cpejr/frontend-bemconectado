@@ -50,7 +50,7 @@ export default function SideBar(props){
 
                 <Divider/>
 
-                <HashLink smooth to="#contato" style={{'text-decoration': 'none', color: 'black'}}>
+                <HashLink smooth to="#faq" style={{'text-decoration': 'none', color: 'black'}}>
                     <ListItem button onClick={props.handleDrawerClose}>
                         <ListItemIcon> <QuestionAnswerIcon/> </ListItemIcon>
                         <ListItemText>FAQ</ListItemText>
