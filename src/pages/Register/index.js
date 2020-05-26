@@ -34,7 +34,7 @@ export default function Register({ className, fileName, onSubmit }) {
 
   async function handleRegister(e) {
     e.preventDefault();
-    
+
     setUploadPressed(true);
 
     let data = new FormData();
@@ -42,7 +42,7 @@ export default function Register({ className, fileName, onSubmit }) {
       if (value !== undefined && value !== '')
         data.append(key, value);
     }
-    
+
     addToData('name', name);
     addToData('description', description);
     addToData('city', city);
@@ -70,14 +70,23 @@ export default function Register({ className, fileName, onSubmit }) {
       alert(`Olá ${response.data.name}, seu cadastro foi realizado com sucesso`);
       history.push('/list');
     } catch (err) {
-      console.log(err.response)
-      alert(`${err.response.data}`);
+
+      if (err.response && err.response.data) {
+        let data = err.response.data;
+
+        if (data.message)
+          alert(data.message);
+
+        if (data.error)
+          if (data.error.errors)
+            alert('Por favor preencha os campos obrigatórios');
+          else
+            alert(data.error);
+      }
     }
   }
 
   function handleImage(img) {
-    console.log('mudou')
-    console.log(img);
     setSelectedFile(img);
   }
 
@@ -86,31 +95,31 @@ export default function Register({ className, fileName, onSubmit }) {
     <div className="page-wrapper bg-gra-03 p-t-45 p-b-50">
       <div className="wrapper wrapper--w790">
         <div className="card card-5">
-            <div className="card-heading">
-               <h2 className="title">Cadastre a sua instituição abaixo</h2>
-               <div id="bttn1">
-                    <Link
-                      to="/list"
-                      className="btn3 btn--radius btn--blue"
-                      >
-                      VOLTAR A LISTA
+          <div className="card-heading">
+            <h2 className="title">Cadastre a sua instituição abaixo</h2>
+            <div id="bttn1">
+              <Link
+                to="/list"
+                className="btn3 btn--radius btn--blue"
+              >
+                VOLTAR A LISTA
                     </Link>
-                </div>
             </div>
-            <div className="card-body">
+          </div>
+          <div className="card-body">
             <form onSubmit={handleRegister}>
 
               <div className="form-row">
                 <div className="name">Nome da instituição*</div>
                 <div className="value">
-                    <TextField
-                      error={name==="" && uploadPressed}
-                      name="company"
-                      helperText={(name==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
-                      value={name}
-                      onChange={e => {setName(e.target.value)}}
-                      variant="filled"
-                    />
+                  <TextField
+                    error={name === "" && uploadPressed}
+                    name="company"
+                    helperText={(name === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
+                    value={name}
+                    onChange={e => { setName(e.target.value) }}
+                    variant="filled"
+                  />
                 </div>
               </div>
 
@@ -135,7 +144,7 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="name">Local</div>
                 <div className="value">
                   <div className="row row-space">
-                  <div className="col-6">
+                    <div className="col-6">
                       <div className="input-group-desc">
                         <SelectStates
                           className="input--style-5 col-lg-12 selectStates"
@@ -147,13 +156,13 @@ export default function Register({ className, fileName, onSubmit }) {
                     <div className="col-6">
                       <div className="input-group-desc">
                         <TextField
-                          error={city==="" && uploadPressed}
-                          helperText={(city==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                          error={city === "" && uploadPressed}
+                          helperText={(city === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                           value={city}
                           onChange={e => setCity(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Cidade*</label>
+                        <label className="label--desc" style={{ "margin-top": "-20px" }}>Cidade*</label>
                       </div>
                     </div>
                   </div>
@@ -164,8 +173,8 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="value">
                   <div className="input-group">
                     <TextField
-                      error={cep==="" && uploadPressed}
-                      helperText={(cep==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                      error={cep === "" && uploadPressed}
+                      helperText={(cep === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                       value={cep}
                       onChange={e => setCep(e.target.value)}
                       variant="filled"
@@ -181,25 +190,25 @@ export default function Register({ className, fileName, onSubmit }) {
                     <div className="col-6">
                       <div className="input-group-desc">
                         <TextField
-                          error={neighborhood==="" && uploadPressed}
-                          helperText={(neighborhood==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                          error={neighborhood === "" && uploadPressed}
+                          helperText={(neighborhood === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                           value={neighborhood}
                           onChange={e => setNeighborhood(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Bairro*</label>
+                        <label className="label--desc" style={{ "margin-top": "-20px" }}>Bairro*</label>
                       </div>
                     </div>
                     <div className="col-6">
                       <div className="input-group-desc">
                         <TextField
-                          error={street==="" && uploadPressed}
-                          helperText={(street==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                          error={street === "" && uploadPressed}
+                          helperText={(street === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                           value={street}
                           onChange={e => setStreet(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Rua*</label>
+                        <label className="label--desc" style={{ "margin-top": "-20px" }}>Rua*</label>
                       </div>
                     </div>
                   </div>
@@ -213,13 +222,13 @@ export default function Register({ className, fileName, onSubmit }) {
                     <div className="col-6">
                       <div className="input-group-desc">
                         <TextField
-                          error={number==="" && uploadPressed}
-                          helperText={(number==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                          error={number === "" && uploadPressed}
+                          helperText={(number === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                           value={number}
                           onChange={e => setNumber(e.target.value)}
                           variant="filled"
                         />
-                        <label className="label--desc" style={{"margin-top": "-20px"}}>Número*</label>
+                        <label className="label--desc" style={{ "margin-top": "-20px" }}>Número*</label>
                       </div>
                     </div>
                     <div className="col-6">
@@ -243,8 +252,8 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="value">
                   <div className="input-group">
                     <TextField
-                      error={cnpj==="" && uploadPressed}
-                      helperText={(cnpj==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                      error={cnpj === "" && uploadPressed}
+                      helperText={(cnpj === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                       value={cnpj}
                       onChange={e => setCnpj(e.target.value)}
                       variant="filled"
@@ -310,8 +319,8 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="value">
                   <div className="input-group">
                     <TextField
-                      error={email==="" && uploadPressed}
-                      helperText={(email==="" && uploadPressed) ? 'Campo obrigatório' : ' '}                     
+                      error={email === "" && uploadPressed}
+                      helperText={(email === "" && uploadPressed) ? 'Campo obrigatório' : ' '}
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       variant="filled"
@@ -401,14 +410,14 @@ export default function Register({ className, fileName, onSubmit }) {
                 <div className="name">Logo da Empresa*</div>
                 <div className="value">
                   <div className="input-group">
-                  <ImageUpload onChange={handleImage} fileName={'imageFile'} />
+                    <ImageUpload onChange={handleImage} fileName={'imageFile'} />
                   </div>
                 </div>
               </div>
 
               <div className="btn-enviar-container">
-                  <button className="btn btn--radius-2 btn btn-warning" type="submit">Enviar</button>
-              </div>             
+                <button className="btn btn--radius-2 btn btn-warning" type="submit">Enviar</button>
+              </div>
 
             </form>
           </div>
