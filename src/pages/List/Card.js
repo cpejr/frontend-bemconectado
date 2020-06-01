@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Typography, Chip } from '@material-ui/core';
 import api from '../../services/api';
@@ -35,6 +35,8 @@ export default function OngCard(props) {
   const [categs, setCategs] = useState([]);
   const [imgLoaded, setImgLoaded] = useState(false);
 
+  const history = useHistory()
+
   useEffect(() => {
     api.get(`categ/${ong._id}`).then((resultVector) => {
       if (resultVector) {
@@ -42,6 +44,17 @@ export default function OngCard(props) {
       }
     });
   }, [ong]);
+
+  async function handleClick(){
+    await api.post(`/registerAcess/${ong._id}`)
+    history.push({
+      pathname: '/ongshow',
+      state: {
+      ong: ong,
+      categs: categs
+    }})
+
+  }
 
 
   const classes = useStyles();
@@ -88,14 +101,8 @@ export default function OngCard(props) {
       </CardActionArea>
 
       <CardActions className="mt-auto">
-        <Link style={{ "border-radius": "400px" }}
-          className="btn btn btn-warning mx-auto" to={{
-            pathname: '/ongshow',
-            state: {
-              ong: ong,
-              categs: categs
-            }
-          }}>Saiba mais</Link>
+        <div style={{ "border-radius": "400px" }}
+          className="btn btn btn-warning mx-auto" onClick={handleClick}>Saiba mais</div>
       </CardActions>
     </Card>
   )
