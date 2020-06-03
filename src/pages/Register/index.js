@@ -263,7 +263,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">PICPAY</div>
+                <div className="name"> Link do PICPAY (se tiver)</div>
                 <div className="value">
                   <div className="input-group">
                     <input className="input--style-5" type="text"
@@ -289,7 +289,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">Facebook</div>
+                <div className="name">Link do Facebook</div>
                 <div className="value">
                   <div className="input-group">
                     <input className="input--style-5" type="text"
@@ -302,7 +302,7 @@ export default function Register({ className, fileName, onSubmit }) {
               </div>
 
               <div className="form-row">
-                <div className="name">Instagram</div>
+                <div className="name">Link do Instagram</div>
                 <div className="value">
                   <div className="input-group">
                     <input className="input--style-5" type="text"
