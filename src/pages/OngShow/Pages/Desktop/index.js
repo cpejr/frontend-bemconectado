@@ -67,7 +67,7 @@ export default function Desktop({ ong, categs }) {
               </div>
             </div>
 
-            <div>
+            <div style={{maxHeight: '40%', overflow: 'auto'}}>
               {ong.description}
             </div>
 

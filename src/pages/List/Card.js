@@ -60,7 +60,7 @@ export default function OngCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{maxHeight: '600px'}}>
       <CardActionArea>
         <CardMedia className={classes.media}>
           <div className={classes.loader}>
@@ -73,7 +73,7 @@ export default function OngCard(props) {
           <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt='logo' onLoad={() => { setImgLoaded(true) }} style={{ width: 'auto', height: '140px' }} />
         </CardMedia>
 
-        <CardContent>
+        <CardContent style={{maxHeight: '300px', overflow: 'hidden'}}>
           <Typography gutterBottom variant="h5" component="h2">
             {ong.name}
           </Typography>
