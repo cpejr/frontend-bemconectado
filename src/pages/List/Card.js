@@ -27,6 +27,10 @@ const useStyles = makeStyles({
   loader: {
     position: 'absolute',
     alignSelf: 'center',
+  },
+  actionArea: {
+    flexDirection: 'column',
+    flexGrow: 1,
   }
 });
 
@@ -46,6 +50,7 @@ export default function OngCard(props) {
   }, [ong]);
 
   async function handleClick(){
+    console.log(`alou`)
     await api.post(`/registerAcess/${ong._id}`)
     history.push({
       pathname: '/ongshow',
@@ -61,7 +66,7 @@ export default function OngCard(props) {
 
   return (
     <Card className={classes.root} style={{maxHeight: '600px'}}>
-      <CardActionArea>
+      <CardActionArea className={classes.actionArea} onClick={() => handleClick()}>
         <CardMedia className={classes.media}>
           <div className={classes.loader}>
             <ClipLoader

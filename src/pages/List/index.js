@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import './styles.css';
-import Card from './Card';
-import { Link } from 'react-router-dom';
-import api from '../../services/api';
-import SelectState from '../../components/SelectStates';
-import { FaFilter, FaSearch } from 'react-icons/fa';
-import CategSelector from '../../components/Categ/CategSelector';
+import React, { useEffect, useState } from "react";
+import "./styles.css";
+import Card from "./Card";
+import { Link, useHistory } from "react-router-dom";
+import api from "../../services/api";
+import SelectState from "../../components/SelectStates";
+import { FaFilter, FaHome, FaSearch } from "react-icons/fa";
+import CategSelector from "../../components/Categ/CategSelector";
 import ClipLoader from "react-spinners/ClipLoader";
-
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
 export default function List(props) {
-
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
+  const history = useHistory();
 
   const ONGSPERPAGE = 10;
 
@@ -33,7 +32,7 @@ export default function List(props) {
     pagesVector: [],
     ongs: [],
     currentPageIndex: 0,
-  })
+  });
 
   useEffect(() => {
     const getOngs = async () => {
@@ -41,58 +40,51 @@ export default function List(props) {
         setLoader(true);
         let queryParams = [];
 
-        if (stateFilter)
-          queryParams.push(`state=${stateFilter}`);
+        if (stateFilter) queryParams.push(`state=${stateFilter}`);
 
-        if (FcityFilter)
-          queryParams.push(`city=${FcityFilter}`);
+        if (FcityFilter) queryParams.push(`city=${FcityFilter}`);
 
-        if (FnameFilter)
-          queryParams.push(`name=${FnameFilter}`);
+        if (FnameFilter) queryParams.push(`name=${FnameFilter}`);
 
-        if (categFilter)
-          queryParams.push(`categs=${categFilter}`);
+        if (categFilter) queryParams.push(`categs=${categFilter}`);
 
-        queryParams = queryParams.join('&')
+        queryParams = queryParams.join("&");
 
         const totalCountResponse = await api.get(`/ongsCount?${queryParams}`);
-        const totalCount = totalCountResponse.headers['x-total-count'];
+        const totalCount = totalCountResponse.headers["x-total-count"];
 
         const pagesVector = [];
         const pages = Math.ceil(totalCount / ONGSPERPAGE);
 
-        for (let i = 1; i <= pages; i++)
-          pagesVector.push(i)
+        for (let i = 1; i <= pages; i++) pagesVector.push(i);
 
         shuffle(pagesVector);
 
         if (pagesVector.length > 0) {
           let pagesQuery;
-          if (queryParams)
-            pagesQuery = `&page=${pagesVector[0]}`;
-          else
-            pagesQuery = `page=${pagesVector[0]}`;
+          if (queryParams) pagesQuery = `&page=${pagesVector[0]}`;
+          else pagesQuery = `page=${pagesVector[0]}`;
 
           let ongsResponse = await api.get(`/ongs?${queryParams}${pagesQuery}`);
 
-          let newOngs = [...ongsResponse.data]
+          let newOngs = [...ongsResponse.data];
 
           let currentPageIndex = 0;
 
           if (newOngs.length < ONGSPERPAGE && pagesVector.length > 1) {
-            currentPageIndex++
+            currentPageIndex++;
 
             let currentPage = pagesVector[currentPageIndex];
 
             let pagesQuery;
-            if (queryParams)
-              pagesQuery = `&page=${currentPage}`;
-            else
-              pagesQuery = `page=${currentPage}`;
+            if (queryParams) pagesQuery = `&page=${currentPage}`;
+            else pagesQuery = `page=${currentPage}`;
 
-            const ongsComplementResponse = await api.get(`/ongs?${queryParams}${pagesQuery}`);
+            const ongsComplementResponse = await api.get(
+              `/ongs?${queryParams}${pagesQuery}`
+            );
 
-            newOngs = [...newOngs, ...ongsComplementResponse.data]
+            newOngs = [...newOngs, ...ongsComplementResponse.data];
           }
           let newOngsData = { ...ongsData };
           newOngsData.pagesVector = pagesVector;
@@ -107,20 +99,21 @@ export default function List(props) {
           newOngsData.ongs = [];
           newOngsData.currentPageIndex = 0;
 
-          setOngsData(newOngsData)
+          setOngsData(newOngsData);
           setLoader(false);
         }
       } catch (err) {
         console.warn(err);
       }
-    }
+    };
     getOngs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateFilter, FcityFilter, FnameFilter, categFilter]);
 
   useEffect(() => {
     const updateOngs = () => {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) { //Reached the end of the page.
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        //Reached the end of the page.
         const totalPages = ongsData.pagesVector.length;
         let currentPageIndex = ongsData.currentPageIndex;
 
@@ -131,47 +124,45 @@ export default function List(props) {
 
           async function addNewOngs() {
             try {
-
               let queryParams = [];
 
-              if (stateFilter)
-                queryParams.push(`state=${stateFilter}`);
+              if (stateFilter) queryParams.push(`state=${stateFilter}`);
 
-              if (FcityFilter)
-                queryParams.push(`city=${FcityFilter}`);
+              if (FcityFilter) queryParams.push(`city=${FcityFilter}`);
 
-              if (FnameFilter)
-                queryParams.push(`name=${FnameFilter}`);
+              if (FnameFilter) queryParams.push(`name=${FnameFilter}`);
 
-              if (categFilter)
-                queryParams.push(`categs=${categFilter}`);
+              if (categFilter) queryParams.push(`categs=${categFilter}`);
 
-              queryParams = queryParams.join('&');
+              queryParams = queryParams.join("&");
 
               let newOngs = [];
               let pagesQuery;
 
-              if (queryParams)
-                pagesQuery = `&page=${currentPage}`;
-              else
-                pagesQuery = `page=${currentPage}`;
+              if (queryParams) pagesQuery = `&page=${currentPage}`;
+              else pagesQuery = `page=${currentPage}`;
 
-              const ongsResponse = await api.get(`/ongs?${queryParams}${pagesQuery}`);
+              const ongsResponse = await api.get(
+                `/ongs?${queryParams}${pagesQuery}`
+              );
 
-              newOngs = [...ongsResponse.data]
+              newOngs = [...ongsResponse.data];
 
-              if (newOngs.length < ONGSPERPAGE && ongsData.pagesVector.length - 1 > currentPageIndex) {
-                currentPageIndex++
+              if (
+                newOngs.length < ONGSPERPAGE &&
+                ongsData.pagesVector.length - 1 > currentPageIndex
+              ) {
+                currentPageIndex++;
                 currentPage = ongsData.pagesVector[currentPageIndex];
                 let pagesQuery;
-                if (queryParams)
-                  pagesQuery = `&page=${currentPage}`;
-                else
-                  pagesQuery = `page=${currentPage}`;
-                const ongsComplementResponse = await api.get(`/ongs?${queryParams}${pagesQuery}`);
-                newOngs = [...newOngs, ...ongsComplementResponse.data]
+                if (queryParams) pagesQuery = `&page=${currentPage}`;
+                else pagesQuery = `page=${currentPage}`;
+                const ongsComplementResponse = await api.get(
+                  `/ongs?${queryParams}${pagesQuery}`
+                );
+                newOngs = [...newOngs, ...ongsComplementResponse.data];
               }
-              const newOngsData = { ...ongsData }
+              const newOngsData = { ...ongsData };
               newOngsData.currentPageIndex = currentPageIndex;
               newOngsData.ongs = [...newOngsData.ongs, ...newOngs];
               setOngsData(newOngsData);
@@ -182,26 +173,23 @@ export default function List(props) {
           addNewOngs();
         }
       }
-    }
+    };
 
-    window.addEventListener('scroll', updateOngs);
+    window.addEventListener("scroll", updateOngs);
 
     return () => {
-      window.removeEventListener('scroll', updateOngs);
-    }
-
+      window.removeEventListener("scroll", updateOngs);
+    };
   }, [FcityFilter, FnameFilter, ongsData, stateFilter, categFilter]);
 
   useEffect(() => {
-    api.get('categ').then((categNamesResponse) => {
+    api.get("categ").then((categNamesResponse) => {
       setCategs(categNamesResponse.data);
     });
-  }, [])
+  }, []);
 
   const ongs = ongsData.ongs.map(function (ong) {
-    return (
-      <Card key={ong._id} ong={ong}/>
-    );
+    return <Card key={ong._id} ong={ong} />;
   });
 
   function handleOnChangeState(state) {
@@ -209,7 +197,7 @@ export default function List(props) {
   }
 
   function handleOnChangeCateg(categ) {
-    if (categ !== '') setCategFilter([categ]);
+    if (categ !== "") setCategFilter([categ]);
     else setCategFilter();
   }
 
@@ -225,55 +213,93 @@ export default function List(props) {
     setActiveFilter(!activeFilter);
   }
 
-  function handleCity(){
+  function handleCity() {
     setFcityFilter(cityFilter);
   }
 
-  function handleName(){
-    setFnameFilter(nameFilter)
+  function handleName() {
+    setFnameFilter(nameFilter);
   }
-  
+
   return (
     <div className="page-wrapper">
-      <div className="wrapper wrapper--w960">
+      <div className="wrapper wrapper-width">
         <div className="card card-5">
           <div className="Header">
+            <button
+              className="btn1 redondo btn--yellow m-2 mr-4 justify-content-end align-self-start"
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              <FaHome />
+            </button>
             <img src="./logos/8.png" className="logo" alt="Logo"></img>
-            <Link className=" redondo botaoCadastrar" to="/register" >
+            <Link className=" redondo botaoCadastrar" to="/register">
               Cadastre sua instituição
             </Link>
           </div>
           <div className="searchBar d-flex flex-wrap">
-            <button className="btn1 redondo btn--blue m-2 mr-4 justify-content-end align-self-center" onClick={handleClickFilter} type="submit">
+            <button
+              className="btn1 redondo btn--blue m-2 mr-4 justify-content-end align-self-center"
+              onClick={handleClickFilter}
+              type="submit"
+            >
               <FaFilter />
               &nbsp;&nbsp;&nbsp;FILTRO
             </button>
 
-            <div className="col-12" style={{ display: (activeFilter ? "block" : "none") }}>
+            <div
+              className="col-12"
+              style={{ display: activeFilter ? "block" : "none" }}
+            >
               <p>Selecione o estado: </p>
-              <SelectState className="input--style-5 selectStates col-12 mb-2" onChange={handleOnChangeState} nullable={true} />
+              <SelectState
+                className="input--style-5 selectStates col-12 mb-2"
+                onChange={handleOnChangeState}
+                nullable={true}
+              />
               <p>Digite o nome da cidade: </p>
               <div className="d-flex">
-              <input className="input--style-6" type='text' onChange={handleOnChangeCity}></input><button className="radiusRight btn1 btn--blue" onClick={handleCity}><FaSearch/></button>
+                <input
+                  className="input--style-6"
+                  type="text"
+                  onChange={handleOnChangeCity}
+                ></input>
+                <button
+                  className="radiusRight btn1 btn--blue"
+                  onClick={handleCity}
+                >
+                  <FaSearch />
+                </button>
               </div>
               <p>Digite o nome da instituição: </p>
               <div className="d-flex">
-              <input className="input--style-6" type='text' onChange={handleOnChangeName}></input><button className="radiusRight btn1 btn--blue" onClick={handleName}><FaSearch/></button>
+                <input
+                  className="input--style-6"
+                  type="text"
+                  onChange={handleOnChangeName}
+                ></input>
+                <button
+                  className="radiusRight btn1 btn--blue"
+                  onClick={handleName}
+                >
+                  <FaSearch />
+                </button>
               </div>
               <p>Selecione a categoria: </p>
-              <CategSelector className="input--style-5 selectStates col-12 mb-2" onChange={handleOnChangeCateg} categNames={categs} />
+              <CategSelector
+                className="input--style-5 selectStates col-12 mb-2"
+                onChange={handleOnChangeCateg}
+                categNames={categs}
+              />
             </div>
           </div>
 
           <div className="card-body d-flex flex-wrap justify-content-center">
             {loader && (
-                <ClipLoader
-                  size={150}
-                  color={"#123abc"}
-                  loading={loader}
-                />
-              )
-            }
+              <ClipLoader size={150} color={"#123abc"} loading={loader} />
+            )}
             {ongs}
           </div>
         </div>
