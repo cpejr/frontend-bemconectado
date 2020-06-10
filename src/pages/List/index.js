@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./styles.css";
 import Card from "./Card";
 import { Link, useHistory } from "react-router-dom";
@@ -25,6 +25,7 @@ export default function List(props) {
   const [activeFilter, setActiveFilter] = useState(false);
   const [FcityFilter, setFcityFilter] = useState();
   const [FnameFilter, setFnameFilter] = useState();
+  const [monthViews, setMonthViews] = useState({});
 
   const [categs, setCategs] = useState([]);
 
@@ -183,13 +184,19 @@ export default function List(props) {
   }, [FcityFilter, FnameFilter, ongsData, stateFilter, categFilter]);
 
   useEffect(() => {
+    api.get("monthViews").then((monthViews) => {
+      setMonthViews(monthViews.data);
+    });
+
     api.get("categ").then((categNamesResponse) => {
       setCategs(categNamesResponse.data);
     });
   }, []);
 
-  const ongs = ongsData.ongs.map(function (ong) {
-    return <Card key={ong._id} ong={ong} />;
+  const ongs = ongsData.ongs.map((ong) => {
+    let count = monthViews[ong._id] ? monthViews[ong._id].count : 0;
+
+    return <Card key={ong._id} ong={ong} count={count} />;
   });
 
   function handleOnChangeState(state) {
@@ -300,6 +307,7 @@ export default function List(props) {
             {loader && (
               <ClipLoader size={150} color={"#123abc"} loading={loader} />
             )}
+
             {ongs}
           </div>
         </div>

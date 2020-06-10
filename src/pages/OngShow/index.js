@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import Mobile from './Pages/Mobile'
-import Desktop from './Pages/Desktop'
+import React, { useEffect, useState } from "react";
+import Mobile from "./Pages/Mobile";
+import Desktop from "./Pages/Desktop";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 }
 
 export default function OngShow(props) {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
   const [ong, setOng] = useState({});
   const [categs, setCategs] = useState([]);
 
   useEffect(() => {
-    if (props.location.state && props.location.state.ong) setOng(props.location.state.ong);
-  }, [props.location.state])
+    if (props.location.state && props.location.state.ong)
+      setOng(props.location.state.ong);
+  }, [props.location.state]);
 
   useEffect(() => {
-    if (props.location.state && props.location.state.categs) setCategs(props.location.state.categs);
-  }, [props.location.state])
+    if (props.location.state && props.location.state.categs)
+      setCategs(props.location.state.categs);
+  }, [props.location.state]);
 
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const windowWidth = windowDimensions.width;
 
+  const count = props.location.state.count;
   if (windowWidth <= 850)
-    return (
-      <Mobile ong={ong} categs={categs} />
-    );
-  else
-    return (
-      <Desktop ong={ong} categs={categs} />
-    );
+    return <Mobile ong={ong} categs={categs} count={count} />;
+  else return <Desktop ong={ong} categs={categs} count={count} />;
 }
