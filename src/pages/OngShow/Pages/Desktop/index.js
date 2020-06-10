@@ -8,9 +8,92 @@ import { IconContext } from "react-icons";
 import { MdPlace, MdLocalPhone, MdEmail, MdAccountBalanceWallet } from "react-icons/md";
 import { AiOutlineGlobal, AiFillBank } from "react-icons/ai";
 import { IoIosArrowBack } from "react-icons/io";
-import { Button, Chip } from '@material-ui/core';
+import { Button, Chip, Typography } from '@material-ui/core';
 import { FaFacebookF, FaCodeBranch } from "react-icons/fa";
+import { BsEyeFill } from 'react-icons/bs'
 import picpayIcon from '../../../../images/picpay.png';
+
+
+const classes = {
+  linkContent: {
+    display: 'flex',
+    flexDirection: 'row',
+    borderColor: '#ced4da',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    marginBottom: 10,
+    height: 60,
+    width: '80%'
+  },
+  link: {
+    flexWrap: "nowrap",
+    overflow: 'hidden',
+    textOverflow: 'ellipis',
+    whiteSpace: 'nowrap',
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: 5,
+  },
+  linkIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#e9ecef',
+    padding: 5,
+    width: '20%',
+    border: 0,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderRight: 1,
+    borderRightColor: '#ced4da',
+    borderStyle: 'solid',
+  },
+  bankRow: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  inputBank: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+  bankText: {
+    backgroundColor: '#e9ecef',
+    padding: 5,
+    border: 0,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderRight: 1,
+    borderRightColor: '#ced4da',
+    borderStyle: 'solid',
+    height: '100%',
+    width: '40%',
+    color: '#495057',
+    display: 'flex',
+    alignItems: 'center',
+    alignContent: 'end',
+    justifyContent: 'center',
+  },
+  bankGroup: {
+    height: 60,
+    borderColor: '#ced4da',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 10,
+    alignItems: 'center',
+    flexGrow: 1
+  },
+}
+
+
+
+
 
 export default function Desktop({ ong, categs }) {
 
@@ -71,32 +154,49 @@ export default function Desktop({ ong, categs }) {
               {ong.description}
             </div>
 
-            <div className="fieldsContainer">
+            <div>
               {ong.site && (
-                <div className="fieldBox">
-                  <div className="fieldIcon">
-                    <IconContext.Provider value={{ size: '1.8em' }}>
+                <div style={classes.linkContent}>
+                  <div style={classes.linkIcon}>
+                    <IconContext.Provider value={{ color: "#495057", size: '1.8em' }}>
                       <AiOutlineGlobal />
                     </IconContext.Provider>
                   </div>
-                  <div className="fieldInfo">
-                    <a target="_blank" rel="noopener noreferrer" href={ong.site}>{ong.site}</a>
+                  <div style={classes.link}>
+                    <Typography>
+                      <a target="_blank" rel="noopener noreferrer" href={ong.site}>{ong.site}</a>
+                    </Typography>
                   </div>
                 </div>
               )}
 
               {ong.email && (
-                <div className="fieldBox">
-                  <div className="fieldIcon">
-                    <IconContext.Provider value={{ size: '1.8em' }}>
+                <div style={classes.linkContent}>
+                  <div style={classes.linkIcon}>
+                    <IconContext.Provider value={{ color: "#495057", size: '1.8em' }}>
                       <MdEmail />
                     </IconContext.Provider>
                   </div>
-                  <div className="fieldInfo">
-                    {ong.email}
+                  <div style={classes.link}>
+                    <Typography>
+                      {ong.email}
+                    </Typography>
                   </div>
                 </div>
               )}
+
+              {/* <div style={classes.linkContent}>
+                  <div style={classes.linkIcon}>
+                    <IconContext.Provider value={{ color: "#495057", size: '1.8em' }}>
+                      <BsEyeFill />
+                    </IconContext.Provider>
+                  </div>
+                  <div style={classes.link}>
+                    <Typography>
+                      <b>1893</b> vizualizações na semana
+                    </Typography>
+                  </div>
+              </div> */}
 
             </div>
 
@@ -104,7 +204,7 @@ export default function Desktop({ ong, categs }) {
               {ong.facebook && (
                 <Button variant="outlined" target="_blank" href={`${ong.facebook}`} className="iconButton facebookBorder">
                   <div>
-                    <IconContext.Provider value={{ color: "#3b5998", size: '1.7em' }}>
+                    <IconContext.Provider value={{ color: "#3b5998", size: '3.5em' }}>
                       <FaFacebookF />
                     </IconContext.Provider>
                   </div>
@@ -126,34 +226,33 @@ export default function Desktop({ ong, categs }) {
 
             <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt="Logo" className="ongLogo" />
 
-            <div className="donationInfo">
-              <div><b>INFORMAÇÕES PARA DOAÇÃO</b></div>
-              <div className="fieldBox">
-                <div className="fieldIcon">
+            <div style={{width: '60%'}}>
+              <div style={classes.bankGroup}>
+                <div style={classes.bankText}>
                   <IconContext.Provider value={{ size: '1.5em' }}>
                     <AiFillBank />
                   </IconContext.Provider>
-                                    BANCO
-                                </div>
-                <div className="fieldInfo">{ong.bank}</div>
+                  Banco:
+                </div>
+                <div style={classes.inputBank}>{ong.bank}</div>
               </div>
-              <div className="fieldBox">
-                <div className="fieldIcon">
+              <div style={classes.bankGroup}>
+                <div style={classes.bankText}>
                   <IconContext.Provider value={{ size: '1.5em' }}>
                     <FaCodeBranch />
                   </IconContext.Provider>
-                                    AGENCIA
-                                </div>
-                <div className="fieldInfo">{ong.branch}</div>
+                  Agência:
+                  </div>
+                <div style={classes.inputBank}>{ong.branch}</div>
               </div>
-              <div className="fieldBox">
-                <div className="fieldIcon">
+              <div style={classes.bankGroup}>
+                <div style={classes.bankText}>
                   <IconContext.Provider value={{ size: '1.5em' }}>
                     <MdAccountBalanceWallet />
                   </IconContext.Provider>
-                                    CONTA
-                                </div>
-                <div className="fieldInfo">{ong.bankAccount}</div>
+                  Conta:
+                </div>
+                <div style={classes.inputBank}>{ong.bankAccount}</div>
               </div>
             </div>
 

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Typography, Chip } from '@material-ui/core';
 import api from '../../services/api';
 
 import { MdLocationOn } from "react-icons/md";
 import { IconContext } from "react-icons";
+import { BsEyeFill } from 'react-icons/bs'
 import ClipLoader from "react-spinners/ClipLoader";
 
 const useStyles = makeStyles({
   root: {
+    position: 'relative',
     margin: '10px',
     'margin-bottom': '15px',
     maxWidth: 320,
@@ -31,6 +33,11 @@ const useStyles = makeStyles({
   actionArea: {
     flexDirection: 'column',
     flexGrow: 1,
+  },
+  views: {
+    position: 'absolute',
+    right: 10,
+    top: 10
   }
 });
 
@@ -66,6 +73,9 @@ export default function OngCard(props) {
 
   return (
     <Card className={classes.root} style={{maxHeight: '600px'}}>
+
+      
+
       <CardActionArea className={classes.actionArea} onClick={() => handleClick()}>
         <CardMedia className={classes.media}>
           <div className={classes.loader}>
@@ -106,8 +116,16 @@ export default function OngCard(props) {
       </CardActionArea>
 
       <CardActions className="mt-auto">
-        <div style={{ "border-radius": "400px" }}
-          className="btn btn btn-warning mx-auto" onClick={handleClick}>Saiba mais</div>
+        <div style={{ "border-radius": "400px" }}className="btn btn btn-warning mx-auto" onClick={handleClick}>
+          Saiba mais
+        </div>
+        <div style={{position: 'absolute',right: 10,top: 10}}>
+          <IconContext.Provider value={{ color: "#444", size: "1.2em" }}>
+              <BsEyeFill/>
+          </IconContext.Provider>
+          18984
+        </div>
+
       </CardActions>
     </Card>
   )
