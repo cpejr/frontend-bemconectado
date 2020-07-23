@@ -66,7 +66,7 @@ export default function Register({ className, fileName, onSubmit }) {
     addToData('imageFile', selectedFile);
 
     try {
-      const response = await api.post('registerOng', data);
+      const response = await api.post('ongs', data);
       alert(`Olá ${response.data.name}, seu cadastro foi realizado com sucesso`);
       history.push('/list');
     } catch (err) {
