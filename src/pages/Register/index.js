@@ -6,6 +6,8 @@ import ImageUpload from '../../components/ImageUpload';
 import SelectStates from '../../components/SelectStates';
 import TextField from '@material-ui/core/TextField';
 
+import { FaQuestionCircle } from 'react-icons/fa';
+
 
 export default function Register({ className, fileName, onSubmit }) {
   const [name, setName] = useState('');
@@ -30,7 +32,25 @@ export default function Register({ className, fileName, onSubmit }) {
   const [bankAccount, setBankAccount] = useState('');
   const [selectedFile, setSelectedFile] = useState();
   const [uploadPressed, setUploadPressed] = useState(false);
-  const history = useHistory();
+  const history = useHistory(); 
+
+  // What will show in tooltip
+  const examplesResultForm = {
+    institutionName:'Ex: Todos heróis',
+    description: 'Ex: Essa instituição ajuda pessoas carentes de rua.',
+    local: 'Ex: MG - Ouro Preto',
+    zipCode: 'Ex: 00000000',
+    address: 'Ex: Tupi, Avenida Coronel Fabriciano',
+    complement: 'Ex: 35 Ao lado do posto',
+    CNPJ: '00000',
+    linkPicPay: 'teste',
+    site: 'www.site.com.br',
+    linkFacebook: 'teste',
+    linkInstagram: 'teste',
+    email: 'meuemail@teste.com',
+    contact: '31 99999999',
+    bankAccountData: 'teste',
+  }
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -107,10 +127,10 @@ export default function Register({ className, fileName, onSubmit }) {
             </div>
           </div>
           <div className="card-body">
-            <form onSubmit={handleRegister}>
+            <form className="formRegister" onSubmit={handleRegister}>
 
               <div className="form-row">
-                <div className="name">Nome da instituição*</div>
+                <div className="name">Nome da Instituição*</div>
                 <div className="value">
                   <TextField
                     error={name === "" && uploadPressed}
@@ -120,6 +140,13 @@ export default function Register({ className, fileName, onSubmit }) {
                     onChange={e => { setName(e.target.value) }}
                     variant="filled"
                   />
+                </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.institutionName}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
                 </div>
               </div>
 
@@ -138,6 +165,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.description}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row m-b-55">
@@ -167,6 +202,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     </div>
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.local}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
               <div className="form-row">
                 <div className="name">CEP*</div>
@@ -181,6 +224,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.zipCode}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row m-b-55">
@@ -213,6 +264,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     </div>
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.address}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row m-b-55">
@@ -245,6 +304,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     </div>
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.complement}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">
@@ -260,6 +327,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.CNPJ}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">
@@ -273,6 +348,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.linkPicPay}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">
@@ -286,6 +369,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.site}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">
@@ -299,6 +390,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.linkFacebook}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">
@@ -312,6 +411,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.linkInstagram}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">
@@ -327,6 +434,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     />
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.email}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row m-b-55">
@@ -355,6 +470,14 @@ export default function Register({ className, fileName, onSubmit }) {
                     </div>
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.contact}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row m-b-55">
@@ -386,6 +509,7 @@ export default function Register({ className, fileName, onSubmit }) {
                     </div>
                   </div>
                 </div>
+
               </div>
               <div className="form-row m-b-55">
                 <div className="name"></div>
@@ -404,6 +528,14 @@ export default function Register({ className, fileName, onSubmit }) {
 
                   </div>
                 </div>
+
+                <div className="info">
+                  <div className="examples">
+                    {examplesResultForm.bankAccountData}
+                  </div>
+                  < FaQuestionCircle size={35} color='#FFCF4F'/>
+                </div>
+
               </div>
 
               <div className="form-row">

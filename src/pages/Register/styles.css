@@ -61,7 +61,13 @@
     }
   }
   
-  .form-row {
+  /* edição do formulário todo */
+  .formRegister{
+    margin-left: -60px;
+  }
+
+
+  .form-row{
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -74,9 +80,76 @@
     -webkit-align-items: center;
     -moz-box-align: center;
     -ms-flex-align: center;
+    justify-content: center;
+    flex-direction: row;
     align-items: center;
     margin-bottom: 40px;
   }
+  
+  /***********/ 
+  /* Tooltip container */
+.info{
+  position: relative;
+  display: inline-block;
+  margin-right: -50px;
+  margin-left: 15px;
+
+}
+
+/* Tooltip text */
+.info .examples {
+  font-size: 15px;
+  font-weight: 300;
+  display: flex;
+  text-align: center;
+  
+  width: 150px;
+  height: auto;
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 10px 10px;
+  border-radius: 6px;
+  
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.info .examples::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.info:hover .examples {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Input configuration */
+.MuiTextField-root{
+  width: 100%;
+}
+
+  /* .info:hover{
+    width: 30px;
+  } */
   
   .form-row .name {
     width: 125px;
@@ -86,9 +159,21 @@
   }
   
   .form-row .value {
-    width: -webkit-calc(100% - 125px);
-    width: -moz-calc(100% - 125px);
-    width: calc(100% - 125px);
+    width: -webkit-calc(100% - 150px);
+    width: -moz-calc(100% - 150px);
+    width: calc(100% - 150px);
+  }
+
+  /* Form Button */
+  .btn-enviar-container{
+    width: auto;
+    display: flex ;
+    justify-content: center;
+  }
+
+  .btn{
+    width: 150px;
+    height: 50px;
   }
   
   @media (max-width: 767px) {
