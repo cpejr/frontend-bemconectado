@@ -9,6 +9,36 @@ import TextField from '@material-ui/core/TextField';
 import { FaQuestionCircle } from 'react-icons/fa';
 
 
+// const questionMark = ({examplesTest}) => {
+
+//   const examplesResultForm = {
+//     institutionName:'Ex: Todos heróis',
+//     description: 'Ex: Essa instituição ajuda pessoas carentes de rua.',
+//     local: 'Ex: MG - Ouro Preto',
+//     zipCode: 'Ex: 00000000',
+//     address: 'Ex: Tupi, Avenida Coronel Fabriciano',
+//     complement: 'Ex: 35 Ao lado do posto',
+//     CNPJ: '00000',
+//     linkPicPay: 'teste',
+//     site: 'www.site.com.br',
+//     linkFacebook: 'teste',
+//     linkInstagram: 'teste',
+//     email: 'meuemail@teste.com',
+//     contact: '31 99999999',
+//     bankAccountData: 'teste',
+//   }
+
+//   console.log('entrou')
+//   return (
+//     <div className="info">
+//       <div className="examples">
+//         {examplesResultForm.examplesTest}
+//       </div>
+//       < FaQuestionCircle size={35} color='#FFCF4F'/>
+//     </div>
+//   );
+// }
+
 export default function Register({ className, fileName, onSubmit }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -35,6 +65,7 @@ export default function Register({ className, fileName, onSubmit }) {
   const history = useHistory(); 
 
   // What will show in tooltip
+
   const examplesResultForm = {
     institutionName:'Ex: Todos heróis',
     description: 'Ex: Essa instituição ajuda pessoas carentes de rua.',
@@ -51,6 +82,8 @@ export default function Register({ className, fileName, onSubmit }) {
     contact: '31 99999999',
     bankAccountData: 'teste',
   }
+
+  
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -148,6 +181,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                   < FaQuestionCircle size={35} color='#FFCF4F'/>
                 </div>
+
               </div>
 
               <div className="form-row">

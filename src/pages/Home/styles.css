@@ -11,14 +11,14 @@
   margin-top: -15px;
 }
 
-.title1{
+.mainTitle{
   font-size: calc(2em + 5vw);
   color: #fff;
   font-family: 'Raleway', sans-serif;
   font-weight: 900;
   text-align: center;
   flex-wrap: wrap;
-  margin: 0;
+  margin-top: -130px;
 }
 
 .overlay{
@@ -29,16 +29,72 @@
   justify-content: center;
 }
 
+.carousel{
+  /* height: 25%; */
+  width: 90%;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-inner{
+  /* height: 100%; */
+  width: 80% !important;
+}
+
+.carousel-item div {
+  height: 100%;
+  /* width: 25%; */
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-indicators{
+  margin-bottom: -50px;
+}
+
+.carousel-indicators li{
+  height: 7px !important;
+}
+
+.buttons{
+  width: 70%;
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/*  FAZER HOVER */
+.buttons a:hover{
+  text-decoration: none;
+}
+
 .homeButton{
-  margin-top: 10% !important;
   background-color: #2C67E4 !important;
   border-radius: 400px !important;
+}
+
+.redondo {
+  border-radius: 400px;
+}
+
+.botaoCadastrar{
+  background-color: #2C67E4;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Poppins';
+  padding: 0 50px;
+  line-height: 50px;
 }
 
 .buttonText{
   font-size: calc(1em + 1vw);
   color: #fff;
-  font-family: 'Raleway', sans-serif;
+  /* font-size: 15px; */
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   margin: auto;
 }
@@ -48,10 +104,19 @@
   flex-direction: column;
   align-items: center;
   color: #fff;
-  font-family: 'Permanent Marker', cursive;
+  /* font-family: 'Permanent Marker', cursive; */
   position: absolute;
-  bottom: 80px;
-  font-size: calc(1.3em + 1vw);
+  bottom: 0px;
+  font-size: calc(1.3em + 0.5vw);
+}
+
+.saibaMais span{
+  color: #fff;
+  font-family: 'Permanent Marker', cursive;
+  margin-bottom: -10px;
+  /* position: absolute; */
+  /* bottom: 5px; */
+  /* font-size: calc(1.3em + 1vw); */
 }
 
 .rootContainer{
