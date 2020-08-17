@@ -13,177 +13,141 @@ function shuffle(array) {
 }
 
 export default function List(props) {
-  const [loader, setLoader] = useState(true);
   const history = useHistory();
 
   const ONGSPERPAGE = 10;
 
-  const [stateFilter, setStateFilter] = useState();
-  const [cityFilter, setCityFilter] = useState();
-  const [nameFilter, setNameFilter] = useState();
-  const [categFilter, setCategFilter] = useState();
+  const filters = useRef({});
   const [activeFilter, setActiveFilter] = useState(false);
-  const [FcityFilter, setFcityFilter] = useState();
-  const [FnameFilter, setFnameFilter] = useState();
   const [monthViews, setMonthViews] = useState({});
-
+  const [loading, setLoading] = useState(true);
   const [categs, setCategs] = useState([]);
 
   const [ongsData, setOngsData] = useState({
     pagesVector: [],
     ongs: [],
-    currentPageIndex: 0,
+    currentPageIndex: -1,
   });
 
-  useEffect(() => {
-    const getOngs = async () => {
-      try {
-        setLoader(true);
-        let queryParams = [];
+  function buildQueryParams(extraParamsVector) {
+    let queryParams = [];
+    Object.keys(filters.current).forEach((key) => {
+      queryParams.push(`${key}=${filters.current[key]}`);
+    });
 
-        if (stateFilter) queryParams.push(`state=${stateFilter}`);
+    if (extraParamsVector) queryParams = [...queryParams, ...extraParamsVector];
 
-        if (FcityFilter) queryParams.push(`city=${FcityFilter}`);
+    return queryParams.join("&");
+  }
 
-        if (FnameFilter) queryParams.push(`name=${FnameFilter}`);
+  async function generateShufflePages() {
+    let queryParams = buildQueryParams();
 
-        if (categFilter) queryParams.push(`categs=${categFilter}`);
+    const totalCountResponse = await api.get(`/ongsCount?${queryParams}`);
+    const totalCount = totalCountResponse.headers["x-total-count"];
 
-        queryParams = queryParams.join("&");
+    const pagesVector = [];
+    const pages = Math.ceil(totalCount / ONGSPERPAGE);
 
-        const totalCountResponse = await api.get(`/ongsCount?${queryParams}`);
-        const totalCount = totalCountResponse.headers["x-total-count"];
+    for (let i = 1; i <= pages; i++) pagesVector.push(i);
 
-        const pagesVector = [];
-        const pages = Math.ceil(totalCount / ONGSPERPAGE);
+    shuffle(pagesVector);
 
-        for (let i = 1; i <= pages; i++) pagesVector.push(i);
+    return { pagesVector, currentPageIndex: -1 };
+  }
 
-        shuffle(pagesVector);
+  async function loadNextPage(newOngsData) {
+    
+    async function getOngs(page) {
+      const queryParams = buildQueryParams([`page=${page}`]);
+  
+      const ongsResponse = await api.get(`/ongs?${queryParams}`);
+      return ongsResponse.data;
+    }
 
-        if (pagesVector.length > 0) {
-          let pagesQuery;
-          if (queryParams) pagesQuery = `&page=${pagesVector[0]}`;
-          else pagesQuery = `page=${pagesVector[0]}`;
+    let { currentPageIndex, pagesVector } = newOngsData;
 
-          let ongsResponse = await api.get(`/ongs?${queryParams}${pagesQuery}`);
+    if (currentPageIndex + 1 < pagesVector.length) {
+      currentPageIndex++;
 
-          let newOngs = [...ongsResponse.data];
-
-          let currentPageIndex = 0;
-
-          if (newOngs.length < ONGSPERPAGE && pagesVector.length > 1) {
-            currentPageIndex++;
-
-            let currentPage = pagesVector[currentPageIndex];
-
-            let pagesQuery;
-            if (queryParams) pagesQuery = `&page=${currentPage}`;
-            else pagesQuery = `page=${currentPage}`;
-
-            const ongsComplementResponse = await api.get(
-              `/ongs?${queryParams}${pagesQuery}`
-            );
-
-            newOngs = [...newOngs, ...ongsComplementResponse.data];
-          }
-          let newOngsData = { ...ongsData };
-          newOngsData.pagesVector = pagesVector;
-          newOngsData.ongs = newOngs;
-          newOngsData.currentPageIndex = currentPageIndex;
-          setOngsData(newOngsData);
-          setLoader(false);
-        } else {
-          let newOngsData = { ...ongsData };
-
-          newOngsData.pagesVector = [];
-          newOngsData.ongs = [];
-          newOngsData.currentPageIndex = 0;
-
-          setOngsData(newOngsData);
-          setLoader(false);
-        }
-      } catch (err) {
-        console.warn(err);
+      let currentPage = pagesVector[currentPageIndex];
+      let newOngs = await getOngs(currentPage);
+      /**
+       * Se a requisição retornar menos entidades que a quantidade
+       * minima de entidades por página -> pegue a próxima página
+       */
+      if (
+        newOngs.length < ONGSPERPAGE &&
+        pagesVector.length - 1 >= currentPageIndex + 1 // Se existir a próxima página
+      ) {
+        currentPageIndex++;
+        currentPage = pagesVector[currentPageIndex];
+        const extra = await getOngs(currentPage);
+        newOngs = [...newOngs, ...extra];
       }
-    };
-    getOngs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateFilter, FcityFilter, FnameFilter, categFilter]);
+
+      let ongs;
+
+      if (newOngsData.ongs) ongs = [...newOngsData.ongs, ...newOngs];
+      else ongs = newOngs;
+
+      return {
+        ongs,
+        currentPageIndex,
+        pagesVector,
+      };
+    } else
+      return {
+        ongs: newOngsData.ongs,
+        currentPageIndex,
+        pagesVector,
+      };
+  }
+
+  function newSearch() {
+    setLoading(true);
+    generateShufflePages()
+      .then(loadNextPage)
+      .then(setOngsData)
+      .catch((error) => console.error(error));
+    setLoading(false);
+  }
 
   useEffect(() => {
-    const updateOngs = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        //Reached the end of the page.
-        const totalPages = ongsData.pagesVector.length;
-        let currentPageIndex = ongsData.currentPageIndex;
-
-        if (currentPageIndex < totalPages - 1) {
-          currentPageIndex++;
-
-          let currentPage = ongsData.pagesVector[currentPageIndex];
-
-          async function addNewOngs() {
-            try {
-              let queryParams = [];
-
-              if (stateFilter) queryParams.push(`state=${stateFilter}`);
-
-              if (FcityFilter) queryParams.push(`city=${FcityFilter}`);
-
-              if (FnameFilter) queryParams.push(`name=${FnameFilter}`);
-
-              if (categFilter) queryParams.push(`categs=${categFilter}`);
-
-              queryParams = queryParams.join("&");
-
-              let newOngs = [];
-              let pagesQuery;
-
-              if (queryParams) pagesQuery = `&page=${currentPage}`;
-              else pagesQuery = `page=${currentPage}`;
-
-              const ongsResponse = await api.get(
-                `/ongs?${queryParams}${pagesQuery}`
-              );
-
-              newOngs = [...ongsResponse.data];
-
-              if (
-                newOngs.length < ONGSPERPAGE &&
-                ongsData.pagesVector.length - 1 > currentPageIndex
-              ) {
-                currentPageIndex++;
-                currentPage = ongsData.pagesVector[currentPageIndex];
-                let pagesQuery;
-                if (queryParams) pagesQuery = `&page=${currentPage}`;
-                else pagesQuery = `page=${currentPage}`;
-                const ongsComplementResponse = await api.get(
-                  `/ongs?${queryParams}${pagesQuery}`
-                );
-                newOngs = [...newOngs, ...ongsComplementResponse.data];
-              }
-              const newOngsData = { ...ongsData };
-              newOngsData.currentPageIndex = currentPageIndex;
-              newOngsData.ongs = [...newOngsData.ongs, ...newOngs];
-              setOngsData(newOngsData);
-            } catch (err) {
-              console.warn(err);
-            }
-          }
-          addNewOngs();
-        }
+    function handleScroll() {
+      const windowHeight =
+        "innerHeight" in window
+          ? window.innerHeight
+          : document.documentElement.offsetHeight;
+      const body = document.body;
+      const html = document.documentElement;
+      const docHeight = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      );
+      const windowBottom = windowHeight + window.pageYOffset;
+      if (windowBottom >= docHeight) {
+        //bottom reached
+        loadNextPage(ongsData)
+          .then(setOngsData)
+          .catch((error) => console.error(error));
       }
-    };
+    }
 
-    window.addEventListener("scroll", updateOngs);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", updateOngs);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [FcityFilter, FnameFilter, ongsData, stateFilter, categFilter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ongsData]);
 
   useEffect(() => {
+    newSearch();
+
     api.get("monthViews").then((monthViews) => {
       setMonthViews(monthViews.data);
     });
@@ -191,41 +155,23 @@ export default function List(props) {
     api.get("categ").then((categNamesResponse) => {
       setCategs(categNamesResponse.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const ongs = ongsData.ongs.map((ong) => {
-    let count = monthViews[ong._id] ? monthViews[ong._id].count : 0;
+  function handleOnChangeFilter(event) {
+    const { name, value, type } = event.target;
+    const newFilters = { ...filters.current };
+    if (value !== "--" && value !== undefined && value !== "")
+      newFilters[name] = value;
+    else delete newFilters[name];
 
-    return <Card key={ong._id} ong={ong} count={count} />;
-  });
+    filters.current = newFilters;
 
-  function handleOnChangeState(state) {
-    setStateFilter(state);
-  }
-
-  function handleOnChangeCateg(categ) {
-    if (categ !== "") setCategFilter([categ]);
-    else setCategFilter();
-  }
-
-  function handleOnChangeCity(city) {
-    setCityFilter(city.target.value);
-  }
-
-  function handleOnChangeName(name) {
-    setNameFilter(name.target.value);
+    if (type !== "text") newSearch();
   }
 
   function handleClickFilter() {
     setActiveFilter(!activeFilter);
-  }
-
-  function handleCity() {
-    setFcityFilter(cityFilter);
-  }
-
-  function handleName() {
-    setFnameFilter(nameFilter);
   }
 
   return (
@@ -263,7 +209,8 @@ export default function List(props) {
               <p>Selecione o estado: </p>
               <SelectState
                 className="input--style-5 selectStates col-12 mb-2"
-                onChange={handleOnChangeState}
+                name="state"
+                onChange={handleOnChangeFilter}
                 nullable={true}
               />
               <p>Digite o nome da cidade: </p>
@@ -271,11 +218,12 @@ export default function List(props) {
                 <input
                   className="input--style-6"
                   type="text"
-                  onChange={handleOnChangeCity}
-                ></input>
+                  name="city"
+                  onChange={handleOnChangeFilter}
+                />
                 <button
                   className="radiusRight btn1 btn--blue"
-                  onClick={handleCity}
+                  onClick={newSearch}
                 >
                   <FaSearch />
                 </button>
@@ -285,11 +233,12 @@ export default function List(props) {
                 <input
                   className="input--style-6"
                   type="text"
-                  onChange={handleOnChangeName}
-                ></input>
+                  name="name"
+                  onChange={handleOnChangeFilter}
+                />
                 <button
                   className="radiusRight btn1 btn--blue"
-                  onClick={handleName}
+                  onClick={newSearch}
                 >
                   <FaSearch />
                 </button>
@@ -297,18 +246,23 @@ export default function List(props) {
               <p>Selecione a categoria: </p>
               <CategSelector
                 className="input--style-5 selectStates col-12 mb-2"
-                onChange={handleOnChangeCateg}
+                onChange={handleOnChangeFilter}
+                name={categs}
                 categNames={categs}
               />
             </div>
           </div>
 
           <div className="card-body d-flex flex-wrap justify-content-center">
-            {loader && (
-              <ClipLoader size={150} color={"#123abc"} loading={loader} />
-            )}
+            {loading ? (
+              <ClipLoader size={150} color={"#123abc"} loading={true} />
+            ) : (
+              ongsData.ongs?.map((ong) => {
+                let count = monthViews[ong._id] ? monthViews[ong._id].count : 0;
 
-            {ongs}
+                return <Card key={ong._id} ong={ong} count={count} />;
+              })
+            )}
           </div>
         </div>
       </div>

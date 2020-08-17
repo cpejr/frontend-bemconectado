@@ -136,7 +136,7 @@ export default function OngCard(props) {
 
       <CardActions className="mt-auto">
         <div
-          style={{ "border-radius": "400px" }}
+          style={{ borderRadius: "400px" }}
           className="btn btn btn-warning mx-auto"
           onClick={handleClick}
         >

@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-
-export default function SelectState({ className, onChange, id, initialValue }) {
-
+export default function SelectState({
+  className,
+  onChange,
+  id,
+  initialValue,
+  name,
+}) {
   const [state, setState] = useState(initialValue ? initialValue : "");
-
 
   function handleChange(event) {
     setState(event.target.value);
-    onChange(event.target.value);
+    onChange(event);
   }
 
   return (
-    <select id={id} name="estado" value={state} onChange={handleChange} className={className}>
+    <select
+      id={id}
+      name={name}
+      value={state}
+      onChange={handleChange}
+      className={className}
+    >
       <option value="">--</option>
       <option value="AC">Acre</option>
       <option value="AL">Alagoas</option>
