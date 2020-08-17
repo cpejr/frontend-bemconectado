@@ -57,7 +57,7 @@ export default function List(props) {
   }
 
   async function loadNextPage(newOngsData) {
-    
+
     async function getOngs(page) {
       const queryParams = buildQueryParams([`page=${page}`]);
   
@@ -72,6 +72,7 @@ export default function List(props) {
 
       let currentPage = pagesVector[currentPageIndex];
       let newOngs = await getOngs(currentPage);
+      shuffle(newOngs); 
       /**
        * Se a requisição retornar menos entidades que a quantidade
        * minima de entidades por página -> pegue a próxima página
@@ -83,6 +84,7 @@ export default function List(props) {
         currentPageIndex++;
         currentPage = pagesVector[currentPageIndex];
         const extra = await getOngs(currentPage);
+        shuffle(extra); 
         newOngs = [...newOngs, ...extra];
       }
 
