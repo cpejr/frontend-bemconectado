@@ -7,6 +7,7 @@ import SelectState from "../../components/SelectStates";
 import { FaFilter, FaHome, FaSearch } from "react-icons/fa";
 import CategSelector from "../../components/Categ/CategSelector";
 import ClipLoader from "react-spinners/ClipLoader";
+import BacktoTop from "../../components/BacktoTop";
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -60,7 +61,7 @@ export default function List(props) {
 
     async function getOngs(page) {
       const queryParams = buildQueryParams([`page=${page}`]);
-  
+
       const ongsResponse = await api.get(`/ongs?${queryParams}`);
       return ongsResponse.data;
     }
@@ -72,7 +73,7 @@ export default function List(props) {
 
       let currentPage = pagesVector[currentPageIndex];
       let newOngs = await getOngs(currentPage);
-      shuffle(newOngs); 
+      shuffle(newOngs);
       /**
        * Se a requisição retornar menos entidades que a quantidade
        * minima de entidades por página -> pegue a próxima página
@@ -84,7 +85,7 @@ export default function List(props) {
         currentPageIndex++;
         currentPage = pagesVector[currentPageIndex];
         const extra = await getOngs(currentPage);
-        shuffle(extra); 
+        shuffle(extra);
         newOngs = [...newOngs, ...extra];
       }
 
@@ -255,16 +256,18 @@ export default function List(props) {
             </div>
           </div>
 
+          <BacktoTop/>
+ 
           <div className="card-body d-flex flex-wrap justify-content-center">
             {loading ? (
               <ClipLoader size={150} color={"#123abc"} loading={true} />
             ) : (
-              ongsData.ongs?.map((ong) => {
-                let count = monthViews[ong._id] ? monthViews[ong._id].count : 0;
+                ongsData.ongs?.map((ong) => {
+                  let count = monthViews[ong._id] ? monthViews[ong._id].count : 0;
 
-                return <Card key={ong._id} ong={ong} count={count} />;
-              })
-            )}
+                  return <Card key={ong._id} ong={ong} count={count} />;
+                })
+              )}
           </div>
         </div>
       </div>
