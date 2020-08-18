@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { ArrowDropUp } from '@material-ui/icons/';
 import "./styles.css";
 
-
-
 export default function BacktoTop({position}) {
     const [showScroll, setShowScroll] = useState(false)
     const checkScrollTop = () => {
@@ -17,10 +15,13 @@ export default function BacktoTop({position}) {
     const scrollTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    const myStyle = position ? {right: position.right, display: showScroll ? 'flex' : 'none'} : {display: showScroll ? 'flex' : 'none'};
+
     return (
-        <div onClick={scrollTop} className="button-box" style={{right:position.right , display: showScroll ? 'flex' : 'none'}}>           
+        <div onClick={scrollTop} className="button-box" style={myStyle}>           
             <ArrowDropUp
-                className="scrollTop"  style={{ height: 40, display: showScroll ? 'flex' : 'none' }}
+                className="upIcon"  style={{ display: showScroll ? 'flex' : 'none' }}
             />
         </div>
     );

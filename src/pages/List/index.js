@@ -255,7 +255,9 @@ export default function List(props) {
               />
             </div>
           </div>
-          <BacktoTop position={{right:"7%"}} />
+
+          <BacktoTop/>
+ 
           <div className="card-body d-flex flex-wrap justify-content-center">
             {loading ? (
               <ClipLoader size={150} color={"#123abc"} loading={true} />
