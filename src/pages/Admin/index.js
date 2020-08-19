@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { FiUser, FiLock } from "react-icons/fi"
@@ -15,22 +15,21 @@ import "./styles.css";
 
 export default function LoginAdmin() {
 
-    const [values, setValues] = React.useState({
-        password: '',
-        showPassword: false,
-    });
+    const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
+    // const handleChange = (prop) => (event) => {
+    //     setValues({ ...values, [prop]: event.target.value });
+    // };
 
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
+    // const handleClickShowPassword = () => {
+    //     setValues({ ...values, showPassword: !values.showPassword });
+    // };
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+    // const handleMouseDownPassword = (event) => {
+    //     event.preventDefault();
+    // };
 
     return (
         <React.Fragment>
@@ -44,6 +43,8 @@ export default function LoginAdmin() {
 
                     <TextField className="usuario"
                         id="outlined-start-adornment"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">
                                 <FiUser size={22} />
@@ -54,18 +55,18 @@ export default function LoginAdmin() {
 
                     <OutlinedInput className="senha"
                         id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        onChange={handleChange('password')}
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e)=> setPassword(e.target.value)}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
+                                    onClick={setShowPassword(!password)}
+                                    // onMouseDown={handleMouseDownPassword}
                                     edge="end"
                                 >
-                                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                         }
