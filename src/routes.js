@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Login from './pages/Login';
 import Register from './pages/Register';
 import Pendings from './pages/Pendings';
 import List from './pages/List';
@@ -9,9 +8,11 @@ import UploadTest from './pages/UploadTest';
 import Pending from './pages/Pendings/Pending/OngCard';
 import Home from './pages/Home';
 import OngShow from './pages/OngShow';
-import LoginAdmin from './pages/Admin';
+import Login from './pages/Login';
 
 export default function Routes() {
+  const token = localStorage.getItem("accessToken")
+  console.log("O token dentro do localstoarge é " + token)
   return (
     <BrowserRouter>
       <Switch>
@@ -20,10 +21,9 @@ export default function Routes() {
         <Route path="/register" component={Register} />
         <Route path="/pendings" component={Pendings} />
         <Route path="/adminONG" component={Pending} />
-        <Route path="/login/:senha" component={Login} />
         <Route path="/imgupload" component={UploadTest} />
         <Route path="/ongShow" component={OngShow} />
-        <Route path="/adminlogin" component={LoginAdmin} />
+        {(token !== null) ? <Route path="/login" component={Pendings} /> : <Route path="/login" component={Login} />}
       </Switch>
     </BrowserRouter>
   );

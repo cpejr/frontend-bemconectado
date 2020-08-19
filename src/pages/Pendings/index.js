@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
-import './styles.css';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import AllPendings from './AllPendings'
+
+import './styles.css';
 
 export default function Pendings(props) {
 
-  let reference;
-  if (props && props.location && props.location.state)
-    reference = props.location.state.token
+  const history = useHistory();
+  const token = localStorage.getItem("accessToken");
 
-  const [token] = useState(reference);
+  useEffect(() => {
+    if (!token) {
+      history.push('/')
+      alert("Por algum motivo o token sumiu")
+    }
+  }, [])
 
-  
   return (
     <div>
       {token && <AllPendings token={token} />}
