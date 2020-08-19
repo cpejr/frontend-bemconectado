@@ -32,11 +32,12 @@ export default function Main(props) {
           Juntos podemos fazer a diferença
         </p>
 
-        <Link to='/list'>
-          <Button variant="contained" className="homeButton">
-            <p className='buttonText'>AJUDAR AGORA</p>
-          </Button>
-        </Link>
+          <Link to='/list'>
+            <Button variant="contained" className="homeButton">
+              <p className='buttonText'>AJUDAR AGORA</p>
+            </Button>
+          </Link>
+
         {
           props.saibaMais && (
             <HashLink smooth to="#saibaMais" className='saibaMais' style={{cursor: "pointer"}}>
