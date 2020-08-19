@@ -4,17 +4,17 @@ import AllPendings from './AllPendings'
 
 import './styles.css';
 
-export default function Pendings(props) {
+export default function Pendings() {
 
   const history = useHistory();
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (!token) {
-      history.push('/')
-      alert("Por algum motivo o token sumiu")
+      history.push('/');
+      alert("For some reason i didn't receive a token");
     }
-  }, [])
+  });
 
   return (
     <div>
