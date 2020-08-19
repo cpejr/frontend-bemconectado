@@ -43,7 +43,7 @@
 }
 
 .carousel-item div {
-  height: 100%;
+  
   /* width: 25%; */
   display: flex;
   justify-content: center;
@@ -57,8 +57,23 @@
   height: 7px !important;
 }
 
+.Ongsphotos{
+  height: 140px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Ongsphotos img{
+  width:140px;
+  height: 100%;
+  border: 1px solid #544B4B;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
 .buttons{
-  width: 70%;
+  width: 60%;
   height: 80px;
   display: flex;
   justify-content: space-evenly;
@@ -70,34 +85,42 @@
   text-decoration: none;
 }
 
-.homeButton{
+/* .homeButton{
   background-color: #2C67E4 !important;
   border-radius: 400px !important;
-}
+} */
 
-.redondo {
+/* .buttonText{
+  text-align: center;
+  font-size: calc(1em + 1vw);
+  color: #fff;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+} */
+
+/* .redondo {
   border-radius: 400px;
-}
+} */
 
-.botaoCadastrar{
+.botoesHome{
+  height: 40px;
+  
+  display: flex;
+  align-items: center;
+
   background-color: #2C67E4;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 700;
   color: #fff;
   font-family: 'Poppins';
-  padding: 0 50px;
-  line-height: 50px;
+  padding: 0 20px;
+  text-align: center;
+
+  border-radius: 400px;
 }
 
-.buttonText{
-  font-size: calc(1em + 1vw);
-  color: #fff;
-  /* font-size: 15px; */
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  margin: auto;
-}
 
 .saibaMais{
   display: flex;

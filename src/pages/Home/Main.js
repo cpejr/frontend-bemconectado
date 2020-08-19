@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { Carousel } from 'react-bootstrap';
 
+import { useHistory } from "react-router-dom";
 import api from "../../services/api";
-import Card from "./../List/Card";
+
 
 
 const useStyles = makeStyles({
@@ -26,7 +27,63 @@ const useStyles = makeStyles({
 
 export default function Main(props) {
 
-  
+  const [ongs, setOngs] = useState([]);
+
+  const [categs, setCategs] = useState([]);
+
+  const history = useHistory();
+
+
+    useEffect(() => {
+
+      async function getOngs(setOngs){
+
+        const ONGSPERPAGE = 9;
+      
+        const totalCountResponse = await api.get(`/ongsCount`);
+        const totalCount = totalCountResponse.headers["x-total-count"];
+      
+        const pages = Math.ceil(totalCount / ONGSPERPAGE);
+      
+        const ongsResponse = await api.get(`/ongs?page=1`);
+    
+        setOngs(ongsResponse.data);
+      }
+
+      try{
+        getOngs(setOngs);
+      }catch(err){
+        console.log(err);
+      }
+    }, [setOngs]);
+    
+    console.log(ongs)
+
+    let idOngs = [];
+    let imageOngs = [];
+
+    ongs.map( ong => {
+      idOngs.push(ong._id)
+      imageOngs.push(ong.imageSrc)
+      }
+    );
+
+    async function handleClick(ong) {
+      await api.post(`/registerAcess/${ong._id}`);
+        api.get(`categ/${ong._id}`).then((resultVector) => {
+          if (resultVector) {
+            setCategs(resultVector.data);
+          }
+        });
+      history.push({
+        pathname: "/ongshow",
+        state: {
+          ong: ong,
+          categs: categs,
+          count: 0,
+        },
+      });
+    }
 
   const classes = useStyles();
   return (
@@ -40,79 +97,83 @@ export default function Main(props) {
         </p>
 
         <div className="buttons">
-          <Link to='/list'>
-            <Button variant="contained" className="homeButton">
-              <p className='buttonText'>AJUDAR AGORA</p>
-            </Button>
+          <Link className=" botoesHome" to='/list'>
+            {/* <Button variant="contained" className="homeButton"> */}
+              {/* <p className='buttonText'>AJUDAR AGORA</p> */}
+              AJUDAR AGORA
+            {/* </Button> */}
           </Link>
 
-          <Link className="redondo botaoCadastrar" to="/register">
+          <Link className=" botoesHome" to="/register">
                 Cadastre sua instituição
           </Link>
         </div>
 
-        <Carousel interval={3000}>
+        <Carousel interval={3000} >
           <Carousel.Item>
-
-            <div>
-              {/* {ongs.map(ong => {
-                <Card key={ong._id} ong={ong} count={0} />;
-              })} */}
-              Teste
+            
+            <div className="Ongsphotos">
+              <img
+                src={`https://drive.google.com/uc?id=${ imageOngs[0]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[0])}
+              />
+              <img
+                src={`https://drive.google.com/uc?id=${imageOngs[1]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[1])}
+              />
+              <img
+                src={`https://drive.google.com/uc?id=${imageOngs[2]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[2])}
+              />
+              
             </div>
           </Carousel.Item>
           <Carousel.Item>
-            <div>
+            
+            <div className="Ongsphotos">
               <img
-                // className="d-block w-100"
-                onClick={() => console.log('CLICOU 2')}
-                src="ong.png"
-                alt="Third slide"
+                src={`https://drive.google.com/uc?id=${imageOngs[3]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[3])}
               />
               <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="Third slide"
+                src={`https://drive.google.com/uc?id=${imageOngs[4]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[4])}
               />
               <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="Third slide"
+                src={`https://drive.google.com/uc?id=${imageOngs[5]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[5])}
               />
-              <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="Third slide"
-              />
+              
             </div>
           </Carousel.Item>
           <Carousel.Item>
-            <div>
+            
+            <div className="Ongsphotos">
               <img
-                // className="d-block w-100"
-                onClick={() => console.log('CLICOU 3')}
-                src="ong.png"
-                alt="Third slide"
+                src={`https://drive.google.com/uc?id=${imageOngs[6]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[6])}
               />
               <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="Third slide"
+                src={`https://drive.google.com/uc?id=${imageOngs[7]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[7])}
               />
               <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="Third slide"
+                src={`https://drive.google.com/uc?id=${imageOngs[8]}`}
+                alt="logo"
+                onClick={() => handleClick(ongs[8])}
               />
-              <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="Third slide"
-              />
+              
             </div>
           </Carousel.Item>
         </Carousel>
-        
 
         {
           props.saibaMais && (
