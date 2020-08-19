@@ -6,9 +6,10 @@ import Register from './pages/Register';
 import Pendings from './pages/Pendings';
 import List from './pages/List';
 import UploadTest from './pages/UploadTest';
-import Pending from './pages/Pendings/Pending/OngCard'
-import Home from './pages/Home'
-import OngShow from './pages/OngShow'
+import Pending from './pages/Pendings/Pending/OngCard';
+import Home from './pages/Home';
+import OngShow from './pages/OngShow';
+import LoginAdmin from './pages/Admin';
 
 export default function Routes() {
   return (
@@ -22,6 +23,7 @@ export default function Routes() {
         <Route path="/login/:senha" component={Login} />
         <Route path="/imgupload" component={UploadTest} />
         <Route path="/ongShow" component={OngShow} />
+        <Route path="/adminlogin" component={LoginAdmin} />
       </Switch>
     </BrowserRouter>
   );
