@@ -82,22 +82,23 @@
         top: calc(50% - 471px/2 + 0.5px);
         left: calc(50% - 624px/2);
         width: 624px;
+        padding: 35px;
       }
       /*PROBLEMAS COM O CSS
       AQUI NO .USUARIO JÁ QUE
       O CSS GLOBAL ESTA ZERANDO A MARGIN*/
       .usuario{
+        /* margin-left: 35px; */
         width: 550px;
-        margin-left: 35px;
       }
       .senha{
-        margin-left: 35px;
+        /* margin-left: 35px; */
         width: 550px;
       }
       .botaoentrar{
         height: 60px;
         width: 552px; 
         margin-bottom: 30px;
-        margin-left: 35px;
+        /* margin-left: 35px; */
       }
   }
