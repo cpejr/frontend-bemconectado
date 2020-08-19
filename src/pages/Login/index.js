@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 import { FiUser, FiLock } from "react-icons/fi"
+import { IoMdArrowBack } from "react-icons/io"
 import {
     TextField,
     OutlinedInput,
-    Typography,
     IconButton,
     InputAdornment
 } from '@material-ui/core';
@@ -52,9 +51,16 @@ export default function Login() {
 
     return (
         <div className="root">
+            <button
+            className="button-box-login"
+             onClick={() => {
+                history.push("/list");
+              }}>
+                <IoMdArrowBack/>
+            </button>
             <div className="loginBox">
                 
-                <Typography className="loginText">Entrar</Typography>
+                <img className="logo-login" src='/logos/5.png' />
 
                 <TextField className="usuario"
                     id="outlined-start-adornment"
@@ -90,7 +96,7 @@ export default function Login() {
                 />
 
                 <div>
-                    <Button className="botaoentrar" onClick={handleSubmit}>Entrar</Button>
+                    <div className="botaoentrar" onClick={handleSubmit}>Entrar</div>
                 </div>
             </div>
         </div>
