@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles, Button } from '@material-ui/core';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import { Carousel } from 'react-bootstrap'
+import { Carousel } from 'react-bootstrap';
+
+import api from "../../services/api";
+import Card from "./../List/Card";
 
 
 const useStyles = makeStyles({
@@ -22,6 +25,8 @@ const useStyles = makeStyles({
 });
 
 export default function Main(props) {
+
+  
 
   const classes = useStyles();
   return (
@@ -50,27 +55,10 @@ export default function Main(props) {
           <Carousel.Item>
 
             <div>
-              <img
-                // className="d-block w-100"
-                onClick={() => console.log('CLICOU 1')}
-                src="ong.png"
-                alt="First slide"
-              />
-              <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="First slide"
-              />
-              <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="First slide"
-              />
-              <img
-                // className="d-block w-100"
-                src="ong.png"
-                alt="First slide"
-              />
+              {/* {ongs.map(ong => {
+                <Card key={ong._id} ong={ong} count={0} />;
+              })} */}
+              Teste
             </div>
           </Carousel.Item>
           <Carousel.Item>
