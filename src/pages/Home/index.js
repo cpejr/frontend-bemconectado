@@ -10,6 +10,7 @@ import BemConectado from './BemConectado';
 import SideBar from './SideBar';
 import Contato from './Contato';
 import FAQ from './FAQ';
+import BacktoTop from '../../components/BacktoTop'
 
 export default function Home() {
   const [drawer, setDrawer] = useState(false)
@@ -35,6 +36,7 @@ export default function Home() {
       </IconButton>
       <SideBar drawer={drawer} handleDrawerClose={handleDrawerClose}/>
         <Main saibaMais={true}/>
+        <BacktoTop position={{right:"4%"}}/>
         <BemConectado/>
         <QuemSomos />
         <Contato/>

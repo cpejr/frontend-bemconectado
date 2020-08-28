@@ -8,36 +8,16 @@ import TextField from '@material-ui/core/TextField';
 
 import { FaQuestionCircle } from 'react-icons/fa';
 
-
-// const questionMark = ({examplesTest}) => {
-
-//   const examplesResultForm = {
-//     institutionName:'Ex: Todos heróis',
-//     description: 'Ex: Essa instituição ajuda pessoas carentes de rua.',
-//     local: 'Ex: MG - Ouro Preto',
-//     zipCode: 'Ex: 00000000',
-//     address: 'Ex: Tupi, Avenida Coronel Fabriciano',
-//     complement: 'Ex: 35 Ao lado do posto',
-//     CNPJ: '00000',
-//     linkPicPay: 'teste',
-//     site: 'www.site.com.br',
-//     linkFacebook: 'teste',
-//     linkInstagram: 'teste',
-//     email: 'meuemail@teste.com',
-//     contact: '31 99999999',
-//     bankAccountData: 'teste',
-//   }
-
-//   console.log('entrou')
-//   return (
-//     <div className="info">
-//       <div className="examples">
-//         {examplesResultForm.examplesTest}
-//       </div>
-//       < FaQuestionCircle size={35} color='#FFCF4F'/>
-//     </div>
-//   );
-// }
+function Tooltip({text}){
+  return (
+    <div className="info">
+      <div className="examples">
+        {text}
+      </div>
+      < FaQuestionCircle size={35} color='#FFCF4F'/>
+    </div>
+  );
+}
 
 export default function Register({ className, fileName, onSubmit }) {
   const [name, setName] = useState('');
@@ -175,13 +155,8 @@ export default function Register({ className, fileName, onSubmit }) {
                   />
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.institutionName}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
-
+                <Tooltip text={examplesResultForm.institutionName}/>
+                
               </div>
 
               <div className="form-row">
@@ -200,12 +175,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.description}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.description}/>
 
               </div>
 
@@ -237,12 +207,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.local}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.local}/>
 
               </div>
               <div className="form-row">
@@ -259,12 +224,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.zipCode}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.zipCode}/>
 
               </div>
 
@@ -299,12 +259,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.address}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.address}/>
 
               </div>
 
@@ -339,12 +294,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.complement}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.complement}/>
 
               </div>
 
@@ -362,12 +312,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.CNPJ}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.CNPJ}/>
 
               </div>
 
@@ -383,12 +328,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.linkPicPay}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.linkPicPay}/>
 
               </div>
 
@@ -404,12 +344,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.site}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.site}/>
 
               </div>
 
@@ -425,12 +360,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.linkFacebook}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.linkFacebook}/>
 
               </div>
 
@@ -446,12 +376,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.linkInstagram}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.linkInstagram}/>
 
               </div>
 
@@ -469,12 +394,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.email}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.email}/>
 
               </div>
 
@@ -505,12 +425,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.contact}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.contact}/>
 
               </div>
 
@@ -563,12 +478,7 @@ export default function Register({ className, fileName, onSubmit }) {
                   </div>
                 </div>
 
-                <div className="info">
-                  <div className="examples">
-                    {examplesResultForm.bankAccountData}
-                  </div>
-                  < FaQuestionCircle size={35} color='#FFCF4F'/>
-                </div>
+                <Tooltip text={examplesResultForm.bankAccountData}/>
 
               </div>
 

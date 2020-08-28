@@ -96,6 +96,7 @@ export default function Main(props) {
           Juntos podemos fazer a diferença
         </p>
 
+
         <div className="buttons">
           <Link className=" botoesHome" to='/list'>
             {/* <Button variant="contained" className="homeButton"> */}
@@ -174,6 +175,9 @@ export default function Main(props) {
             </div>
           </Carousel.Item>
         </Carousel>
+
+
+
 
         {
           props.saibaMais && (
