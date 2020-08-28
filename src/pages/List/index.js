@@ -191,9 +191,9 @@ export default function List(props) {
               <FaHome />
             </button>
             <img src="./logos/8.png" className="logo" alt="Logo"></img>
-            <Link className=" redondo botaoCadastrar" to="/register">
+            {/* <Link className=" redondo botaoCadastrar" to="/register">
               Cadastre sua instituição
-            </Link>
+            </Link> */}
           </div>
           <div className="searchBar d-flex flex-wrap">
             <button

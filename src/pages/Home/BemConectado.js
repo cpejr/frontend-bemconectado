@@ -5,6 +5,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { HashLink } from "react-router-hash-link";
 
+
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
@@ -14,6 +15,11 @@ function getWindowDimensions() {
 }
 
 export default function BemConectado(props) {
+
+  
+
+
+
   const [showImage, setShowImage] = useState(() => {
     if (getWindowDimensions().width > 850) return true;
     else return false;

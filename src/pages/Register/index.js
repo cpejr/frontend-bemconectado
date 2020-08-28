@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 
 import { FaQuestionCircle } from 'react-icons/fa';
 
-
 function Tooltip({text}){
   return (
     <div className="info">
@@ -46,6 +45,7 @@ export default function Register({ className, fileName, onSubmit }) {
   const history = useHistory(); 
 
   // What will show in tooltip
+
   const examplesResultForm = {
     institutionName:'Ex: Todos heróis',
     description: 'Ex: Essa instituição ajuda pessoas carentes de rua.',
@@ -62,6 +62,8 @@ export default function Register({ className, fileName, onSubmit }) {
     contact: '31 99999999',
     bankAccountData: 'teste',
   }
+
+  
 
   async function handleRegister(e) {
     e.preventDefault();
