@@ -245,3 +245,27 @@ input {
   flex-direction: row;
   align-items: center;
 }
+
+.button-login{
+  display: flex;
+  border-radius: 40px;
+  background-color: #4272d7;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  font-family: Poppins;
+  padding: 10px 25px 10px 25px;
+  align-items: center;
+  justify-content: center;
+  
+
+}
+
+.header-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}

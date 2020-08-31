@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
+
 import './styles.css';
 import api from '../../../services/api';
 import OngView from './OngView';
-
 
 export default function AllPendings(props) {
 
   let token = props.token;
 
   if (!token && props && props.location && props.location.state)
-    token = props.location.state.token;
+    token = props.location.token;
 
   const [ongs, setOngs] = useState([]);
 
