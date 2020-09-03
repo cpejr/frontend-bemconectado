@@ -11,19 +11,17 @@ import OngShow from './pages/OngShow';
 import Login from './pages/Login';
 
 export default function Routes() {
-  const token = localStorage.getItem("accessToken")
-  console.log("O token dentro do localstoarge é " + token)
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/list" exact component={List} />
         <Route path="/register" component={Register} />
-        <Route path="/pendings" component={Pendings} />
         <Route path="/adminONG" component={Pending} />
         <Route path="/imgupload" component={UploadTest} />
         <Route path="/ongShow" component={OngShow} />
-        {(token !== null) ? <Route path="/login" component={Pendings} /> : <Route path="/login" component={Login} />}
+        <Route path="/pendings" component={Pendings} />
+        <Route path="/login" component={Login} />
       </Switch>
     </BrowserRouter>
   );

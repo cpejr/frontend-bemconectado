@@ -32,9 +32,6 @@ export default function AllPendings(props) {
     getOngs();
   }, [token]);
 
-
-
-
   return (
     <div>
       <div className="allPendingsTitle">ONGs pendentes ({ongs.length})</div>
