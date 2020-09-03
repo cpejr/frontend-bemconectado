@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from "./Header"
-//import SideBar from "./SideBar"
+import SideBar from "./SideBar"
 
 export default function Admin(props){
+
+    const [open, setOpen] = useState(false);
+
     return (
         <div>
-            <Header/>
+            <Header onClick={()=> setOpen(!open)} />
             <div>
-                {/* <SideBar/> */}
+                <SideBar open={open}/>
                 <div>
                     {props.children}
                 </div>
