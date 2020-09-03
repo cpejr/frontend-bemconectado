@@ -39,11 +39,11 @@ export default function AllPendings(props) {
     <div>
       <div className="allPendingsTitle">ONGs pendentes ({ongs.length})</div>
       <div className="gridCard">
-        {ongs.map((ong, index) => {
+        {ongs && (ongs.length > 0) ? ongs.map((ong, index) => {
           return (
             <OngView key={index} ong={ong} token={token}/>
           )
-        })}
+        }) : <div className="allPendingsTitle">Nao há ongs pendentes!</div>}
       </div>
       <div id="bttn">
         <button

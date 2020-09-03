@@ -60,7 +60,7 @@ export default function Login() {
             </button>
             <div className="loginBox">
                 
-                <img className="logo-login" src='/logos/5.png' />
+                <img className="logo-login" src='/logos/5.png' alt='logo' />
 
                 <TextField className="usuario"
                     id="outlined-start-adornment"

@@ -119,7 +119,7 @@ img {
 }
 @media screen and (min-width: 700px) {
   .gridCard{
-    justify-content: left;
+    justify-content: center;
   }
 .gridCard {
     justify-content: center;
