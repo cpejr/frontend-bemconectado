@@ -1,136 +1,143 @@
 .root {
-    height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
+.loginContent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContent .loginBox {
+  background-color: #ffcf4f;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loginContent .loginBox .loginText {
+  color: #FFFFFF;
+  display: flex;
+  font-family: Poppins;
+  font-style: normal;
+  font-size: 32px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.usuario {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.senha {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.botaoentrar {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  text-align: center;
+  background-color: #4272d7;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: Poppins;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.logo-login {
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 30vh;
+  width: auto;
+}
+
+.button-box-login {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  width: 2em;
+  height: 2em;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.4s;
+  border: 2px 0 solid;
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+@media(max-width: 960px) {
   .loginBox {
-    background-color: #ffcf4f;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-  .loginText {
-    color: #FFFFFF;
-    display: flex;
-    font-family: Poppins;
-    font-style: normal;
-    font-size: 32px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-  .usuario{
-    background-color: #FFFFFF;
-    border-radius: 5px;
-}
-
-  .senha{
-    background-color: #FFFFFF;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
+    top: 5vh;
+    left: 5vw;
+    width: 90vw;
+    padding: 35px;
+  }
+  .usuario {
+    width: 90%;
+    margin-top: 0px;
+    /* margin-left: 5%; */
+  }
+  .senha {
+    width: 90%;
+    /* margin-left: 5%; */
+  }
   .botaoentrar {
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-    text-align: center;
-    background-color: #4272d7;
-    box-sizing: border-box;
-    border-radius: 2px;
-    margin-top: 10px;
-    font-weight: 700;
-    font-size: 20px;
-    font-family: Poppins;
-    line-height: 16px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #FFFFFF;
+    width: 90%;
+    height: 56px;
+    margin-bottom: 30px;
+    /* margin-left: 5%; */
   }
+}
 
-  .logo-login{
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    height: 30vh;
-    width: auto;
+@media (min-width: 960px) {
+  .loginBox {
+    top: calc(50% - 471px/2 + 0.5px);
+    left: calc(50% - 624px/2);
+    width: 624px;
+    padding: 35px;
   }
-  
-  .button-box-login {
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    width: 2em;
-    height: 2em;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: opacity 0.4s;
-    border: 2px 0 solid;
-    border-radius: 4px;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-
-  @media(max-width: 960px) {
-      .loginBox {
-        top: 5vh;
-        left: 5vw;
-        width: 90vw;
-        margin-top: 50px;
-        padding: 35px;
-      }
-      .usuario{
-        width: 90%;
-        margin-top: 0px;
-        /* margin-left: 5%; */
-      }
-      .senha{
-        width: 90%;
-        /* margin-left: 5%; */
-      }
-      .botaoentrar{
-        width: 90%;
-        height: 56px;
-        margin-bottom: 30px;
-        /* margin-left: 5%; */
-      }
-  }
-  
-  @media (min-width: 960px){
-      .loginBox {
-        top: calc(50% - 471px/2 + 0.5px);
-        left: calc(50% - 624px/2);
-        width: 624px;
-        padding: 35px;
-      }
-      /*PROBLEMAS COM O CSS
+  /*PROBLEMAS COM O CSS
       AQUI NO .USUARIO JÁ QUE
       O CSS GLOBAL ESTA ZERANDO A MARGIN*/
-      .usuario{
-        /* margin-left: 35px; */
-        width: 550px;
-      }
-      .senha{
-        /* margin-left: 35px; */
-        width: 550px;
-      }
-      .botaoentrar{
-        height: 60px;
-        width: 552px; 
-        margin-bottom: 30px;
-        /* margin-left: 35px; */
-      }
+  .usuario {
+    /* margin-left: 35px; */
+    width: 550px;
   }
+  .senha {
+    /* margin-left: 35px; */
+    width: 550px;
+  }
+  .botaoentrar {
+    height: 60px;
+    width: 552px;
+    margin-bottom: 30px;
+    /* margin-left: 35px; */
+  }
+}
