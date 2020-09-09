@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import OngShow from './pages/OngShow';
 import Login from './pages/Login';
 import Adm from './pages/Adm';
+import Stats from './pages/Adm/Stats';
 
 export default function Routes() {
   const token = localStorage.getItem("accessToken")
@@ -18,17 +19,17 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/ongShow" exact  component={OngShow} />
-        <Route path="/list" exact component={List} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/pendings" exact component={Pendings} />
-        <Route path="/adminONG" exact component={Pending} />
-        <Route path="/imgupload" exact component={UploadTest} />
+        <Route path="/ongShow" component={OngShow} />
+        <Route path="/list" component={List} />
+        <Route path="/register" component={Register} />
+        <Route path="/pendings" component={Pendings} />
+        <Route path="/adminONG" component={Pending} />
+        <Route path="/imgupload" component={UploadTest} />
         <Adm>
-           <Route path="/stats" exact component={() => <div>pudim</div>} />
+          <Route exact path="/adm/stats" component={Stats} />
         </Adm>
-        
         {(token !== null) ? <Route path="/login" component={Pendings} /> : <Route path="/login" component={Login} />}
+        <Route component={() => <div>404</div>} />
       </Switch>
     </BrowserRouter>
   );

@@ -2,19 +2,15 @@ import React, { useState } from 'react'
 import Header from "./Header"
 import SideBar from "./SideBar"
 
-export default function Admin(props){
+export default function Admin(props) {
 
     const [open, setOpen] = useState(false);
 
     return (
-        <div>
-            <Header onClick={()=> setOpen(!open)} />
-            <div>
-                <SideBar open={open}/>
-                <div>
-                    {props.children}
-                </div>
-            </div>
+        <div className="h-100">
+            <Header onClick={() => setOpen(!open)} />
+            <SideBar open={open} />
+            {props.children}
         </div>
     )
 }
