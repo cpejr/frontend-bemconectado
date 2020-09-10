@@ -13,7 +13,7 @@ export default function Admin(props){
             <div>
                 <SideBar open={open}/>
                 <div>
-                    {/* {props.children} */}
+                    {props.children}
                     <Profile/>
                 </div>
             </div>

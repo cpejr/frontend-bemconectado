@@ -12,7 +12,6 @@ export default function InputEditable({ title, value, setValue } ){
     }
 
     return (
-
         <div className="infoEditableLine">
             <label>{title}</label>
             {editable? <input value={value} onChange={(e) => {handleChange(e)}}  /> 
