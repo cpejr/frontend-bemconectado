@@ -10,39 +10,12 @@ export default function Header(props){
 
     const {user} = useContext(LoginContext);
 
-    // Dados Gerais
-    const [nome, setNome] = useState();
-    const [email, setEmail] = useState();
-    const [endereco, setEndereco] = useState();
-    const [telefone, setTelefone] = useState();
-    const [site, setSite] = useState();
-    const [cpfCNPJ, setCPFCNPJ] = useState();
-    
-    // Redes Sociais
-    const [facebook, setFacebook] = useState();
-    const [instagram, setInstagram] = useState();
-    const [picpay, setPicPay] = useState();
-    const [youtube, setYoutube] = useState();
-    const [whatsapp, setWhatsapp] = useState();
-    
-    // Dados Bancários
-    const [banco, setBanco] = useState();
-    const [agencia, setAgencia] = useState();
-    const [conta, setConta] = useState();
+    const [data, setData] = useState({});
+    const [previousData, setPreviousData] = useState({});
     
     useEffect(()=>{
-        setNome(user.name);
-        setEmail(user.email);
-        setTelefone(user.phonenumber);
-        setSite(user.site);
-        setCPFCNPJ(user.cnpj);
-        setFacebook(user.facebook);
-        setInstagram(user.instagram);
-        setPicPay(user.picpay);
-        setWhatsapp(user.whatsapp);
-        setBanco(user.bank);
-        setAgencia(user.branch);
-        setConta(user.bankAccount);
+        setData(user)
+        setPreviousData();
     }, [user]);
     
     return (
@@ -57,12 +30,11 @@ export default function Header(props){
                 
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Nome" value={nome} setValue={setNome} />
-                        <InputEditable title="E-mail" value={email} setValue={setEmail} />
-                        <InputEditable title="Endereço" value={endereco} setValue={setEndereco} />
-                        <InputEditable title="Telefone" value={telefone} setValue={setTelefone} />
-                        <InputEditable title="Site" value={site} setValue={setSite} />
-                        <InputEditable title="CPF/CNPJ" value={cpfCNPJ} setValue={setCPFCNPJ} />
+                        <InputEditable title="Nome" value={data} setValue={setData} objKey="name"/>
+                        <InputEditable title="E-mail" value={data} setValue={setData} objKey="email" />
+                        <InputEditable title="Telefone" value={data} setValue={setData} objKey="phonenumber"/>
+                        <InputEditable title="Site" value={data} setValue={setData} objKey="site"/>
+                        <InputEditable title="CPF/CNPJ" value={data} setValue={setData} objKey="cnpj"/>
                         
                     </form>
                 </div>
@@ -76,11 +48,10 @@ export default function Header(props){
                 
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Facebook" value={facebook} setValue={setFacebook} />
-                        <InputEditable title="Instagram" value={instagram} setValue={setInstagram} />
-                        <InputEditable title="Pic Pay" value={picpay} setValue={setPicPay} />
-                        <InputEditable title="YouTube" value={youtube} setValue={setYoutube} />
-                        <InputEditable title="Whatsapp" value={whatsapp} setValue={setWhatsapp} />
+                        <InputEditable title="Facebook" value={data} setValue={setData} objKey="facebook"/>
+                        <InputEditable title="Instagram" value={data} setValue={setData} objKey="instagram"/>
+                        <InputEditable title="Pic Pay" value={data} setValue={setData} objKey="picpay"/>
+                        <InputEditable title="Whatsapp" value={data} setValue={setData} objKey="whatsapp"/>
                         
                     </form>
                 </div>
@@ -93,9 +64,9 @@ export default function Header(props){
                 </div>
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Banco" value={banco} setValue={setBanco} />
-                        <InputEditable title="Agência" value={agencia} setValue={setAgencia} />
-                        <InputEditable title="Conta" value={conta} setValue={setConta} />
+                        <InputEditable title="Banco" value={data} setValue={setData} objKey="bank"/>
+                        <InputEditable title="Agência" value={data} setValue={setData} objKey="branch"/>
+                        <InputEditable title="Conta" value={data} setValue={setData} objKey="bankAccount"/>
                         
                     </form>
                 </div>
