@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import OngShow from './pages/OngShow';
 import Login from './pages/Login';
 import Adm from './pages/Adm';
+import Stats from './pages/Adm/Stats';
 
 export default function Routes() {
   return (
@@ -25,9 +26,9 @@ export default function Routes() {
         <Route path="/imgupload" exact component={UploadTest} />
         
         <Adm>
-           <Route path="/stats" exact component={() => <div>pudim</div>} />
-        </Adm>        
-
+          <Route exact path="/adm/stats" component={Stats} />
+        </Adm>
+        <Route component={() => <div>404</div>} />
       </Switch>
     </BrowserRouter>
   );
