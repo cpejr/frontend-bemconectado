@@ -28,7 +28,7 @@ export default function Total() {
   }, []);
   return (
     <div className="h-100">
-      Grafico 2
+      Grafico Semanal
       <ResponsiveLine
         data={dataSet}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
