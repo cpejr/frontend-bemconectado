@@ -1,32 +1,50 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { Edit } from '@material-ui/icons';
 // import { IconButton } from '@material-ui/core';
 import InputEditable from './../../../components/inputEditable'
 import './styles.css';
 
+import { LoginContext } from '../../../contexts/LoginContext';
+
 export default function Header(props){
 
+    const {user} = useContext(LoginContext);
+
     // Dados Gerais
-    const [nome, setNome] = useState("QUASE MEIA NOITE");
-    const [email, setEmail] = useState("EMAIL 2");
-    const [endereco, setEndereco] = useState("QUINTA FEIRA");
-    const [telefone, setTelefone] = useState("007");
-    const [site, setSite] = useState("WORDPRESS");
-    const [cpfCNPJ, setCPFCNPJ] = useState("01");
+    const [nome, setNome] = useState();
+    const [email, setEmail] = useState();
+    const [endereco, setEndereco] = useState();
+    const [telefone, setTelefone] = useState();
+    const [site, setSite] = useState();
+    const [cpfCNPJ, setCPFCNPJ] = useState();
     
     // Redes Sociais
-    const [facebook, setFacebook] = useState("FACE");
-    const [instagram, setInstagram] = useState("INSTA");
-    const [picpay, setPicPay] = useState("PICPAY");
-    const [youtube, setYoutube] = useState("YOUTUBE");
-    const [whatsapp, setWhatsapp] = useState("ZAPZAP");
+    const [facebook, setFacebook] = useState();
+    const [instagram, setInstagram] = useState();
+    const [picpay, setPicPay] = useState();
+    const [youtube, setYoutube] = useState();
+    const [whatsapp, setWhatsapp] = useState();
     
     // Dados Bancários
-    const [banco, setBanco] = useState("ALGUM BANCO");
-    const [agencia, setAgencia] = useState("ALGUMA AGENCIA");
-    const [conta, setConta] = useState("ALGUAM CONTA");
+    const [banco, setBanco] = useState();
+    const [agencia, setAgencia] = useState();
+    const [conta, setConta] = useState();
     
-
+    useEffect(()=>{
+        setNome(user.name);
+        setEmail(user.email);
+        setTelefone(user.phonenumber);
+        setSite(user.site);
+        setCPFCNPJ(user.cnpj);
+        setFacebook(user.facebook);
+        setInstagram(user.instagram);
+        setPicPay(user.picpay);
+        setWhatsapp(user.whatsapp);
+        setBanco(user.bank);
+        setAgencia(user.branch);
+        setConta(user.bankAccount);
+    }, [user]);
+    
     return (
         <div className = "profile" >
 

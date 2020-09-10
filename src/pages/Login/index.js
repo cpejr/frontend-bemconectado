@@ -27,6 +27,9 @@ export default function Login() {
         if(token && user.type === 'admin'){
             history.push('pendings');
         }
+        if(token && user.type === 'user'){
+            history.push('adminOng');
+        }
     })
 
     async function handleSubmit() {

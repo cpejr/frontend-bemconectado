@@ -7,17 +7,16 @@ export default function InputEditable({ title, value, setValue } ){
 
     const [editable, setEditable] = useState(false);
 
-    useEffect(()=>{
-        console.log(title);
-        console.log(value);
-
-    }, []);
+    function handleChange(e){
+        setValue(e.target.value);
+    }
 
     return (
 
         <div className="infoEditableLine">
             <label>{title}</label>
-            {editable? <input placeholder={value} onChange={ (e) => setValue(e.target.value)} /> : <input placeholder={value} readOnly/>}
+            {editable? <input value={value} onChange={(e) => {handleChange(e)}}  /> 
+            : <input value="" placeholder={value} readOnly/>}
             <Edit onClick={() => setEditable(!editable)} className="editIcon"/>
         </div>
     );

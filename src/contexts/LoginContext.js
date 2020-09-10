@@ -22,6 +22,7 @@ const LoginContextProvider = (props) => {
                 const data = response.data;
                 if (data.verified) {
                     setToken(currentToken);
+                    console.log(data.user);
                     setUser(data.user);
                 } else {
                     setToken(null)
