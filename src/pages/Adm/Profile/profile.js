@@ -1,6 +1,4 @@
 import React, {useState, useContext, useEffect} from 'react';
-import { Edit } from '@material-ui/icons';
-// import { IconButton } from '@material-ui/core';
 import InputEditable from './../../../components/inputEditable'
 import './styles.css';
 
@@ -15,7 +13,7 @@ export default function Header(props){
     
     useEffect(()=>{
         setData(user)
-        setPreviousData();
+        setPreviousData(user);
     }, [user]);
     
     return (
@@ -30,12 +28,11 @@ export default function Header(props){
                 
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Nome" value={data} setValue={setData} objKey="name"/>
-                        <InputEditable title="E-mail" value={data} setValue={setData} objKey="email" />
-                        <InputEditable title="Telefone" value={data} setValue={setData} objKey="phonenumber"/>
-                        <InputEditable title="Site" value={data} setValue={setData} objKey="site"/>
-                        <InputEditable title="CPF/CNPJ" value={data} setValue={setData} objKey="cnpj"/>
-                        
+                        <InputEditable title="Nome" data={data} setData={setData} objKey="name"/>
+                        <InputEditable title="E-mail" data={data} setData={setData} objKey="email" />
+                        <InputEditable title="Telefone" data={data} setData={setData} objKey="phonenumber"/>
+                        <InputEditable title="Site" data={data} setData={setData} objKey="site"/>
+                        <InputEditable title="CPF/CNPJ" data={data} setData={setData} objKey="cnpj"/> 
                     </form>
                 </div>
             </div>
@@ -48,11 +45,10 @@ export default function Header(props){
                 
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Facebook" value={data} setValue={setData} objKey="facebook"/>
-                        <InputEditable title="Instagram" value={data} setValue={setData} objKey="instagram"/>
-                        <InputEditable title="Pic Pay" value={data} setValue={setData} objKey="picpay"/>
-                        <InputEditable title="Whatsapp" value={data} setValue={setData} objKey="whatsapp"/>
-                        
+                        <InputEditable title="Facebook" data={data} setData={setData} objKey="facebook"/>
+                        <InputEditable title="Instagram" data={data} setData={setData} objKey="instagram"/>
+                        <InputEditable title="Pic Pay" data={data} setData={setData} objKey="picpay"/>
+                        <InputEditable title="Whatsapp" data={data} setData={setData} objKey="whatsapp"/>
                     </form>
                 </div>
             </div>
@@ -64,10 +60,9 @@ export default function Header(props){
                 </div>
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Banco" value={data} setValue={setData} objKey="bank"/>
-                        <InputEditable title="Agência" value={data} setValue={setData} objKey="branch"/>
-                        <InputEditable title="Conta" value={data} setValue={setData} objKey="bankAccount"/>
-                        
+                        <InputEditable title="Banco" data={data} setData={setData} objKey="bank"/>
+                        <InputEditable title="Agência" data={data} setData={setData} objKey="branch"/>
+                        <InputEditable title="Conta" data={data} setData={setData} objKey="bankAccount"/>
                     </form>
                 </div>
             </div>
