@@ -5,11 +5,12 @@ import Register from './pages/Register';
 import Pendings from './pages/Pendings';
 import List from './pages/List';
 import UploadTest from './pages/UploadTest';
-import Pending from './pages/Pendings/Pending/OngCard';
 import Home from './pages/Home';
 import OngShow from './pages/OngShow';
 import Login from './pages/Login';
 import Adm from './pages/Adm';
+import Stats from './pages/Adm/Stats';
+import Profile from './pages/Adm/Profile';
 
 export default function Routes() {
   return (
@@ -20,14 +21,13 @@ export default function Routes() {
         <Route path="/list" exact component={List} />
         <Route path="/register" exact component={Register} />
         <Route path="/pendings" exact component={Pendings} />
-        <Route path="/adminONG" exact component={Adm} />
         <Route path="/login" exact component={Login} />
         <Route path="/imgupload" exact component={UploadTest} />
-        
         <Adm>
-           <Route path="/stats" exact component={() => <div>pudim</div>} />
-        </Adm>        
-
+          <Route exact path="/adm/stats" component={Stats} />
+          <Route exact path="/adm/profile" component={Profile} />
+        </Adm>
+        <Route component={() => <div>404</div>} />
       </Switch>
     </BrowserRouter>
   );
