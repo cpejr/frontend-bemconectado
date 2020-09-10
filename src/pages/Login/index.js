@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiUser, FiLock } from "react-icons/fi"
 import { IoMdArrowBack } from "react-icons/io"
@@ -8,7 +8,8 @@ import {
     IconButton,
     InputAdornment
 } from '@material-ui/core';
-import { Visibility, VisibilityOff }  from '@material-ui/icons';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { LoginContext } from '../../contexts/LoginContext';
 
 import "./styles.css";
 import api from "../../services/api";
@@ -20,6 +21,14 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const history = useHistory();
 
+    const { token, user, signIn } = useContext(LoginContext);
+
+    useEffect(()=>{
+        if(token && user.type === 'admin'){
+            history.push('pendings');
+        }
+    })
+
     async function handleSubmit() {
         try {
             const response = await api.post('session', {
@@ -29,9 +38,9 @@ export default function Login() {
             if (response.data && response.data.accessToken) {
                 const token = response.data.accessToken;
                 const user = response.data.user;
-                localStorage.setItem("accessToken", token)
+                signIn(token, user);
                 if (user.type === "admin") {
-                    history.push('/pendings', { token: token })
+                    history.push('/pendings')
                 }
                 else {
                     history.push('/')
@@ -52,51 +61,53 @@ export default function Login() {
     return (
         <div className="root">
             <button
-            className="button-box-login"
-             onClick={() => {
-                history.push("/list");
-              }}>
-                <IoMdArrowBack/>
+                className="button-box-login"
+                onClick={() => {
+                    history.push("/list");
+                }}>
+                <IoMdArrowBack />
             </button>
-            <div className="loginBox">
-                
-                <img className="logo-login" src='/logos/5.png' />
+            <div className="loginContent">
+                <div className="loginBox">
 
-                <TextField className="usuario"
-                    id="outlined-start-adornment"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                            <FiUser size={22} />
-                        </InputAdornment>,
-                    }}
-                    variant="outlined"
-                />
+                    <img className="logo-login" src='/logos/5.png' alt='logo' />
 
-                <OutlinedInput className="senha"
-                    id="outlined-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                edge="end"
-                            >
-                                {showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    startAdornment={<InputAdornment position="start">
-                        <FiLock size={22} />
-                    </InputAdornment>}
-                    labelWidth={0}
-                />
+                    <TextField className="usuario"
+                        id="outlined-start-adornment"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">
+                                <FiUser size={22} />
+                            </InputAdornment>,
+                        }}
+                        variant="outlined"
+                    />
 
-                <div>
-                    <div className="botaoentrar" onClick={handleSubmit}>Entrar</div>
+                    <OutlinedInput className="senha"
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    edge="end"
+                                >
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        startAdornment={<InputAdornment position="start">
+                            <FiLock size={22} />
+                        </InputAdornment>}
+                        labelWidth={0}
+                    />
+
+                    <div>
+                        <div className="botaoentrar" onClick={handleSubmit}>Entrar</div>
+                    </div>
                 </div>
             </div>
         </div>

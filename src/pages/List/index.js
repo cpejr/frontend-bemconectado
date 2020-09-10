@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./styles.css";
 import Card from "./Card";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import api from "../../services/api";
 import SelectState from "../../components/SelectStates";
 import { FaFilter, FaHome, FaSearch  } from "react-icons/fa";

@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import AllPendings from './AllPendings'
 
 import './styles.css';
+import { LoginContext } from '../../contexts/LoginContext';
 
 export default function Pendings() {
 
   const history = useHistory();
-  const token = localStorage.getItem("accessToken");
+
+  const {token, user} = useContext(LoginContext);
 
   useEffect(() => {
-    if (!token) {
-      history.push('/');
-      alert("For some reason i didn't receive a token");
+    console.log("Entrou no use effect: ", token, user);
+    if (token !== "notYet" && user !== "notYet"){ 
+      //Esses notYet sao gambiarra (Context ta rezetando toda atualizacao de pagina, nao era pra fazer isso)
+      //Se esse useEffect vai antes do loginContext esse proximo if da pau sem os not yet aqui.
+      if (!(token && user.type === 'admin')) {
+        history.push('/login');
+        alert("You are not logged in!");
+      }
     }
   });
 
   return (
-    <div>
-      {token && <AllPendings token={token} />}
-    </div>
+    <>
+      {<AllPendings token={token} />}
+    </>
   );
 }

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { makeStyles, Button } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core';
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
@@ -8,8 +8,6 @@ import { Carousel } from 'react-bootstrap';
 
 import { useHistory } from "react-router-dom";
 import api from "../../services/api";
-
-
 
 const useStyles = makeStyles({
   root: {
@@ -34,56 +32,56 @@ export default function Main(props) {
   const history = useHistory();
 
 
-    useEffect(() => {
+  useEffect(() => {
 
-      async function getOngs(setOngs){
+    async function getOngs(setOngs) {
 
-        const ONGSPERPAGE = 9;
-      
-        const totalCountResponse = await api.get(`/ongsCount`);
-        const totalCount = totalCountResponse.headers["x-total-count"];
-      
-        const pages = Math.ceil(totalCount / ONGSPERPAGE);
-      
-        const ongsResponse = await api.get(`/ongs?page=1`);
-    
-        setOngs(ongsResponse.data);
-      }
+      const ONGSPERPAGE = 9;
 
-      try{
-        getOngs(setOngs);
-      }catch(err){
-        console.log(err);
-      }
-    }, [setOngs]);
-    
-    console.log(ongs)
+      const totalCountResponse = await api.get(`/ongsCount`);
+      const totalCount = totalCountResponse.headers["x-total-count"];
 
-    let idOngs = [];
-    let imageOngs = [];
+      const pages = Math.ceil(totalCount / ONGSPERPAGE);
 
-    ongs.map( ong => {
-      idOngs.push(ong._id)
-      imageOngs.push(ong.imageSrc)
-      }
-    );
+      const ongsResponse = await api.get(`/ongs?page=${pages}`);
 
-    async function handleClick(ong) {
-      await api.post(`/registerAcess/${ong._id}`);
-        api.get(`categ/${ong._id}`).then((resultVector) => {
-          if (resultVector) {
-            setCategs(resultVector.data);
-          }
-        });
-      history.push({
-        pathname: "/ongshow",
-        state: {
-          ong: ong,
-          categs: categs,
-          count: 0,
-        },
-      });
+      setOngs(ongsResponse.data);
     }
+
+    try {
+      getOngs(setOngs);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [setOngs]);
+
+  console.log(ongs)
+
+  let idOngs = [];
+  let imageOngs = [];
+
+  ongs.forEach(ong => {
+    idOngs.push(ong._id)
+    imageOngs.push(ong.imageSrc)
+  }
+  );
+
+  async function handleClick(ong) {
+    await api.post(`/registerAcess/${ong._id}`);
+    api.get(`categ/${ong._id}`).then((resultVector) => {
+      if (resultVector) {
+        setCategs(resultVector.data);
+      }
+    });
+    history.push({
+      pathname: "/ongshow",
+      state: {
+        ong: ong,
+        categs: categs,
+        count: 0,
+      },
+    });
+  }
 
   const classes = useStyles();
   return (
@@ -100,22 +98,22 @@ export default function Main(props) {
         <div className="buttons">
           <Link className=" botoesHome" to='/list'>
             {/* <Button variant="contained" className="homeButton"> */}
-              {/* <p className='buttonText'>AJUDAR AGORA</p> */}
+            {/* <p className='buttonText'>AJUDAR AGORA</p> */}
               AJUDAR AGORA
             {/* </Button> */}
           </Link>
 
           <Link className=" botoesHome" to="/register">
-                Cadastre sua instituição
+            Cadastre sua instituição
           </Link>
         </div>
 
         <Carousel interval={3000} >
           <Carousel.Item>
-            
+
             <div className="Ongsphotos">
               <img
-                src={`https://drive.google.com/uc?id=${ imageOngs[0]}`}
+                src={`https://drive.google.com/uc?id=${imageOngs[0]}`}
                 alt="logo"
                 onClick={() => handleClick(ongs[0])}
               />
@@ -129,11 +127,11 @@ export default function Main(props) {
                 alt="logo"
                 onClick={() => handleClick(ongs[2])}
               />
-              
+
             </div>
           </Carousel.Item>
           <Carousel.Item>
-            
+
             <div className="Ongsphotos">
               <img
                 src={`https://drive.google.com/uc?id=${imageOngs[3]}`}
@@ -150,11 +148,11 @@ export default function Main(props) {
                 alt="logo"
                 onClick={() => handleClick(ongs[5])}
               />
-              
+
             </div>
           </Carousel.Item>
           <Carousel.Item>
-            
+
             <div className="Ongsphotos">
               <img
                 src={`https://drive.google.com/uc?id=${imageOngs[6]}`}
@@ -171,7 +169,7 @@ export default function Main(props) {
                 alt="logo"
                 onClick={() => handleClick(ongs[8])}
               />
-              
+
             </div>
           </Carousel.Item>
         </Carousel>
@@ -181,9 +179,9 @@ export default function Main(props) {
 
         {
           props.saibaMais && (
-            <HashLink smooth to="#saibaMais" className='saibaMais' style={{cursor: "pointer"}}>
+            <HashLink smooth to="#saibaMais" className='saibaMais' style={{ cursor: "pointer" }}>
               <span>Saiba mais</span>
-              <IconContext.Provider value={{ size: '1.5em', color: "#ffff"}} >
+              <IconContext.Provider value={{ size: '1.5em', color: "#ffff" }} >
                 <MdKeyboardArrowDown />
               </IconContext.Provider>
             </HashLink>
