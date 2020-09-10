@@ -22,7 +22,7 @@ export default function Routes() {
         <Route path="/list" exact component={List} />
         <Route path="/register" exact component={Register} />
         <Route path="/pendings" exact component={Pendings} />
-        <Route path="/adminONG" exact component={Pending} />
+        <Route path="/adminONG" exact component={Adm} />
         <Route path="/imgupload" exact component={UploadTest} />
         <Adm>
            <Route path="/stats" exact component={() => <div>pudim</div>} />
