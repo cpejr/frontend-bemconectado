@@ -9,19 +9,27 @@ import Pending from './pages/Pendings/Pending/OngCard';
 import Home from './pages/Home';
 import OngShow from './pages/OngShow';
 import Login from './pages/Login';
+import Adm from './pages/Adm';
 
 export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/ongShow" exact  component={OngShow} />
         <Route path="/list" exact component={List} />
-        <Route path="/register" component={Register} />
-        <Route path="/adminONG" component={Pending} />
+
+        <Route path="/register" exact component={Register} />
+        <Route path="/pendings" exact component={Pendings} />
+        <Route path="/adminONG" exact component={Adm} />
+        
+        <Adm>
+           <Route path="/stats" exact component={() => <div>pudim</div>} />
+        </Adm>        
+    
         <Route path="/imgupload" component={UploadTest} />
-        <Route path="/ongShow" component={OngShow} />
-        <Route path="/pendings" component={Pendings} />
         <Route path="/login" component={Login} />
+
       </Switch>
     </BrowserRouter>
   );
