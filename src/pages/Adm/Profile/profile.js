@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import InputEditable from '../../../components/InputEditabl'
+import InputEditable from '../../../components/InputEditable'
 import './styles.css';
 
 import { LoginContext } from '../../../contexts/LoginContext';
