@@ -9,6 +9,17 @@
     border-top: 0.5px solid #AAA;
 }
 
+.infoEditableLine .infoEditableTitle{
+    margin: 0;
+    width: 30%;
+}
+
+.infoEditableLine .infoEditableContent{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .profile .infoEditable input{
     width: 40%;
 }

@@ -20,18 +20,19 @@ export default function InputEditable({ title, data, setData, objKey, previousDa
         }
     }
 
-    function resetData(){
-        if (objKey && previousData && previousData[objKey]){
-            console.log("Data ", data[objKey])
-            console.log("PreviousData ", previousData[objKey]);
+    function resetData() {
+        if (objKey && previousData && previousData[objKey]) {
             let newData = data;
             newData[objKey] = previousData[objKey];
             setData(newData);
             setUpdate(!update);
             setEditable(!editable);
         } else {
-            console.log("Data ", data[objKey])
-            console.log("PreviousData ", previousData[objKey]);
+            if (!previousData[objKey]) {
+                let newData = data;
+                newData[objKey] = "";
+                setData(newData);
+            }
             setUpdate(!update);
             setEditable(!editable);
         }
@@ -39,17 +40,19 @@ export default function InputEditable({ title, data, setData, objKey, previousDa
 
     return (
         <div className="infoEditableLine">
-            <label>{title}</label>
-            {editable ?
-                <input value={data[objKey]} onChange={(e) => { handleChange(e) }} />
-                :
-                <input value="" placeholder={data[objKey]} readOnly />
-            }
-            {editable ?
-                <RotateLeft onClick={resetData} className="editIcon" />
-                :
-                <Edit onClick={(e) => setEditable(!editable)} className="editIcon" />
-            }
+            <label className="infoEditableTitle">{title}</label>
+            <div className="infoEditableContent">
+                {editable ?
+                    <input value={data[objKey]} onChange={(e) => { handleChange(e) }} />
+                    :
+                    <input value="" placeholder={data[objKey]} readOnly />
+                }
+                {editable ?
+                    <RotateLeft onClick={resetData} className="editIcon" />
+                    :
+                    <Edit onClick={(e) => setEditable(!editable)} className="editIcon" />
+                }
+            </div>
         </div>
     );
 
