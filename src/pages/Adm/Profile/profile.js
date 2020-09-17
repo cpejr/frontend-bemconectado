@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import UserDataCard from '../../../components/UserDataCard';
 import './styles.css';
 
+<<<<<<< Updated upstream
 import { LoginContext } from '../../../contexts/LoginContext';
 
 export default function Profile(props) {

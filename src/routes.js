@@ -19,6 +19,7 @@ export default function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/ongShow" exact  component={OngShow} />
         <Route path="/list" exact component={List} />
+
         <Route path="/register" exact component={Register} />
         <Route path="/pendings" exact component={Pendings} />
         <Route path="/login" exact component={Login} />
