@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Header from "./Header"
 import SideBar from "./SideBar"
-import Profile from "./Profile"
 
 export default function Admin(props) {
 

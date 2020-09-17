@@ -18,7 +18,7 @@ const LoginContextProvider = (props) => {
                     }
                 }
                 const response = await api.get('/verify', config)
-                console.log("Resposta: ", response)
+                console.log("Login context: ", response)
                 const data = response.data;
                 if (data.verified) {
                     setToken(currentToken);

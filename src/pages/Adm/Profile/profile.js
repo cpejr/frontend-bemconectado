@@ -12,8 +12,10 @@ export default function Header(props){
     const [previousData, setPreviousData] = useState({});
     
     useEffect(()=>{
-        setData(user)
-        setPreviousData(user);
+        console.log("UseEffect do profile", user);
+        const currUser = user; 
+        setData(currUser)
+        setPreviousData(Object.assign({},currUser)); //Creates true obj copy, not reference.
     }, [user]);
     
     return (
@@ -28,11 +30,11 @@ export default function Header(props){
                 
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Nome" data={data} setData={setData} objKey="name"/>
-                        <InputEditable title="E-mail" data={data} setData={setData} objKey="email" />
-                        <InputEditable title="Telefone" data={data} setData={setData} objKey="phonenumber"/>
-                        <InputEditable title="Site" data={data} setData={setData} objKey="site"/>
-                        <InputEditable title="CPF/CNPJ" data={data} setData={setData} objKey="cnpj"/> 
+                        <InputEditable title="Nome" data={data} previousData={previousData} setData={setData} objKey="name"/>
+                        <InputEditable title="E-mail" data={data} previousData={previousData} setData={setData} objKey="email" />
+                        <InputEditable title="Telefone" data={data} previousData={previousData} setData={setData} objKey="phonenumber"/>
+                        <InputEditable title="Site" data={data} previousData={previousData} setData={setData} objKey="site"/>
+                        <InputEditable title="CPF/CNPJ" data={data} previousData={previousData} setData={setData} objKey="cnpj"/> 
                     </form>
                 </div>
             </div>
@@ -45,10 +47,10 @@ export default function Header(props){
                 
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Facebook" data={data} setData={setData} objKey="facebook"/>
-                        <InputEditable title="Instagram" data={data} setData={setData} objKey="instagram"/>
-                        <InputEditable title="Pic Pay" data={data} setData={setData} objKey="picpay"/>
-                        <InputEditable title="Whatsapp" data={data} setData={setData} objKey="whatsapp"/>
+                        <InputEditable title="Facebook" data={data} previousData={previousData} setData={setData} objKey="facebook"/>
+                        <InputEditable title="Instagram" data={data} previousData={previousData} setData={setData} objKey="instagram"/>
+                        <InputEditable title="Pic Pay" data={data} previousData={previousData} setData={setData} objKey="picpay"/>
+                        <InputEditable title="Whatsapp" data={data} previousData={previousData} setData={setData} objKey="whatsapp"/>
                     </form>
                 </div>
             </div>
@@ -60,9 +62,9 @@ export default function Header(props){
                 </div>
                 <div className="infoEditable">
                     <form>
-                        <InputEditable title="Banco" data={data} setData={setData} objKey="bank"/>
-                        <InputEditable title="Agência" data={data} setData={setData} objKey="branch"/>
-                        <InputEditable title="Conta" data={data} setData={setData} objKey="bankAccount"/>
+                        <InputEditable title="Banco" data={data} previousData={previousData} setData={setData} objKey="bank"/>
+                        <InputEditable title="Agência" data={data} previousData={previousData} setData={setData} objKey="branch"/>
+                        <InputEditable title="Conta" data={data} previousData={previousData} setData={setData} objKey="bankAccount"/>
                     </form>
                 </div>
             </div>
