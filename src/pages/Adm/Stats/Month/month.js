@@ -24,25 +24,70 @@ const date = new Date();
 function getRequiredDateFormat(timeStamp, format = "DD/MM/YYYY") {
   return moment(timeStamp).format(format);
 }
-function getQueryParams(month){
-    let currentmonth = month;
-    if (!month){
-        currentmonth = date.getMonth();        
-    }
-    let currentyear = date.getFullYear();
-    if(month>date.getMonth()){
-        currentyear -= 1;
-    }
-    let queryParams = `?month=${currentmonth}&year=${currentyear}`;
-    return queryParams;
+
+function getQueryParams(month) {
+  let currentmonth = month;
+  if (!month) {
+    currentmonth = date.getMonth();
+  }
+  let currentyear = date.getFullYear();
+  if (month > date.getMonth()) {
+    currentyear -= 1;
+  }
+  let queryParams = `?month=${currentmonth}&year=${currentyear}`;
+  return queryParams;
+}
+
+function getMondays(month) {
+  let currentmonth = month;
+  if (!month) {
+    currentmonth = date.getMonth();
+  }
+  let currentyear = date.getFullYear();
+  if (month > date.getMonth()) {
+    currentyear -= 1;
+  }
+
+  var d = new Date(currentyear, currentmonth, 17, 0, 0, 0, 0);
+  month = d.getMonth()
+  let mondays = [];
+
+  d.setDate(1);
+
+  // Get the first Monday in the month
+  while (d.getDay() !== 1) {
+    d.setDate(d.getDate() + 1);
+  }
+
+  // Get all the other Mondays in the month
+  while (d.getMonth() === month) {
+    mondays.push(new Date(d.getTime()));
+    d.setDate(d.getDate() + 7);
+  }
+
+  return mondays;
 }
 
 export default function Month() {
   const [dataSet, setDataSet] = useState([{ id: 1, data: [] }]);
-  const[currentMonth,setCurrentMonth] = useState(date.getMonth());
+  const [currentMonth, setCurrentMonth] = useState(date.getMonth());
+
   function processRequestData(response) {
     const newdata = [];
     const details = response.data;
+    const mondays = getMondays(currentMonth-1);
+    console.log(currentMonth)
+    mondays.forEach((monday) => {
+      let exist = false;
+      console.log(details)
+      for (let i = 0; i < details.length; i++) {
+        const detailsDate = new Date(details[i].date)
+        console.log(detailsDate.toLocaleDateString(), "---", monday.toLocaleDateString())
+        if (detailsDate.getTime() === monday.getTime()) {
+          console.log("DEUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+        }
+      }
+    })
     details.forEach((element) => {
       const count = element.selectedOng.count;
       const week = getRequiredDateFormat(element.date);
@@ -52,13 +97,14 @@ export default function Month() {
     newdataSet[0] = { ...dataSet[0], data: newdata };
     setDataSet(newdataSet);
   }
-  function handlerMonthChange(event) {
-      let newvalue = event.target.value;
-      setCurrentMonth(newvalue);
-      console.log(newvalue);
-    api.get(`/views/${id}${getQueryParams(newvalue)}`).then(processRequestData);
 
+  function handlerMonthChange(event) {
+    let newvalue = event.target.value;
+    setCurrentMonth(newvalue);
+    console.log(newvalue);
+    api.get(`/views/${id}${getQueryParams(newvalue)}`).then(processRequestData);
   }
+
   useEffect(() => {
     api.get(`/views/${id}${getQueryParams()}`).then(processRequestData);
   }, []);
