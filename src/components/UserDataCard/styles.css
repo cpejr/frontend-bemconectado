@@ -30,6 +30,28 @@
     margin-bottom: 2%;
 }
 
+.saveButton{
+    width: auto;
+    height: 100%;
+    transition: opacity 0.4s;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-size: 30px;
+}
+
+.saveButton:hover{
+    cursor: pointer;
+    color: rgb(50, 139, 50);
+    opacity: 0.8;
+}
+
+.saveButton .save{
+    font-size: 30px;
+}
+
 .profile .infoEditable {
     width: 100%;
     height: auto;
