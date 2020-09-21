@@ -45,8 +45,8 @@ export default function Profile(props) {
 
             <UserDataCard
                 mainTitle="Informações Gerais"
-                description="Esses são os dados que estarão visíveis para o público.
-                 Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+                description={"Esses são os dados que estarão visíveis para o público." +
+                " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData1}
                 data={data}
                 previousData={previousData}
@@ -55,8 +55,8 @@ export default function Profile(props) {
 
             <UserDataCard
                 mainTitle="Redes Sociais"
-                description="Esses são os dados que estarão visíveis para o público.
-                 Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+                description={"Esses são os dados que estarão visíveis para o público." +
+                " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData2}
                 data={data}
                 previousData={previousData}
@@ -65,8 +65,8 @@ export default function Profile(props) {
 
             <UserDataCard
                 mainTitle="Redes Sociais"
-                description="Esses são os dados que estarão visíveis para o público.
-                 Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+                description={"Esses são os dados que estarão visíveis para o público." +
+                " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData3}
                 data={data}
                 previousData={previousData}

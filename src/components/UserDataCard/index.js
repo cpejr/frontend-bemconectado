@@ -20,7 +20,6 @@ export default function UserDataCard({
 
     // const response = await api.get('/verify', config)
     
-
     async function handleSaveData(){
 
         let body = new FormData();
