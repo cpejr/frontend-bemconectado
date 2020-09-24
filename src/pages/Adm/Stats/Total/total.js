@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { ResponsiveLine } from "@nivo/line";
 import { getSundaysUntilToday } from '../utils';
+import { Typography } from '@material-ui/core'
 import moment from "moment";
 // const data = [{ id: 1, data: [{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }] }]
 const id = "5eab69710b0013001761b119";
@@ -21,23 +22,24 @@ export default function Total() {
         const sundays = getSundaysUntilToday(firstDate.getMonth(), firstDate.getFullYear())
         console.log(sundays);
         let index = 0;
+        let lastMonth = -1;
+        let acumulator = 0;
         sundays.forEach((element) => {
+          let month = element.getMonth();
+          if (month !== lastMonth) {
+            let monthText = element.toLocaleString("default", { month: "long" })
+            newdata.push({ x: monthText, y: acumulator });
+            lastMonth = month;
+            acumulator = 0;
+          }
           if (index < details.length) {
             const date = new Date(details[index].date);
-            if (element.toLocaleDateString() == date.toLocaleDateString()){
+            if (element.toLocaleDateString() == date.toLocaleDateString()) {
               const count = details[index].selectedOng.count;
               const week = getRequiredDateFormat(date);
-              newdata.push({ x: week, y: count });
+              acumulator += count;
               index++;
             }
-            else {
-              const week = getRequiredDateFormat(new Date(element));
-              newdata.push({ x: week, y: 0 });
-            }
-          }
-          else {
-            const week = getRequiredDateFormat(new Date(element));
-            newdata.push({ x: week, y: 0 });
           }
         });
         console.log(newdata)
@@ -47,8 +49,12 @@ export default function Total() {
       });
   }, []);
   return (
-    <div className="h-100">
-      Grafico Semanal
+    <div style={{ height: "600px" }}>
+      <div className="d-flex flex-row p-3">
+        <Typography className="mt-3 ml-3">
+          Grafico anual
+      </Typography>
+      </div>
       <ResponsiveLine
         data={dataSet}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
