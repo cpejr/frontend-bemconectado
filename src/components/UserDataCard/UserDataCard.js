@@ -16,25 +16,23 @@ export default function UserDataCard({
     setData,
 }) {
     
-    const { token } = useContext(LoginContext);
+    const { token, setUser } = useContext(LoginContext);
 
     // const response = await api.get('/verify', config)
     
     async function handleSaveData(){
 
-        let body = new FormData();
+        let body = {};
 
         function addToData(key, value) {
             if (value !== undefined && value !== ''){
-                body.append(key, value)
+                body[key] = value;
             }
         }
 
         genVector.forEach(item => {
-            console.log("forEach do genVector ", item);
             addToData(item.objKey, data[item.objKey]);
         })
-        console.log("id da ong: ", data._id);
         const config = {
             headers: {
                 "Content-Type": "application/json",
@@ -42,6 +40,7 @@ export default function UserDataCard({
             },
         }
         const response = await api.put(`/ong/${data._id}`, body, config);
+        setUser(response);
     }
 
     return (
