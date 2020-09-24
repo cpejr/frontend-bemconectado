@@ -31,18 +31,17 @@ export default function UserDataCard({
         }
 
         genVector.forEach(item => {
+            console.log("forEach do genVector ", item);
             addToData(item.objKey, data[item.objKey]);
         })
-
-        alert('DEU CERTO?')
+        console.log("id da ong: ", data._id);
         const config = {
             headers: {
+                "Content-Type": "application/json",
                 authorization: `Bearer ${token}`
             },
         }
-        console.log(data._id);
         const response = await api.put(`/ong/${data._id}`, body, config);
-        
     }
 
     return (
