@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
                 width: theme.spacing(9) + 1,
             },
         },
+        drawer: {
+            height: "100%",
+            zIndex: 0
+        },
         toolbar: {
             display: 'flex',
             alignItems: 'center',
@@ -82,6 +86,7 @@ export default function Header(props){
 
     return (
             <Drawer
+
                 variant="permanent"
                 className={clsx(classes.drawer, {
                 [classes.drawerOpen]: open,
@@ -94,11 +99,6 @@ export default function Header(props){
                 }),
                 }}
             >
-                {/* <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
-                        { open? <ChevronLeftIcon />
-                    </IconButton>
-                </div> */}
                 <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
