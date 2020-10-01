@@ -16,7 +16,7 @@ export default function Profile(props) {
 
     useEffect(() => {
 
-        console.log("UseEffect do profile", user);
+        // console.log("UseEffect do profile", user);
         const currUser = user;
         setData({...currUser})
         setPreviousData({ ...currUser }); //Creates true obj copy, not reference.
