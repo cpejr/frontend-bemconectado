@@ -10,8 +10,8 @@
 }
 
 .infoEditableLine .infoEditableTitle{
-    margin: 0;
-    width: 30%;
+    margin: 0 10px 0 0;
+    width: 40%;
 }
 
 .infoEditableLine .infoEditableContent{
@@ -25,6 +25,7 @@
 }
 
 .editIcon{
+    margin-left: 10px;
     cursor: pointer;
 }
 

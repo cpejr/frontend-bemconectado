@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { Save } from '@material-ui/icons';
 import InputEditable from "./InputEditable";
+import ClipLoader from "react-spinners/ClipLoader";
 import "./styles.css";
 
 import { LoginContext } from '../../contexts/LoginContext';
+import { useToasts } from 'react-toast-notifications';
 import api from "../../services/api";
 
 export default function UserDataCard({
@@ -19,10 +21,24 @@ export default function UserDataCard({
     const { token, signIn, logOut } = useContext(LoginContext);
     const [update, setUpdate] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
+    const { addToast } = useToasts();
+
     useEffect(()=>{
     },[update])
 
+    // function CustomToast(){
+    //     return (
+    //         <div className="toastContainer">
+    //             {addToast('Perfil atualizou com sucesso!', { appearance: 'success' })}
+    //         </div>
+    //     );
+    // }
+
     async function handleSaveData() {
+
+        setLoading(true);
 
         let body = {};
 
@@ -53,7 +69,11 @@ export default function UserDataCard({
             setData({...user});
             setUpdate(!update);
         }
+
+        setLoading(false);
+        addToast('Perfil atualizou com sucesso!', { appearance: 'success' });
     }
+
 
     return (
         <div className="cardInfo">
@@ -62,7 +82,10 @@ export default function UserDataCard({
                 <div className="titleRow">
                     <h2>{mainTitle}</h2>
                     <div className="saveButton">
-                        <Save className="save" onClick={(e) => handleSaveData()} />
+                        {loading ? 
+                            <ClipLoader size={30} color={"#000"} loading={true} />
+                            : <Save className="save" onClick={(e) => handleSaveData()} />
+                        }
                     </div>
                 </div>
                 <p>{description}</p>
