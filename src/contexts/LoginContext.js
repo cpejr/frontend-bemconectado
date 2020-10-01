@@ -25,9 +25,9 @@ const LoginContextProvider = (props) => {
                     console.log(data.user);
                     setUser(data.user);
                 } else {
-                    setToken(null)
-                    setUser({});
-                    localStorage.removeItem("accessToken")
+                    setToken(null);
+                    setUser(null);
+                    localStorage.removeItem("accessToken");
                 }
             } catch (err) {
                 console.log(err);
@@ -53,7 +53,7 @@ const LoginContextProvider = (props) => {
     }
 
     return (
-        <LoginContext.Provider value={{ token, user, signIn, logOut }}>
+        <LoginContext.Provider value={{ token, user, signIn, logOut}}>
             {props.children}
         </LoginContext.Provider>
     );

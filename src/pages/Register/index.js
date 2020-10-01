@@ -62,9 +62,7 @@ export default function Register({ className, fileName, onSubmit }) {
     contact: '31 99999999',
     bankAccountData: 'teste',
   }
-
   
-
   async function handleRegister(e) {
     e.preventDefault();
 

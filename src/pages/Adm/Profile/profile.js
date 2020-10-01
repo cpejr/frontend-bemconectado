@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 import UserDataCard from '../../../components/UserDataCard';
 import './styles.css';
@@ -12,18 +13,21 @@ export default function Profile(props) {
 
     const [data, setData] = useState({});
     const [previousData, setPreviousData] = useState({});
+    const history = useHistory();
 
     useEffect(() => {
+
         console.log("UseEffect do profile", user);
         const currUser = user;
-        setData(currUser)
-        setPreviousData(Object.assign({}, currUser)); //Creates true obj copy, not reference.
+        setData({...currUser})
+        setPreviousData({ ...currUser }); //Creates true obj copy, not reference.
+
     }, [user]);
 
     const UserData1 = [
         { title: "Nome", objKey: "name" },
         { title: "E-mail", objKey: "email" },
-        { title: "Telefone", objKey: "phonenumber" },
+        { title: "Telefone", objKey: "phoneNumber" },
         { title: "Site", objKey: "site" },
         { title: "CPF/CNPJ", objKey: "cnpj" }
     ]
@@ -32,7 +36,6 @@ export default function Profile(props) {
         { title: "Facebook", objKey: "facebook" },
         { title: "Instagram", objKey: "instagram" },
         { title: "Pic Pay", objKey: "picpay" },
-        { title: "Whatsapp", objKey: "whatsapp" },
     ]
 
     const UserData3 = [
@@ -46,8 +49,8 @@ export default function Profile(props) {
 
             <UserDataCard
                 mainTitle="Informações Gerais"
-                description="Esses são os dados que estarão visíveis para o público.
-                 Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+                description={"Esses são os dados que estarão visíveis para o público." +
+                    " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData1}
                 data={data}
                 previousData={previousData}
@@ -56,8 +59,8 @@ export default function Profile(props) {
 
             <UserDataCard
                 mainTitle="Redes Sociais"
-                description="Esses são os dados que estarão visíveis para o público.
-                 Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+                description={"Esses são os dados que estarão visíveis para o público." +
+                    " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData2}
                 data={data}
                 previousData={previousData}
@@ -66,8 +69,8 @@ export default function Profile(props) {
 
             <UserDataCard
                 mainTitle="Redes Sociais"
-                description="Esses são os dados que estarão visíveis para o público.
-                 Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+                description={"Esses são os dados que estarão visíveis para o público." +
+                    " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData3}
                 data={data}
                 previousData={previousData}

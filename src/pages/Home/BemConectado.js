@@ -15,11 +15,6 @@ function getWindowDimensions() {
 }
 
 export default function BemConectado(props) {
-
-  
-
-
-
   const [showImage, setShowImage] = useState(() => {
     if (getWindowDimensions().width > 850) return true;
     else return false;

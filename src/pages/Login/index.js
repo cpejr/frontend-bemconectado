@@ -23,16 +23,16 @@ export default function Login() {
 
     const { token, user, signIn } = useContext(LoginContext);
 
-    useEffect(()=>{
-        if(token && user.type === 'admin'){
+    useEffect(() => {
+        if (token && user.type === 'admin') {
             history.push('pendings');
         }
-        if(token && user.type === 'user'){
+        if (token && user.type === 'user') {
             history.push('adminOng');
         }
     })
 
-    async function handleSubmit() {
+    async function handleSubmit(e) {
         try {
             const response = await api.post('session', {
                 email,
@@ -75,42 +75,45 @@ export default function Login() {
 
                     <img className="logo-login" src='/logos/5.png' alt='logo' />
 
-                    <TextField className="usuario"
-                        id="outlined-start-adornment"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">
-                                <FiUser size={22} />
-                            </InputAdornment>,
-                        }}
-                        variant="outlined"
-                    />
+                    <form>
 
-                    <OutlinedInput className="senha"
-                        id="outlined-adornment-password"
-                        type={showPassword ? 'text' : 'password'}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    edge="end"
-                                >
-                                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        startAdornment={<InputAdornment position="start">
-                            <FiLock size={22} />
-                        </InputAdornment>}
-                        labelWidth={0}
-                    />
+                        <TextField className="usuario"
+                            id="outlined-start-adornment"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            InputProps={{
+                                startAdornment: <InputAdornment position="start">
+                                    <FiUser size={22} />
+                                </InputAdornment>,
+                            }}
+                            variant="outlined"
+                        />
 
-                    <div>
-                        <div className="botaoentrar" onClick={handleSubmit}>Entrar</div>
-                    </div>
+                        <OutlinedInput className="senha"
+                            id="outlined-adornment-password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        edge="end"
+                                    >
+                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            startAdornment={<InputAdornment position="start">
+                                <FiLock size={22} />
+                            </InputAdornment>}
+                            labelWidth={0}
+                        />
+
+                        <div>
+                            <div className="botaoentrar" type="submit" onClick={(e) => handleSubmit(e)}>Entrar</div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
