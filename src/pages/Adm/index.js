@@ -10,7 +10,7 @@ export default function Admin(props) {
     return (
         <div className="h-100">
             <Header onClick={() => setOpen(!open)} />
-            <Box zIndex="bottom" style={{ paddingTop: "15vh" }} className="h-100 d-flex">
+            <Box zIndex="bottom" style={{ paddingTop: "15vh", overflowX:'hidden' }} className="h-100 d-flex">
                 <SideBar open={open} />
                 <div className="d-flex flex-column h-100 flex-grow-1 mh-100">
                     {props.children}
