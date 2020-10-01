@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import UserDataCard from '../../../components/UserDataCard';
 import './styles.css';
 
-<<<<<<< Updated upstream
 import { LoginContext } from '../../../contexts/LoginContext';
 
 export default function Profile(props) {
@@ -17,7 +16,7 @@ export default function Profile(props) {
 
     useEffect(() => {
 
-        console.log("UseEffect do profile", user);
+        // console.log("UseEffect do profile", user);
         const currUser = user;
         setData({...currUser})
         setPreviousData({ ...currUser }); //Creates true obj copy, not reference.

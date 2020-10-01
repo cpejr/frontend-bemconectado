@@ -30,11 +30,12 @@ import './styles.css';
 const useStyles = makeStyles((theme) => ({
         
         drawerOpen: {
-        width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+            width: drawerWidth,
+            transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+            position: 'fixed',
         },
         drawerClose: {
             transition: theme.transitions.create('width', {
@@ -46,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
             [theme.breakpoints.up('sm')]: {
                 width: theme.spacing(9) + 1,
             },
+            [theme.breakpoints.down(700)]: {
+                display: 'none',
+            },
+            position: 'fixed',
         },
         drawer: {
             height: "100%",
