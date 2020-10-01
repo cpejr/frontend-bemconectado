@@ -1,4 +1,5 @@
-import React, {useContext} from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Save } from '@material-ui/icons';
 import InputEditable from "./InputEditable";
@@ -15,17 +16,19 @@ export default function UserDataCard({
     previousData,
     setData,
 }) {
-    
-    const { token, setUser } = useContext(LoginContext);
 
-    // const response = await api.get('/verify', config)
-    
-    async function handleSaveData(){
+    const { token, signIn, logOut } = useContext(LoginContext);
+    const [update, setUpdate] = useState(false);
+
+    useEffect(()=>{
+    },[update])
+
+    async function handleSaveData() {
 
         let body = {};
 
         function addToData(key, value) {
-            if (value !== undefined && value !== ''){
+            if (value !== undefined && value !== '') {
                 body[key] = value;
             }
         }
@@ -33,14 +36,24 @@ export default function UserDataCard({
         genVector.forEach(item => {
             addToData(item.objKey, data[item.objKey]);
         })
+
         const config = {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${token}`
             },
         }
+
         const response = await api.put(`/ong/${data._id}`, body, config);
-        setUser(response);
+
+        const { accessToken, user } = response.data;
+
+        if (accessToken !== undefined && user !== undefined) {
+            logOut();
+            signIn(accessToken, user);
+            setData({...user});
+            setUpdate(!update);
+        }
     }
 
     return (
@@ -50,7 +63,7 @@ export default function UserDataCard({
                 <div className="titleRow">
                     <h2>{mainTitle}</h2>
                     <div className="saveButton">
-                        <Save className="save" onClick={(e) => handleSaveData()}/>
+                        <Save className="save" onClick={(e) => handleSaveData()} />
                     </div>
                 </div>
                 <p>{description}</p>
