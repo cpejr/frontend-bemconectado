@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import UserDataCard from '../../../components/UserDataCard';
 import './styles.css';
 
-<<<<<<< Updated upstream
 import { LoginContext } from '../../../contexts/LoginContext';
 
 export default function Profile(props) {
