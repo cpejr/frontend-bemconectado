@@ -67,7 +67,7 @@ export default function Profile(props) {
             />
 
             <UserDataCard
-                mainTitle="Redes Sociais"
+                mainTitle="Conta Bancária"
                 description={"Esses são os dados que estarão visíveis para o público." +
                     " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."}
                 genVector={UserData3}
