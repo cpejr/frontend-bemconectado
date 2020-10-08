@@ -31,42 +31,41 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 
 const useStyles = makeStyles((theme) => ({
-        
-        drawerOpen: {
-            width: drawerWidth,
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            position: 'fixed',
-        },
-        drawerClose: {
-            transition: theme.transitions.create('width', {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-            }),
-            overflowX: 'hidden',
-            width: theme.spacing(7) + 1,
-            [theme.breakpoints.up('sm')]: {
-                width: theme.spacing(9) + 1,
-            },
-            [theme.breakpoints.down(700)]: {
-                display: 'none',
-            },
-            position: 'fixed',
-        },
-        drawer: {
-            height: "100%",
-            zIndex: 0
-        },
-        toolbar: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            padding: theme.spacing(0, 1),
-            // necessary for content to be below app bar
-            ...theme.mixins.toolbar,
-        }
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    position: "fixed",
+  },
+  drawerClose: {
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: "hidden",
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing(9) + 1,
+    },
+    [theme.breakpoints.down(700)]: {
+      display: "none",
+    },
+    position: "fixed",
+  },
+  drawer: {
+    height: "100%",
+    zIndex: 0,
+  },
+  toolbar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
 }));
 
 const drawerWidth = 240;
@@ -108,8 +107,9 @@ export default function Header(props) {
           [classes.drawerClose]: !open,
         }),
       }}
+      style={{ zIndex: 100 }}
     >
-      <List>
+      <List style={{ backgroundColor: "white" }}>
         <ListItem
           selected={currentPage === "profile"}
           onClick={() => navigate("profile")}
@@ -150,9 +150,7 @@ export default function Header(props) {
           <ListItemText primary="Campanhas" />
         </ListItem>
 
-        <ListItem
-          onClick={() => navigate("profile")}
-        >
+        <ListItem onClick={() => navigate("profile")}>
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
