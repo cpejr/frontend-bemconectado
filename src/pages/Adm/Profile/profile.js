@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 
 import UserDataCard from '../../../components/UserDataCard';
 import './styles.css';
@@ -12,7 +11,6 @@ export default function Profile(props) {
 
     const [data, setData] = useState({});
     const [previousData, setPreviousData] = useState({});
-    const history = useHistory();
 
     useEffect(() => {
 
@@ -36,7 +34,7 @@ export default function Profile(props) {
         { title: "Instagram", objKey: "instagram" },
         { title: "Pic Pay", objKey: "picpay" },
     ]
-
+    
     const UserData3 = [
         { title: "Banco", objKey: "bank" },
         { title: "Agência", objKey: "branch" },

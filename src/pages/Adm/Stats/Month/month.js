@@ -44,11 +44,26 @@ function getQueryParams(month) {
 export default function Month() {
   const [dataSet, setDataSet] = useState([{ id: 1, data: [] }]);
   const [currentMonth, setCurrentMonth] = useState(date.getMonth());
+  const [textData, setTextData] = useState({
+    total: 0,
+    averageWeek: 0,
+    monthComparison: 0,
+  });
 
-  function processRequestData(response) {
+  async function processRequestData(response) {
     const newdata = [];
     const details = response.data;
     const sundays = getSundays(currentMonth - 1);
+    let total = 0;
+    let lastTotal = 0;
+    const response2 = await api.get(
+      `/views/${id}${getQueryParams(currentMonth - 1)}`
+    );
+
+    response2.data.forEach((week) => {
+      lastTotal += week.selectedOng.count;
+    });
+
     sundays.forEach((sunday) => {
       let exist = false;
       for (let i = 0; i < details.length; i++) {
@@ -58,6 +73,7 @@ export default function Month() {
           const week = getRequiredDateFormat(details[i].date);
           newdata.push({ x: week, y: count });
           exist = true;
+          total += count;
           break;
         }
       }
@@ -69,6 +85,14 @@ export default function Month() {
     const newdataSet = [];
     newdataSet[0] = { ...dataSet[0], data: newdata };
     setDataSet(newdataSet);
+
+    let monthComparison = (total - lastTotal) / (total + lastTotal);
+
+    setTextData({
+      total,
+      averageWeek: total / sundays.length,
+      monthComparison,
+    });
   }
 
   function handlerMonthChange(event) {
@@ -92,7 +116,21 @@ export default function Month() {
 
   const classes = useStyles();
   return (
-    <div className={classes.chartcontainer}>
+    <div>
+      <div className="d-flex flex-column p-3 mt-3">
+        <Typography className="ml-3">
+          Quantidade total de acessos no mês: {textData.total}
+        </Typography>
+
+        <Typography className="ml-3">
+          Média de acessos semanal: {textData.averageWeek.toFixed(2)}
+        </Typography>
+
+        <Typography className="ml-3">
+          Comparação ao mês anterior: {textData.monthComparison > 0 && "+"}
+          {textData.monthComparison.toFixed(2) * 100}%
+        </Typography>
+      </div>
       <div className="d-flex flex-row p-3">
         <Typography className="mt-3 ml-3 mr-3">Grafico mensal</Typography>
         <Select
@@ -107,50 +145,52 @@ export default function Month() {
           ))}
         </Select>
       </div>
-      <ResponsiveLine
-        data={dataSet}
-        margin={{ top: 50, right: 50, bottom: 50, left: 60 }}
-        xScale={{ type: "point" }}
-        yScale={{
-          type: "linear",
-          min: "auto",
-          max: "auto",
-          stacked: true,
-          reverse: false,
-        }}
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          orient: "bottom",
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "Mês",
-          legendOffset: 36,
-          legendPosition: "middle",
-        }}
-        axisLeft={{
-          orient: "left",
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "Visualizações",
-          legendOffset: -40,
-          legendPosition: "middle",
-        }}
-        colors={{ scheme: "nivo" }}
-        pointSize={10}
-        pointColor={{ theme: "background" }}
-        pointBorderWidth={2}
-        pointBorderColor={{ from: "serieColor" }}
-        pointLabel="y"
-        pointLabelYOffset={-12}
-        enableArea={true}
-        areaBlendMode="darken"
-        areaOpacity={0.3}
-        useMesh={true}
-        legends={[]}
-      />
+      <div className={classes.chartcontainer}>
+        <ResponsiveLine
+          data={dataSet}
+          margin={{ top: 50, right: 50, bottom: 50, left: 60 }}
+          xScale={{ type: "point" }}
+          yScale={{
+            type: "linear",
+            min: "auto",
+            max: "auto",
+            stacked: true,
+            reverse: false,
+          }}
+          axisTop={null}
+          axisRight={null}
+          axisBottom={{
+            orient: "bottom",
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: "Mês",
+            legendOffset: 36,
+            legendPosition: "middle",
+          }}
+          axisLeft={{
+            orient: "left",
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: "Visualizações",
+            legendOffset: -40,
+            legendPosition: "middle",
+          }}
+          colors={{ scheme: "nivo" }}
+          pointSize={10}
+          pointColor={{ theme: "background" }}
+          pointBorderWidth={2}
+          pointBorderColor={{ from: "serieColor" }}
+          pointLabel="y"
+          pointLabelYOffset={-12}
+          enableArea={true}
+          areaBlendMode="darken"
+          areaOpacity={0.3}
+          useMesh={true}
+          legends={[]}
+        />
+      </div>
     </div>
   );
 }
