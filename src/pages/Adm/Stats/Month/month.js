@@ -5,6 +5,7 @@ import moment from "moment";
 import { Select } from "@material-ui/core";
 import { getSundays } from "../utils";
 import { Typography } from "@material-ui/core";
+import { useStyles } from "../chartstyle";
 // const data = [{ id: 1, data: [{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }] }]
 const id = "5eab69710b0013001761b119";
 const months = [
@@ -85,8 +86,13 @@ export default function Month() {
   useEffect(() => {
     api.get(`/views/${id}${getQueryParams()}`).then(processRequestData);
   }, []);
+  //   const useStyles = makeStyles({
+  //       chartcontainer:{height:"600px"}
+  //   })
+
+  const classes = useStyles();
   return (
-    <div style={{ height: "600px" }}>
+    <div className={classes.chartcontainer}>
       <div className="d-flex flex-row p-3">
         <Typography className="mt-3 ml-3 mr-3">Grafico mensal</Typography>
         <Select
