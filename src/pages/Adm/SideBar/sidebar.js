@@ -68,7 +68,8 @@ const drawerWidth = 240;
 export default function Header(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState("profile");
 
   // const handleDrawerOpen = () => {
   //     setOpen(true);
@@ -84,8 +85,9 @@ export default function Header(props) {
     }
   }, [props]);
   const history = useHistory();
-  function navigate (page){
-    history.push(`/adm/${page}`)
+  function navigate(page) {
+    setCurrentPage(page);
+    history.push(`/adm/${page}`);
   }
   return (
     <Drawer
@@ -102,35 +104,49 @@ export default function Header(props) {
       }}
     >
       <List>
-        <ListItem onClick = {()=>navigate("profile")}>
+        <ListItem
+          selected={currentPage === "profile"}
+          onClick={() => navigate("profile")}
+        >
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
           <ListItemText primary="Perfil" />
         </ListItem>
 
-        <ListItem onClick = {()=>navigate("stats")}>
+        <ListItem
+          selected={currentPage === "stats"}
+          onClick={() => navigate("stats")}
+        >
           <ListItemIcon>
             <AssessmentIcon />
           </ListItemIcon>
           <ListItemText primary="Análises" />
         </ListItem>
 
-        <ListItem onClick = {()=>navigate("profile")}>
+        <ListItem
+          selected={currentPage === "finance"}
+          onClick={() => navigate("finance")}
+        >
           <ListItemIcon>
             <MonetizationOnIcon />
           </ListItemIcon>
           <ListItemText primary="Financeiro" />
         </ListItem>
 
-        <ListItem onClick = {()=>navigate("profile")}>
+        <ListItem
+          selected={currentPage === "campaign"}
+          onClick={() => navigate("campaign")}
+        >
           <ListItemIcon>
             <TodayIcon />
           </ListItemIcon>
           <ListItemText primary="Campanhas" />
         </ListItem>
 
-        <ListItem onClick = {()=>navigate("profile")}>
+        <ListItem
+          onClick={() => navigate("profile")}
+        >
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
