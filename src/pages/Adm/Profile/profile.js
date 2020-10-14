@@ -4,13 +4,17 @@ import UserDataCard from "../../../components/UserDataCard";
 import "./styles.css";
 
 import { LoginContext } from "../../../contexts/LoginContext";
+import { Button } from "@material-ui/core";
+import api from "../../../services/api";
+import { useToasts } from "react-toast-notifications";
 
 export default function Profile(props) {
   const { user } = useContext(LoginContext);
 
   const [data, setData] = useState({});
   const [previousData, setPreviousData] = useState({});
-
+  const { addToast } = useToasts();
+  
   useEffect(() => {
     // console.log("UseEffect do profile", user);
     const currUser = user;
@@ -38,6 +42,21 @@ export default function Profile(props) {
     { title: "Conta", objKey: "bankAccount" },
   ];
 
+  async function handleSubmit(e) {
+    try {
+      const response = await api.post("/forgotpassword", { email: user.email });
+      const status = response.status;
+      console.log(response.data);
+      if (status === 200) {
+        addToast("Pedido enviado para o e-mail", { appearance: "success" });
+      } else {
+        addToast("E-mail inválido", { appearance: "error" });
+      }
+    } catch (error) {
+      addToast("E-mail inválido", { appearance: "error" });
+    }
+  }
+
   return (
     <div className="profile">
       {" "}
@@ -52,7 +71,16 @@ export default function Profile(props) {
         data={data}
         previousData={previousData}
         setData={setData}
-      />
+      >
+        <div className="infoEditableLine">
+          <label className="infoEditableTitle">Alterar senha</label>
+          <div className="infoEditableContent">
+            <Button color="primary" variant="contained" onClick={handleSubmit}>
+              Alterar Senha
+            </Button>
+          </div>
+        </div>
+      </UserDataCard>
       <UserDataCard
         mainTitle="Redes Sociais"
         description={
