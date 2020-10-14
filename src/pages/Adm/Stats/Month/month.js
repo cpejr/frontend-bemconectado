@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { ResponsiveLine } from "@nivo/line";
 import moment from "moment";
@@ -6,8 +6,11 @@ import { Select } from "@material-ui/core";
 import { getSundays } from "../utils";
 import { Typography } from "@material-ui/core";
 import { useStyles } from "../chartstyle";
+import { LoginContext } from "../../../../contexts/LoginContext";
+
 // const data = [{ id: 1, data: [{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }] }]
-const id = "5eab69710b0013001761b119";
+// const id = "5eab69710b0013001761b119";
+
 const months = [
   "Janeiro",
   "Fevereiro",
@@ -22,6 +25,7 @@ const months = [
   "Novembro",
   "Dezembro",
 ];
+
 const date = new Date();
 
 function getRequiredDateFormat(timeStamp, format = "DD/MM/YYYY") {
@@ -49,6 +53,8 @@ export default function Month() {
     averageWeek: 0,
     monthComparison: 0,
   });
+  const { user } = useContext(LoginContext);
+  const id = user._id;
 
   async function processRequestData(response) {
     const newdata = [];

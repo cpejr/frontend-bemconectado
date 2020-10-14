@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { ResponsiveLine } from "@nivo/line";
 import { getSundaysUntilToday } from "../utils";
 import { Typography } from "@material-ui/core";
 import moment from "moment";
 import { useStyles } from "../chartstyle";
+import { LoginContext } from "../../../../contexts/LoginContext";
 // const data = [{ id: 1, data: [{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }] }]
-const id = "5eab69710b0013001761b119";
+// const id = "5eab69710b0013001761b119";
 
 function getRequiredDateFormat(timeStamp, format = "DD/MM/YYYY") {
   return moment(timeStamp).format(format);
@@ -14,51 +15,57 @@ function getRequiredDateFormat(timeStamp, format = "DD/MM/YYYY") {
 export default function Total() {
   const [dataSet, setDataSet] = useState([{ id: 1, data: [] }]);
   const [textData, setTextData] = useState({ totalCount: 0, averageCount: 0 });
+  const { user } = useContext(LoginContext);
+  const id = user._id;
 
   useEffect(() => {
     api.get(`/views/${id}`).then((response) => {
       const newdata = [];
-      const details = response.data;
-      const firstDate = new Date(details[0].date);
-      const sundays = getSundaysUntilToday(
-        firstDate.getMonth(),
-        firstDate.getFullYear()
-      );
-      console.log(sundays);
-      let index = 0;
-      let lastMonth = -1;
-      let acumulator = 0;
-      let total = 0;
-      let monthCount = 0;
-      sundays.forEach((element) => {
-        let month = element.getMonth();
-        if (month !== lastMonth) {
-          let monthText = element.toLocaleString("default", { month: "long" });
-          newdata.push({ x: monthText, y: acumulator });
-          lastMonth = month;
-          monthCount++;
-          acumulator = 0;
-        }
-        if (index < details.length) {
-          const date = new Date(details[index].date);
-          if (element.toLocaleDateString() == date.toLocaleDateString()) {
-            const count = details[index].selectedOng.count;
-            const week = getRequiredDateFormat(date);
-            acumulator += count;
-            total += count;
-            index++;
+      if (response.data[0]) {
+        const details = response.data;
+        const firstDate = new Date(details[0].date);
+        const sundays = getSundaysUntilToday(
+          firstDate.getMonth(),
+          firstDate.getFullYear()
+        );
+        console.log(sundays);
+        let index = 0;
+        let lastMonth = -1;
+        let acumulator = 0;
+        let total = 0;
+        let monthCount = 0;
+        sundays.forEach((element) => {
+          let month = element.getMonth();
+          if (month !== lastMonth) {
+            let monthText = element.toLocaleString("default", {
+              month: "long",
+            });
+            newdata.push({ x: monthText, y: acumulator });
+            lastMonth = month;
+            monthCount++;
+            acumulator = 0;
           }
-        }
-      });
-      console.log(newdata);
-      const newdataSet = [];
-      newdataSet[0] = { ...dataSet[0], data: newdata };
-      setDataSet(newdataSet);
-      const newTextData = {
-        totalCount: total,
-        averageCount: total / monthCount,
-      };
-      setTextData(newTextData);
+          if (index < details.length) {
+            const date = new Date(details[index].date);
+            if (element.toLocaleDateString() == date.toLocaleDateString()) {
+              const count = details[index].selectedOng.count;
+              const week = getRequiredDateFormat(date);
+              acumulator += count;
+              total += count;
+              index++;
+            }
+          }
+        });
+        console.log(newdata);
+        const newdataSet = [];
+        newdataSet[0] = { ...dataSet[0], data: newdata };
+        setDataSet(newdataSet);
+        const newTextData = {
+          totalCount: total,
+          averageCount: total / monthCount,
+        };
+        setTextData(newTextData);
+      }
     });
   }, []);
   const classes = useStyles();
