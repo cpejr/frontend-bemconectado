@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { LoginContext } from "../../contexts/LoginContext";
+import { useToasts } from "react-toast-notifications";
 
 import "./styles.css";
 import api from "../../services/api";
@@ -20,6 +21,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const { addToast } = useToasts();
 
   const { token, user, signIn } = useContext(LoginContext);
 
@@ -33,26 +35,32 @@ export default function Login() {
   });
 
   async function handleSubmit(e) {
+    e.preventDefault()
     try {
       const response = await api.post("session", {
         email,
         password,
       });
+
+      console.log(response.data)
       if (response.data && response.data.accessToken) {
         const token = response.data.accessToken;
         const user = response.data.user;
         signIn(token, user);
+        addToast(`Usuario ${user.name} logado com sucesso!`, {
+          appearance: "success",
+        });
         if (user.type === "admin") {
           history.push("/pendings");
         } else {
-          history.push("/");
+          history.push("/adm/profile");
         }
       } else {
-        alert("Usuário ou senha incorretos!");
-        if (response.data.error) console.log(response.data.error);
+        addToast(`Usuario ou senha incorretos!`, { appearance: "error" });
+        console.log(response.data);
       }
     } catch (error) {
-      alert("Acesso negado!");
+      addToast(`Acesso negado!`, { appearance: "error" });
       console.log(error);
     }
   }
@@ -68,7 +76,7 @@ export default function Login() {
         <IoMdArrowBack />
       </button>
       <div className="loginContent">
-        <div className="loginBox">
+        <form className="loginBox">
           <img className="logo-login" src="/logos/10.png" alt="logo" />
 
           <TextField
@@ -125,7 +133,7 @@ export default function Login() {
               </Link>
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

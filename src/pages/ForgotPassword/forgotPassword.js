@@ -1,8 +1,6 @@
 import {
   InputAdornment,
-  OutlinedInput,
   TextField,
-  Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { FiUser } from "react-icons/fi";

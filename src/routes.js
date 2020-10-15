@@ -25,9 +25,9 @@ export default function Routes() {
         <Route path="/pendings" exact component={Pendings} />
         <Route path="/login" exact component={Login} />
         <Route path="/imgupload" exact component={UploadTest} />
-        <Route path="/adm" component={AdmMenu} />
-        <Route component={() => <div>404</div>} />
-      </Switch>
+        <Route path="/adm" component={AdmMenu} /> 
+        <Route component={() => <div>404</div>} /> 
+      </Switch> 
     </BrowserRouter>
   );
 }
