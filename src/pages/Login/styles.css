@@ -53,7 +53,6 @@
   border: 1px solid rgba(0, 0, 0, 0.12);
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
   text-align: center;
   background-color: #4272d7;
   box-sizing: border-box;
@@ -72,7 +71,7 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  height: 30vh;
+  height: 27vh;
   width: auto;
 }
 
@@ -92,6 +91,11 @@
   margin-top: 10px;
 }
 
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 @media(max-width: 960px) {
   .loginBox {
     top: 5vh;
@@ -99,17 +103,7 @@
     width: 90vw;
     padding: 35px;
   }
-  .usuario {
-    width: 90%;
-    margin-top: 0px;
-    /* margin-left: 5%; */
-  }
-  .senha {
-    width: 90%;
-    /* margin-left: 5%; */
-  }
   .botaoentrar {
-    width: 90%;
     height: 56px;
     margin-bottom: 30px;
     /* margin-left: 5%; */
@@ -123,20 +117,10 @@
     width: 624px;
     padding: 35px;
   }
-  /*PROBLEMAS COM O CSS
-      AQUI NO .USUARIO JÁ QUE
-      O CSS GLOBAL ESTA ZERANDO A MARGIN*/
-  .usuario {
-    /* margin-left: 35px; */
-    width: 550px;
-  }
-  .senha {
-    /* margin-left: 35px; */
-    width: 550px;
-  }
+ 
   .botaoentrar {
     height: 60px;
-    width: 552px;
+    width: 100%;
     margin-bottom: 30px;
     /* margin-left: 35px; */
   }
