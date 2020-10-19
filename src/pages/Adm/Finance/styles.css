@@ -1,0 +1,12 @@
+.EmConstrucao1{
+    display: flex;
+    justify-content: center;
+}
+
+.EmConstrucao{
+    width: 80%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+}
+
