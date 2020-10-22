@@ -11,6 +11,8 @@ import Login from "./pages/Login";
 import Adm from "./pages/Adm";
 import Stats from "./pages/Adm/Stats";
 import Profile from "./pages/Adm/Profile";
+import Finance from "./pages/Adm/Finance";
+import Campaign from "./pages/Adm/Campaign";
 import ForgotPassword from "./pages/ForgotPassword"
 
 export default function Routes() {
@@ -38,6 +40,8 @@ function AdmMenu() {
       <Switch>
         <Route exact path="/adm/stats" component={Stats} />
         <Route exact path="/adm/profile" component={Profile} />
+        <Route exact path="/adm/finance" component={Finance} />
+        <Route exact path="/adm/campaign" component={Campaign} />
         <Route component={() => <Redirect to="/" />} />
       </Switch>
     </Adm>
