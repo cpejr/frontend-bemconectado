@@ -55,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
 
 const drawerWidth = 240;
 
-export default function Header(props) {
+export default function SideBar(props) {
   const classes = useStyles();
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("profile");
 
@@ -65,11 +66,12 @@ export default function Header(props) {
       setOpen(props.open);
     }
   }, [props]);
-  const history = useHistory();
+  
   function navigate(page) {
     setCurrentPage(page);
     history.push(`/adm/${page}`);
   }
+
   return (
     <Drawer
       variant="permanent"

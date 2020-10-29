@@ -72,7 +72,7 @@ export default function UserDataCard({
       setLoading(false);
       addToast("Perfil atualizou com sucesso!", { appearance: "success" });
     } catch (err) {
-      console.log(err);
+      console.warn(err);
       addToast("Falha em atualizar o perfil!", { appearance: "error" });
       setLoading(false);
     }

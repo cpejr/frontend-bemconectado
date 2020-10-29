@@ -27,10 +27,10 @@ export default function Login() {
 
   useEffect(() => {
     if (token && user.type === "admin") {
-      history.push("pendings");
+      history.push("/pendings");
     }
     if (token && user.type === "user") {
-      history.push("adminOng");
+      history.push("/adminOng");
     }
   });
 
@@ -42,7 +42,6 @@ export default function Login() {
         password,
       });
 
-      console.log(response.data)
       if (response.data && response.data.accessToken) {
         const token = response.data.accessToken;
         const user = response.data.user;
@@ -57,11 +56,10 @@ export default function Login() {
         }
       } else {
         addToast(`Usuario ou senha incorretos!`, { appearance: "error" });
-        console.log(response.data);
       }
     } catch (error) {
       addToast(`Acesso negado!`, { appearance: "error" });
-      console.log(error);
+      console.warn(error);
     }
   }
 

@@ -16,7 +16,6 @@ export default function Profile(props) {
   const { addToast } = useToasts();
   
   useEffect(() => {
-    // console.log("UseEffect do profile", user);
     const currUser = user;
     setData({ ...currUser });
     setPreviousData({ ...currUser }); //Creates true obj copy, not reference.
@@ -46,7 +45,6 @@ export default function Profile(props) {
     try {
       const response = await api.post("/forgotpassword", { email: user.email });
       const status = response.status;
-      console.log(response.data);
       if (status === 200) {
         addToast("Pedido enviado para o e-mail", { appearance: "success" });
       } else {

@@ -17,7 +17,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Button, IconButton, Chip } from "@material-ui/core";
 import "./styles.css";
-import picpayIcon from "../../../../images/picpay.png";
 import { useHistory } from "react-router-dom";
 import { BsEyeFill } from "react-icons/bs";
 
@@ -407,7 +406,7 @@ export default function Mobile(props) {
                   <IconContext.Provider
                     value={{ color: "#11C76F", size: "1.7em" }}
                   >
-                    <img src={picpayIcon} alt="logo" className={classes.icon} />
+                    <img src="/images/picpay.png" alt="logo" className={classes.icon} />
                   </IconContext.Provider>
                 </div>
               </Button>

@@ -16,7 +16,6 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Button, Chip, Typography } from "@material-ui/core";
 import { FaFacebookF, FaCodeBranch } from "react-icons/fa";
 import { BsEyeFill } from "react-icons/bs";
-import picpayIcon from "../../../../images/picpay.png";
 
 const classes = {
   linkContent: {
@@ -295,7 +294,7 @@ export default function Desktop({ ong, categs, count }) {
                   <IconContext.Provider
                     value={{ color: "#11C76F", size: "1.7em" }}
                   >
-                    <img src={picpayIcon} alt="PicPay" className="icon" />
+                    <img src='/images/picpay.png' alt="PicPay" className="icon" />
                   </IconContext.Provider>
                 </div>
               </Button>

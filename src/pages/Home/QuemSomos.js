@@ -55,7 +55,7 @@ export default function QuemSomos(props) {
             showImage && (
               <Col xl={3} className="imgCol">
               <div style={{height: "10%"}}/>
-              <img src='logolampada.png' alt='logoCpe' className='infoImage1' />
+              <img src='/images/logolampada.png' alt='logoCpe' className='infoImage1' />
               </Col>
             )
           }
