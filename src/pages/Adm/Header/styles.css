@@ -1,0 +1,28 @@
+.HeaderName{
+    width: 100%;
+    height: 15vh;
+    background-color: #FFCF4F !important;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+
+    padding: 16px;
+    padding-left: 90px;
+}
+
+.menuButton{
+    position: absolute;
+    left:16px;
+    top: auto;
+    bottom: auto;
+}
+
+.HeaderName img{
+    height: 90%;
+    width: auto;
+    padding: 0;
+    z-index: 9999;
+}

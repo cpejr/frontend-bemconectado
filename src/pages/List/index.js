@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./styles.css";
 import Card from "./Card";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import api from "../../services/api";
 import SelectState from "../../components/SelectStates";
-import { FaFilter, FaHome, FaSearch } from "react-icons/fa";
+import { FaFilter, FaHome, FaSearch  } from "react-icons/fa";
 import CategSelector from "../../components/Categ/CategSelector";
 import ClipLoader from "react-spinners/ClipLoader";
 import BacktoTop from "../../components/BacktoTop";
+
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -182,18 +183,28 @@ export default function List(props) {
       <div className="wrapper wrapper-width">
         <div className="card card-5">
           <div className="Header">
-            <button
-              className="btn1 redondo btn--yellow m-2 mr-4 justify-content-end align-self-start"
-              onClick={() => {
-                history.push("/");
-              }}
-            >
-              <FaHome />
+            <div className="header-buttons">
+              <button
+                className="btn1 redondo btn--yellow m-2 mr-4 justify-content-end align-self-start"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
+                <FaHome />
+              </button>
+              <button
+                className="button-login"
+                onClick={() => {
+                  history.push("/login");
+                }}
+              >
+               Login
             </button>
+            </div>
             <img src="./logos/8.png" className="logo" alt="Logo"></img>
-            <Link className=" redondo botaoCadastrar" to="/register">
+            {/* <Link className=" redondo botaoCadastrar" to="/register">
               Cadastre sua instituição
-            </Link>
+            </Link> */}
           </div>
           <div className="searchBar d-flex flex-wrap">
             <button
@@ -256,8 +267,8 @@ export default function List(props) {
             </div>
           </div>
 
-          <BacktoTop/>
- 
+          <BacktoTop />
+
           <div className="card-body d-flex flex-wrap justify-content-center">
             {loading ? (
               <ClipLoader size={150} color={"#123abc"} loading={true} />

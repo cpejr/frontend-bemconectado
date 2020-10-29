@@ -1,0 +1,34 @@
+.infoEditableLine{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8px;
+    border-top: 0.5px solid #AAA;
+}
+
+.infoEditableLine .infoEditableTitle{
+    margin: 0 10px 0 0;
+    width: 40%;
+}
+
+.infoEditableLine .infoEditableContent{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile .infoEditable input{
+    width: 100%;
+}
+
+.editIcon{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.editIcon:hover{
+    opacity: 0.8;
+}

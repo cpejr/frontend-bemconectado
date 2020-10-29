@@ -6,7 +6,19 @@
   box-sizing: border-box;
 }
 
+html{
+  min-height: 100%;
+  min-width: 100%;
+}
+
+#root {
+  min-height: 100%;
+  min-width: 100%;
+}
+
 body{
+  min-height: 100%;
+  min-width: 100%;
   font: 400 14px Poppins, sans-serif;
   background: #f0f0f5; 
   -webkit-font-smoothing: antialiased;
@@ -14,7 +26,6 @@ body{
 
 input,button,textarea{
   font: 400 18px Poppins, sans-serif;
-
 }
 
 button{

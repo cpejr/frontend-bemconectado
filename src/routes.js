@@ -1,30 +1,49 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import Register from './pages/Register';
-import Pendings from './pages/Pendings';
-import List from './pages/List';
-import UploadTest from './pages/UploadTest';
-import Pending from './pages/Pendings/Pending/OngCard';
-import Home from './pages/Home';
-import OngShow from './pages/OngShow';
-import Login from './pages/Login';
+import Register from "./pages/Register";
+import Pendings from "./pages/Pendings";
+import List from "./pages/List";
+import UploadTest from "./pages/UploadTest";
+import Home from "./pages/Home";
+import OngShow from "./pages/OngShow";
+import Login from "./pages/Login";
+import Adm from "./pages/Adm";
+import Stats from "./pages/Adm/Stats";
+import Profile from "./pages/Adm/Profile";
+import Finance from "./pages/Adm/Finance";
+import Campaign from "./pages/Adm/Campaign";
+import ForgotPassword from "./pages/ForgotPassword"
 
 export default function Routes() {
-  const token = localStorage.getItem("accessToken")
-  console.log("O token dentro do localstoarge é " + token)
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/ongShow" exact component={OngShow} />
         <Route path="/list" exact component={List} />
-        <Route path="/register" component={Register} />
-        <Route path="/pendings" component={Pendings} />
-        <Route path="/adminONG" component={Pending} />
-        <Route path="/imgupload" component={UploadTest} />
-        <Route path="/ongShow" component={OngShow} />
-        {(token !== null) ? <Route path="/login" component={Pendings} /> : <Route path="/login" component={Login} />}
-      </Switch>
+        <Route path="/forgotpassword" exact component={ForgotPassword} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/pendings" exact component={Pendings} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/imgupload" exact component={UploadTest} />
+        <Route path="/adm" component={AdmMenu} /> 
+        <Route component={() => <div>404</div>} /> 
+      </Switch> 
     </BrowserRouter>
+  );
+}
+
+function AdmMenu() {
+  return (
+    <Adm>
+      <Switch>
+        <Route exact path="/adm/stats" component={Stats} />
+        <Route exact path="/adm/profile" component={Profile} />
+        <Route exact path="/adm/finance" component={Finance} />
+        <Route exact path="/adm/campaign" component={Campaign} />
+        <Route component={() => <Redirect to="/" />} />
+      </Switch>
+    </Adm>
   );
 }
