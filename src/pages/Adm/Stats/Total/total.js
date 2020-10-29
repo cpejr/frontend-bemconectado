@@ -3,15 +3,11 @@ import api from "../../../../services/api";
 import { ResponsiveLine } from "@nivo/line";
 import { getSundaysUntilToday } from "../utils";
 import { Typography } from "@material-ui/core";
-import moment from "moment";
 import { useStyles } from "../chartstyle";
 import { LoginContext } from "../../../../contexts/LoginContext";
 // const data = [{ id: 1, data: [{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 4 }, { x: 5, y: 5 }] }]
 // const id = "5eab69710b0013001761b119";
 
-function getRequiredDateFormat(timeStamp, format = "DD/MM/YYYY") {
-  return moment(timeStamp).format(format);
-}
 export default function Total() {
   const [dataSet, setDataSet] = useState([{ id: 1, data: [] }]);
   const [textData, setTextData] = useState({ totalCount: 0, averageCount: 0 });
@@ -28,7 +24,7 @@ export default function Total() {
           firstDate.getMonth(),
           firstDate.getFullYear()
         );
-        console.log(sundays);
+
         let index = 0;
         let lastMonth = -1;
         let acumulator = 0;
@@ -47,16 +43,16 @@ export default function Total() {
           }
           if (index < details.length) {
             const date = new Date(details[index].date);
-            if (element.toLocaleDateString() == date.toLocaleDateString()) {
+            if (element.toLocaleDateString() === date.toLocaleDateString()) {
               const count = details[index].selectedOng.count;
-              const week = getRequiredDateFormat(date);
+              // const week = getRequiredDateFormat(date);
               acumulator += count;
               total += count;
               index++;
             }
           }
         });
-        console.log(newdata);
+
         const newdataSet = [];
         newdataSet[0] = { ...dataSet[0], data: newdata };
         setDataSet(newdataSet);
@@ -67,6 +63,8 @@ export default function Total() {
         setTextData(newTextData);
       }
     });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const classes = useStyles();
   return (

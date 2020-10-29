@@ -1,20 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import ChevronRightIcon from '@material-ui/icons/ChevronRightIcon';
-// import MailIcon from '@material-ui/icons';
-// import ListItemIcon from '@material-ui/icons/Menu';
-// import MenuIcon from '@material-ui/icons/Menu';
-// import { Drawer } from '@material-ui/core';
-
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
 import List from "@material-ui/core/List";
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import Typography from '@material-ui/core/Typography';
-// import Divider from '@material-ui/core/Divider';
-import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -24,7 +9,7 @@ import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import TodayIcon from "@material-ui/icons/Today";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import { useHistory } from "react-router-dom";
 
@@ -72,17 +57,8 @@ const drawerWidth = 240;
 
 export default function Header(props) {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("profile");
-
-  // const handleDrawerOpen = () => {
-  //     setOpen(true);
-  // };
-
-  const handleDrawerClose = () => {
-    setOpen(!open);
-  };
 
   useEffect(() => {
     if (typeof props.open !== "undefined") {

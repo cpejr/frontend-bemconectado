@@ -1,10 +1,13 @@
 import { Box } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { LoginContext } from "../../contexts/LoginContext";
+import { Redirect } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./SideBar";
 
 export default function Admin(props) {
   const [open, setOpen] = useState(false);
+  const { user } = useContext(LoginContext);
 
   return (
     <div className="h-100">
@@ -22,6 +25,7 @@ export default function Admin(props) {
           {props.children}
         </div>
       </Box>
+      {user.type !== "admin" && <Redirect to="/" />}
     </div>
   );
 }

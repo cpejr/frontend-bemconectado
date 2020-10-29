@@ -83,7 +83,8 @@ export default function Month() {
           break;
         }
       }
-      if (exist == false) {
+
+      if (exist === false) {
         const week = getRequiredDateFormat(sunday);
         newdata.push({ x: week, y: 0 });
       }
@@ -111,14 +112,14 @@ export default function Month() {
     api
       .get(`/views/${id}${getQueryParams(currentMonth)}`)
       .then(processRequestData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentMonth]);
 
   useEffect(() => {
     api.get(`/views/${id}${getQueryParams()}`).then(processRequestData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  //   const useStyles = makeStyles({
-  //       chartcontainer:{height:"600px"}
-  //   })
+
 
   const classes = useStyles();
   return (
