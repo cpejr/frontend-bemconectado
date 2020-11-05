@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Register from "./pages/Register";
 import Pendings from "./pages/Pendings";
@@ -54,7 +54,13 @@ function AdmArea() {
     );
 }
 
-function Loading(){
+function Loading(props){
+  const { user } = useContext(LoginContext);
+  useEffect(()=>{
+    console.log("UseEffect Loading: ", user);
+    if (user.type === "admin") return <Redirect to="/"/>;
+    if (user === null) return <Redirect to="/login" />;
+  },[user])
   return (
     <div className="loading">
       <div className="loading-logo">

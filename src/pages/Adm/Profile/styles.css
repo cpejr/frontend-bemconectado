@@ -1,11 +1,34 @@
-.profile{
-    width: 100vw;
-    height: 100%;
+.profile {
+  width: 100vw;
+  height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px 0;
-    overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+  overflow-x: auto;
+}
+
+.EditImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userImg {
+  height: 140px;
+  width: auto;
+}
+
+.userImgContainer {
+  width: 320px;
+  height: 140px;
+  border: 1px solid rgb(92, 91, 91);
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

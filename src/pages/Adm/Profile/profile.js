@@ -4,7 +4,7 @@ import UserDataCard from "../../../components/UserDataCard";
 import "./styles.css";
 
 import { LoginContext } from "../../../contexts/LoginContext";
-import { Button } from "@material-ui/core";
+import { Button, Form } from 'react-bootstrap'
 import api from "../../../services/api";
 import { useToasts } from "react-toast-notifications";
 
@@ -80,6 +80,15 @@ export default function Profile(props) {
         </div>
       </UserDataCard>
       <UserDataCard
+        mainTitle="Imagem"
+        description={
+          "Esses são os dados que estarão visíveis para o público." +
+          " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
+        }
+      >
+        <EditImage image={user.imageSrc}/>
+      </UserDataCard>
+      <UserDataCard
         mainTitle="Redes Sociais"
         description={
           "Esses são os dados que estarão visíveis para o público." +
@@ -103,4 +112,29 @@ export default function Profile(props) {
       />
     </div>
   );
+}
+
+function EditImage({image}) {
+  return (
+    <div className="EditImageContainer">
+      <p className="mb-1">Pré-vizualização no cartão exibido na Página inicial:</p>
+      <div className="userImgContainer">
+        {/* <img src={`https://drive.google.com/uc?id=${image}`} className="userImg"/> */}
+        <img src="/images/logoFinal.png" className="userImg" alt="preview image"/>
+      </div>
+      <Form className="mt-3">
+        <Form.File 
+          id="custom-file"
+          label="Nome do arquivo"
+          custom
+          data-browse="Escolha o arquivo"
+          accept="image/x-png,image/gif,image/jpeg"
+          onChange={(e) => console.log(e)}
+        >
+        </Form.File>
+        {/* o((⊙﹏⊙))o. */}
+      </Form>
+      <Button size="sm" className="mt-3">Alterar imagem</Button>
+    </div>
+  )
 }

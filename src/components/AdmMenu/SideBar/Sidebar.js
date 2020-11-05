@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import { useHistory } from "react-router-dom";
+import { LoginContext } from "../../../contexts/LoginContext";
 
 import "./styles.css";
 
@@ -60,6 +61,7 @@ export default function SideBar(props) {
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("profile");
+  const { logOut } = useContext(LoginContext);
 
   useEffect(() => {
     if (typeof props.open !== "undefined") {
@@ -70,6 +72,11 @@ export default function SideBar(props) {
   function navigate(page) {
     setCurrentPage(page);
     history.push(`/adm/${page}`);
+  }
+
+  function handleLogout(){
+    logOut();
+    history.push(`/`);
   }
 
   return (
@@ -128,11 +135,11 @@ export default function SideBar(props) {
           <ListItemText primary="Campanhas" />
         </ListItem>
 
-        <ListItem onClick={() => navigate("profile")}>
+        <ListItem onClick={() => {handleLogout()}}>
           <ListItemIcon>
             <ArrowBackIcon />
           </ListItemIcon>
-          <ListItemText primary="Sair" />
+          <ListItemText primary="Deslogar" />
         </ListItem>
       </List>
     </Drawer>

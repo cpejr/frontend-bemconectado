@@ -96,7 +96,7 @@ export default function UserDataCard({
 
       <div className="infoEditable">
         <form>
-          {genVector.map((dataElement) => {
+          {genVector?.map((dataElement) => {
             return (
               <InputEditable
                 title={dataElement.title}
