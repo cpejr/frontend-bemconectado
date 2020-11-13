@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import UserDataCard from "../../../components/UserDataCard";
+import EditImage from "../../../components/UserDataCard/EditImage";
 import "./styles.css";
 
 import { LoginContext } from "../../../contexts/LoginContext";
-import { Button, Form } from 'react-bootstrap'
+import { Button } from "react-bootstrap";
 import api from "../../../services/api";
 import { useToasts } from "react-toast-notifications";
 
@@ -13,8 +14,9 @@ export default function Profile(props) {
 
   const [data, setData] = useState({});
   const [previousData, setPreviousData] = useState({});
+
   const { addToast } = useToasts();
-  
+
   useEffect(() => {
     const currUser = user;
     setData({ ...currUser });
@@ -57,7 +59,6 @@ export default function Profile(props) {
 
   return (
     <div className="profile">
-      {" "}
       {/* this class is required for UserDataCard component */}
       <UserDataCard
         mainTitle="Informações Gerais"
@@ -73,7 +74,7 @@ export default function Profile(props) {
         <div className="infoEditableLine">
           <label className="infoEditableTitle">Alterar senha</label>
           <div className="infoEditableContent">
-            <Button color="primary" variant="contained" onClick={handleSubmit}>
+            <Button variant="primary" size="sm" onClick={handleSubmit}>
               Alterar Senha
             </Button>
           </div>
@@ -82,11 +83,12 @@ export default function Profile(props) {
       <UserDataCard
         mainTitle="Imagem"
         description={
-          "Esses são os dados que estarão visíveis para o público." +
+          "Essa é a imagem que estará visível para o público." +
           " Esses dados são monitorados pela equipe do bem conectado e são sujeitos a modificação."
         }
+        cantSave
       >
-        <EditImage image={user.imageSrc}/>
+        <EditImage curUser={user} setData={setData} />
       </UserDataCard>
       <UserDataCard
         mainTitle="Redes Sociais"
@@ -112,29 +114,4 @@ export default function Profile(props) {
       />
     </div>
   );
-}
-
-function EditImage({image}) {
-  return (
-    <div className="EditImageContainer">
-      <p className="mb-1">Pré-vizualização no cartão exibido na Página inicial:</p>
-      <div className="userImgContainer">
-        {/* <img src={`https://drive.google.com/uc?id=${image}`} className="userImg"/> */}
-        <img src="/images/logoFinal.png" className="userImg" alt="preview image"/>
-      </div>
-      <Form className="mt-3">
-        <Form.File 
-          id="custom-file"
-          label="Nome do arquivo"
-          custom
-          data-browse="Escolha o arquivo"
-          accept="image/x-png,image/gif,image/jpeg"
-          onChange={(e) => console.log(e)}
-        >
-        </Form.File>
-        {/* o((⊙﹏⊙))o. */}
-      </Form>
-      <Button size="sm" className="mt-3">Alterar imagem</Button>
-    </div>
-  )
 }

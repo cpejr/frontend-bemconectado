@@ -62,7 +62,8 @@ export default function Register({ className, fileName, onSubmit }) {
     contact: '31 99999999',
     bankAccountData: 'teste',
   }
-  
+
+   
   async function handleRegister(e) {
     e.preventDefault();
 
@@ -123,7 +124,7 @@ export default function Register({ className, fileName, onSubmit }) {
 
 
   return (
-    <div className="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div className="">
       <div className="wrapper wrapper--w790">
         <div className="card card-5">
           <div className="card-heading">

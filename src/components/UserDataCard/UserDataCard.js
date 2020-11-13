@@ -17,8 +17,9 @@ export default function UserDataCard({
   previousData,
   setData,
   children,
+  cantSave
 }) {
-  const { token, signIn, logOut } = useContext(LoginContext);
+  const { token, signIn } = useContext(LoginContext);
   const [update, setUpdate] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -26,14 +27,6 @@ export default function UserDataCard({
   const { addToast } = useToasts();
 
   useEffect(() => {}, [update]);
-
-  // function CustomToast(){
-  //     return (
-  //         <div className="toastContainer">
-  //             {addToast('Perfil atualizou com sucesso!', { appearance: 'success' })}
-  //         </div>
-  //     );
-  // }
 
   async function handleSaveData() {
     setLoading(true);
@@ -63,7 +56,6 @@ export default function UserDataCard({
       const { accessToken, user } = response.data;
 
       if (accessToken !== undefined && user !== undefined) {
-        logOut();
         signIn(accessToken, user);
         setData({ ...user });
         setUpdate(!update);
@@ -86,9 +78,10 @@ export default function UserDataCard({
           <div className="saveButton">
             {loading ? (
               <ClipLoader size={30} color={"#000"} loading={true} />
-            ) : (
-              <Save className="save" onClick={(e) => handleSaveData()} />
-            )}
+            ) : 
+              !cantSave &&
+                <Save className="save" onClick={(e) => handleSaveData()} />
+            }
           </div>
         </div>
         <p>{description}</p>
