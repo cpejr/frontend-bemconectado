@@ -35,6 +35,9 @@ const LoginContextProvider = (props) => {
     const currentToken = localStorage.getItem("accessToken");
     if (currentToken && currentToken !== " ") {
       verify(currentToken);
+    } else {
+      setToken(null);
+      setUser(null);
     }
     console.log("UseEffect LoginContext");
   }, []);

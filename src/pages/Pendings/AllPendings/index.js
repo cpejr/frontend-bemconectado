@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
-import './styles.css';
-import api from '../../../services/api';
+import { LoginContext } from "../../../contexts/LoginContext";
 import OngView from './OngView';
+import api from '../../../services/api';
+import './styles.css';
 
-export default function AllPendings(props) {
-
-  let token = props.token;
-
-  if (!token && props && props.location && props.location.state)
-    token = props.location.token;
+export default function AllPendings({token}) {
 
   const [ongs, setOngs] = useState([]);
+  const { logOut } = useContext(LoginContext);
+
+  const history = useHistory();
+
+  function handleLogOut(){
+    logOut();
+  }
 
   useEffect(() => {
     async function getOngs() {
@@ -38,16 +43,17 @@ export default function AllPendings(props) {
       <div className="gridCard">
         {ongs && (ongs.length > 0) ? ongs.map((ong, index) => {
           return (
-            <OngView key={index} ong={ong} token={token}/>
+            <OngView key={index} ong={ong} token={token} />
           )
         }) : <div className="allPendingsTitle">Nao há ongs pendentes!</div>}
       </div>
       <div id="bttn">
-        <button
-          onClick={event => window.location.href = '/'}
-          className="btn1 btn--radius btn--blue"
-          type="submit">VOLTAR A PÁGINA INICIAL
-        </button>
+        <Button className="mr-3" variant="primary" size="sm" onClick={(e) => handleLogOut()}>
+          Log Out
+        </Button>
+        <Button variant="primary" size="sm" onClick={(e) => history.push("/")}>
+          Voltar a página principal
+        </Button>
       </div>
     </div>
   );

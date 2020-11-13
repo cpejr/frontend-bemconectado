@@ -76,7 +76,6 @@ export default function SideBar(props) {
 
   function handleLogout(){
     logOut();
-    history.push(`/`);
   }
 
   return (

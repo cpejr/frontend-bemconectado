@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function OngView({ ong, handleSelect, token}) {
+export default function OngView({ ong, token }) {
 
   return (
     <div className="ONGrid">
@@ -10,11 +10,11 @@ export default function OngView({ ong, handleSelect, token}) {
           <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} alt="Foto da ONG" />
           <div className="forms-row">
             <div className="name">Nome da ONG/Projeto: </div>
-            <div className="info style-5">{ong.name}</div>
+            <div className="info style-5 ong-name">{ong.name}</div>
           </div>
           <div className="forms-row">
             <div className="info">Descrição da ONG:</div>
-            <div className="info style-5">{ong.description}</div>
+            <div className="info style-5 ong-description">{ong.description}</div>
           </div>
           <div className="forms-row grid">
             <div className="info m-rg-20">Cidade:

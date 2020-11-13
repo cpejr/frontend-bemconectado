@@ -1,26 +1,22 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import Container from './OngContainer'
 import { Link, Redirect } from 'react-router-dom';
-import api from '../../../services/api';
-import CategContainer from '../../../components/Categ/CategContainer'
 import { Button } from '@material-ui/core';
+import { useToasts } from "react-toast-notifications";
 
+import CategContainer from '../../../components/Categ/CategContainer'
+import api from '../../../services/api';
+import Container from './OngContainer'
 
-export default function OngCard(props) {
+export default function OngCard({ token }) {
 
   const [finalized, setFinalized] = useState(false);
   const [categVec, setCategVec] = useState([]);
   const checkedVector = useRef([]);
 
   const ong = useRef();
-  let token;
 
-  if (props && props.location && props.location.state) {
-    ong.current = props.location.state.ong;
-    token = props.location.state.token;
-  }
-
+  const { addToast } = useToasts();
 
   useEffect(() => {
     api.get('categ').then((categNamesResponse) => {
@@ -36,7 +32,6 @@ export default function OngCard(props) {
       }
     })
     checkedVector.current = auxVector;
-
   }
 
   const handleApproved = async () => {
@@ -63,12 +58,12 @@ export default function OngCard(props) {
           headers: { Authorization: `Bearer ${token}` }
         }
       );
-      alert('Aprovado com sucesso!');
+      addToast("Ong aprovada com sucesso!", { appearance: "success" });
       setFinalized(true);
     }
     catch (err) {
       console.warn(err);
-      alert("Erro");
+      addToast("Erro na aprovação da ong!", { appearance: "error" });
     }
   }
 
@@ -77,15 +72,13 @@ export default function OngCard(props) {
       await api.delete(`admin/${ong.current._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert('Deletado com sucesso!');
+      addToast("Ong reprovada com sucesso!", { appearance: "success" });
       setFinalized(true);
     } catch (err) {
       console.warn(err);
-      alert("Erro");
+      addToast("Erro na reprovação da ong!", { appearance: "error" });
     }
   }
-
-
 
   return (
     <div>

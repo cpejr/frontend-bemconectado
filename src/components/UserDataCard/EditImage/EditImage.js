@@ -70,7 +70,7 @@ export default function EditImage({ curUser, setData, setUpdate}) {
           addToast("Imagem não foi selecionada!", { appearance: "error" });
         }
       } catch (error) {
-        console.log(error);
+        console.warn(error);
         addToast("Erro no upload da imagem!", { appearance: "error" });
         setLoading(false);
         setIsNew(false);
