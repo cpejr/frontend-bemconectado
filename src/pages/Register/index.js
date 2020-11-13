@@ -14,7 +14,7 @@ function Tooltip({text}){
       <div className="examples">
         {text}
       </div>
-      < FaQuestionCircle size={35} color='#FFCF4F'/>
+      < FaQuestionCircle size={35} color='#ffcf4f'/>
     </div>
   );
 }

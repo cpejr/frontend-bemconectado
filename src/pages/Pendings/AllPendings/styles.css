@@ -5,7 +5,7 @@
 .ONGcard1 {
   padding: 5%;
   border-radius: 3%;
-  background-color: #FFCF4F;
+  background-color: var(--main-color);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 3%;
 }
@@ -149,6 +149,6 @@ img {
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 700;
-  color: #fff;
+  color: var(--medium-gray);
   font-family: Poppins;
 }

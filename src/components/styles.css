@@ -2,7 +2,7 @@
     #CARDS
   ===========================================================*/
 .ONGcard {
-    background-color: #FFCF4F;
+    background-color: var(--main-color);
     padding: 3%;
 
 }
@@ -135,6 +135,6 @@ img {
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #fff;
+    color: var(--medium-gray);
     font-family: Poppins;
   }

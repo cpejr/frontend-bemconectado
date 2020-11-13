@@ -3,7 +3,7 @@
 }
 
 .instagramBorder {
-  background: linear-gradient(#fff, #fff) padding-box,
+  background: linear-gradient(var(--medium-gray), var(--medium-gray)) padding-box,
     linear-gradient(
         to left,
         rgba(131, 58, 180, 1) 0%,

@@ -104,10 +104,10 @@ export default function Desktop({ ong, categs, count }) {
   return (
     <div className="Desktop">
       <div className="backButton">
-        <IconContext.Provider value={{ size: "1.8em", color: "#ffff" }}>
+        <IconContext.Provider value={{ size: "1.8em", color: "var(--medium-gray)f" }}>
           <IoIosArrowBack />
         </IconContext.Provider>
-        <Link style={{ color: "#ffff" }} to="/list">
+        <Link style={{ color: "var(--medium-gray)f" }} to="/list">
           VOLTAR
         </Link>
       </div>

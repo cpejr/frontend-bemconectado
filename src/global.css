@@ -7,10 +7,12 @@ html, #root, body {
 
 body {
   font: 400 14px Poppins, sans-serif;
-  background: #f0f0f5;
+  background: #ececec;
   -webkit-font-smoothing: antialiased;
-  --main-color: rgba(255, 207, 79);
-  --main-gray: #555;
+  --main-color: #ff4fff;
+  --dark-gray: #555;
+  --medium-gray: #fff;
+  --light-gray: #ececec;
 }
 
 input,

@@ -164,7 +164,7 @@ export default function Main(props) {
             style={{ cursor: "pointer" }}
           >
             <span>Saiba mais</span>
-            <IconContext.Provider value={{ size: "1.5em", color: "#ffff" }}>
+            <IconContext.Provider value={{ size: "1.5em", color: "var(--medium-gray)f" }}>
               <MdKeyboardArrowDown />
             </IconContext.Provider>
           </HashLink>
