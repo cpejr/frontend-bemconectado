@@ -1,9 +1,10 @@
 import { Box } from "@material-ui/core";
 import React, { useState } from "react";
-import Header from "./Header";
-import SideBar from "./SideBar";
+import Header from "../../components/AdmMenu/Header";
+import SideBar from "../../components/AdmMenu/SideBar";
+import "./styles.css";
 
-export default function Admin(props) {
+export default function AdmMenu(props) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,10 +16,7 @@ export default function Admin(props) {
         className="h-100 d-flex"
       >
         <SideBar open={open} />
-        <div
-          className="d-flex flex-column h-100 flex-grow-1 mh-100"
-          style={{ marginLeft: "73px" }}
-        >
+        <div className="d-flex flex-column h-100 flex-grow-1 mh-100 menuContent">
           {props.children}
         </div>
       </Box>

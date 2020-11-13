@@ -18,7 +18,6 @@ function ForgotPassword() {
     try {
       const response = await api.post("/forgotpassword", { email });
       const status = response.status;
-      console.log(response.data);
       if (status === 200) {
         addToast("Pedido enviado para o e-mail", { appearance: "success" });
       } else {

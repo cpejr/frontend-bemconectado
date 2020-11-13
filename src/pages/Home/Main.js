@@ -1,41 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { IconContext } from 'react-icons';
-import { Link } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
-import { Carousel } from 'react-bootstrap';
+import { IconContext } from "react-icons";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { Carousel } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
 import api from "../../services/api";
 
 const useStyles = makeStyles({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   content: {
     padding: 16,
   },
   bgImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
 });
 
 export default function Main(props) {
-
   const [ongs, setOngs] = useState([]);
 
   const [categs, setCategs] = useState([]);
 
   const history = useHistory();
 
-
   useEffect(() => {
-
     async function getOngs(setOngs) {
-
       const ONGSPERPAGE = 9;
 
       const totalCountResponse = await api.get(`/ongsCount`);
@@ -51,20 +47,17 @@ export default function Main(props) {
     try {
       getOngs(setOngs);
     } catch (err) {
-      console.log(err);
+      console.warn(err);
     }
   }, [setOngs]);
-
-  console.log(ongs)
 
   let idOngs = [];
   let imageOngs = [];
 
-  ongs.forEach(ong => {
-    idOngs.push(ong._id)
-    imageOngs.push(ong.imageSrc)
-  }
-  );
+  ongs.forEach((ong) => {
+    idOngs.push(ong._id);
+    imageOngs.push(ong.imageSrc);
+  });
 
   async function handleClick(ong) {
     await api.post(`/registerAcess/${ong._id}`);
@@ -85,21 +78,16 @@ export default function Main(props) {
 
   const classes = useStyles();
   return (
-    <div className={classes.bgImage} id='main'>
-      <div className='overlay rootContainer rootInfo'>
-        <p className='mainTitle'>
-          BEM CONECTADO
-        </p>
-        <p className='subTitle'>
-          Juntos podemos fazer a diferença
-        </p>
-
+    <div className={classes.bgImage} id="main">
+      <div className="overlay rootContainer rootInfo">
+        <p className="mainTitle">BEM CONECTADO</p>
+        <p className="subTitle">Juntos podemos fazer a diferença</p>
 
         <div className="buttons">
-          <Link className=" botoesHome" to='/list'>
+          <Link className=" botoesHome" to="/list">
             {/* <Button variant="contained" className="homeButton"> */}
             {/* <p className='buttonText'>AJUDAR AGORA</p> */}
-              AJUDAR AGORA
+            AJUDAR AGORA
             {/* </Button> */}
           </Link>
 
@@ -108,9 +96,8 @@ export default function Main(props) {
           </Link>
         </div>
 
-        <Carousel interval={3000} >
+        <Carousel interval={3000}>
           <Carousel.Item>
-
             <div className="Ongsphotos">
               <img
                 src={`https://drive.google.com/uc?id=${imageOngs[0]}`}
@@ -127,11 +114,9 @@ export default function Main(props) {
                 alt="logo"
                 onClick={() => handleClick(ongs[2])}
               />
-
             </div>
           </Carousel.Item>
           <Carousel.Item>
-
             <div className="Ongsphotos">
               <img
                 src={`https://drive.google.com/uc?id=${imageOngs[3]}`}
@@ -148,11 +133,9 @@ export default function Main(props) {
                 alt="logo"
                 onClick={() => handleClick(ongs[5])}
               />
-
             </div>
           </Carousel.Item>
           <Carousel.Item>
-
             <div className="Ongsphotos">
               <img
                 src={`https://drive.google.com/uc?id=${imageOngs[6]}`}
@@ -169,26 +152,24 @@ export default function Main(props) {
                 alt="logo"
                 onClick={() => handleClick(ongs[8])}
               />
-
             </div>
           </Carousel.Item>
         </Carousel>
 
-
-
-
-        {
-          props.saibaMais && (
-            <HashLink smooth to="#saibaMais" className='saibaMais' style={{ cursor: "pointer" }}>
-              <span>Saiba mais</span>
-              <IconContext.Provider value={{ size: '1.5em', color: "#ffff" }} >
-                <MdKeyboardArrowDown />
-              </IconContext.Provider>
-            </HashLink>
-          )
-        }
+        {props.saibaMais && (
+          <HashLink
+            smooth
+            to="#saibaMais"
+            className="saibaMais"
+            style={{ cursor: "pointer" }}
+          >
+            <span>Saiba mais</span>
+            <IconContext.Provider value={{ size: "1.5em", color: "#ffff" }}>
+              <MdKeyboardArrowDown />
+            </IconContext.Provider>
+          </HashLink>
+        )}
       </div>
     </div>
-
-  )
+  );
 }

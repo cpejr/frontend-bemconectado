@@ -7,7 +7,7 @@ import SelectState from "../../components/SelectStates";
 import { FaFilter, FaHome, FaSearch  } from "react-icons/fa";
 import CategSelector from "../../components/Categ/CategSelector";
 import ClipLoader from "react-spinners/ClipLoader";
-import BacktoTop from "../../components/BacktoTop";
+import BacktoTop from "../../components/BacktoTopButton";
 
 
 function shuffle(array) {

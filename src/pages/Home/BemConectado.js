@@ -89,7 +89,7 @@ export default function BemConectado(props) {
           </div>
           {showImage && (
             <div style={{ height: "80%", display: "flex", width: "18%" }}>
-              <img src="network.png" alt="Network" className="imgFullHeight" />
+              <img src="/images/network.png" alt="Network" className="imgFullHeight" />
             </div>
           )}
         </div>

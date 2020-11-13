@@ -16,7 +16,7 @@ export default function Contato(){
                     <div className='infoLine' />
                 </Col>
                 <Col>
-                    <img src="./logoFinal.png" className="logoFinal" alt="LogoCPE"/>
+                    <img src="./images/logoFinal.png" className="logoFinal" alt="LogoCPE"/>
                 </Col>
             </Row>
             

@@ -10,7 +10,7 @@ import BemConectado from './BemConectado';
 import SideBar from './SideBar';
 import Contato from './Contato';
 import FAQ from './FAQ';
-import BacktoTop from '../../components/BacktoTop'
+import BacktoTop from '../../components/BacktoTopButton'
 
 export default function Home() {
   const [drawer, setDrawer] = useState(false)

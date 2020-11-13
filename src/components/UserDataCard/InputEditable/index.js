@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Edit, RotateLeft } from '@material-ui/icons';
 
 import './styles.css';
-import { useMediaQuery } from '@material-ui/core';
 
 export default function InputEditable({ title, data, setData, objKey, previousData }) {
 

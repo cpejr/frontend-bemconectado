@@ -43,7 +43,6 @@ function getSundaysUntilToday(month, year) {
     }
 
     var d = new Date(currentyear, currentmonth, 17, 0, 0, 0, 0);
-    console.log(d, currentmonth, currentyear)
     month = d.getMonth()
     let sundays = [];
 
@@ -55,7 +54,6 @@ function getSundaysUntilToday(month, year) {
     }
 
     // Get all the other Sundays in the month
-    console.log(d, date)
     while (d.getTime() < date.getTime()) {
         sundays.push(new Date(d.getTime()));
         d.setDate(d.getDate() + 7);
