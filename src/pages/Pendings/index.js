@@ -38,32 +38,29 @@ export default function Pendings() {
 
   return (
     // <AllPendings token={token} />
-    <>
-      <AdminHeader/>
+    <div className="adminPage">
+      <AdminHeader />
       <div className="adminContent">
         <div className="adminTitle">
-
+          <p>Ongs pendentes:</p>
         </div>
         <div className="adminSpace">
-          <p>Ongs pendentes:</p>
           <div className="pendingOngs">
             {
               ongs && ongs.map((ong) => {
                 return (
-                  <div>
-                    {ong.name}
-                  </div>
+                  <OngPreview ong={ong} key={ong._id}/>
                 )
               })
             }
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-function adminHeader() {
+function AdminHeader() {
   return (
     <div className="adminHeader">
       <img src="/logos/10.png" className="adminLogo" />
@@ -75,6 +72,6 @@ function adminHeader() {
 function OngPreview({ ong }) {
 
   return (
-    <></>
+    <div>A</div>
   )
 }

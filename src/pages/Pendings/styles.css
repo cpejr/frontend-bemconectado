@@ -135,7 +135,12 @@ img {
 }
 
 /* Novo Pendings */
-
+.adminPage {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
 
 /* HEADER */
 .adminHeader {
@@ -157,9 +162,8 @@ img {
   margin-bottom: 0;
 }
 
-.adminHeader img {
-  min-height: 50%;
-  max-height: 70%;
+.adminHeader .adminLogo {
+  height: 15vh;
   width: auto;
   margin-right: 5vw;
   padding: 1vh;
@@ -168,5 +172,24 @@ img {
 /* CONTENT */
 .adminContent {
   display: flex;
+  flex-direction: column;
   height: 100%;
+  align-items: center;
+  padding: 2em 4em;
+}
+
+.adminContent .adminTitle p {
+  color: var(--main-gray);
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.adminContent .adminSpace {
+  display: flex;
+  flex: 0 1 auto;
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #cccccc;
+  
 }

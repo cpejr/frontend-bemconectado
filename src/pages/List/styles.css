@@ -43,16 +43,6 @@
   }
 }
 
-@media screen and (min-width: 960px) {
-  .wrapper {
-    padding-top: 0;
-  }
-  .wrapper {
-    margin: 0 auto;
-    padding-top: 5vh;
-  }
-}
-
 .Header {
   display: flex;
   flex-direction: column;
