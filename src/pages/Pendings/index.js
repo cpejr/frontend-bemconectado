@@ -8,6 +8,8 @@ import { LoginContext } from "../../contexts/LoginContext";
 //import AllPendings from "./AllPendings";
 import api from "../../services/api";
 import "./styles.css";
+import { Button, Modal } from "react-bootstrap";
+import Dialog from "../../components/Dialog";
 
 export default function Pendings() {
   const { token, user } = useContext(LoginContext);
@@ -73,26 +75,45 @@ export default function Pendings() {
 }
 
 function AdminHeader() {
+  const [confirmation, setConfirmation] = useState(false);
   const { logOut } = useContext(LoginContext);
   const history = useHistory();
 
   function handleLogOut() {
     logOut();
+    setConfirmation(false);
     history.push("/");
   }
 
   return (
-    <div className="adminHeader">
-      <CgLogOut
-        className="adminLogout"
-        size={40}
-        onClick={(e) => {
-          handleLogOut();
-        }}
-      />
-      <img src="/logos/10.png" className="adminLogo" />
-      <p>Área de Administração do Bem Conectado</p>
-    </div>
+    <>
+      <div className="adminHeader">
+        <CgLogOut
+          className="adminLogout"
+          size={40}
+          onClick={(e) => {
+            setConfirmation(true);
+          }}
+        />
+        <img src="/logos/10.png" className="adminLogo" alt="Bem Conectado" />
+        <p>Área de Administração do Bem Conectado</p>
+      </div>
+      {confirmation && (
+        <Dialog
+          handleConfirm={handleLogOut}
+          handleOnHide={() => {
+            setConfirmation(false);
+          }}
+          handleCancel={() => {
+            setConfirmation(false);
+          }}
+          title="Deseja deslogar?"
+          body="Lembre-se de deslogar no ponto!"
+          confirmText="Deslogar"
+          show={true}
+        />
+      )}
+    </>
   );
 }
 
