@@ -135,6 +135,7 @@ img {
 }
 
 /* Novo Pendings */
+
 .adminPage {
   height: 100%;
   width: 100%;
@@ -144,6 +145,7 @@ img {
 }
 
 /* HEADER */
+
 .adminHeader {
   display: flex;
   align-items: center;
@@ -173,8 +175,16 @@ img {
 
 .adminHeader .adminLogout {
   margin-right: 5vw;
+  cursor: pointer;
 }
+
+.adminHeader .adminLogout {
+  margin-right: 5vw;
+  cursor: pointer;
+}
+
 /* CONTENT */
+
 .adminContent {
   display: flex;
   flex-direction: column;
@@ -192,7 +202,7 @@ img {
 .adminContent .adminHint {
   color: var(--medium-gray);
   font-size: 1em;
-  font-weight:600;
+  font-weight: 600;
   min-width: 100%;
   padding-left: 3em;
 }
@@ -208,7 +218,7 @@ img {
   justify-content: center;
 }
 
-.adminContent .adminSpace .pendingOngs{
+.adminContent .adminSpace .pendingOngs {
   display: inline-grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   column-gap: 16px;
@@ -219,6 +229,7 @@ img {
 }
 
 /* CARD */
+
 .cardContainer {
   display: flex;
   flex-direction: column;
@@ -233,7 +244,7 @@ img {
   transition: 0.5s;
 }
 
-.cardContainer:hover{
+.cardContainer:hover {
   opacity: 1;
 }
 
@@ -253,14 +264,12 @@ img {
 .cardDescription {
   margin-top: 4px;
   margin-bottom: 16px;
-  
   font-size: 0.8em;
   font-weight: 400;
   max-height: 250px;
   overflow: auto;
 }
 
-.cardContainer .cardName, .cardDescription{
+.cardContainer .cardName, .cardDescription {
   color: var(--dark-gray);
 }
-

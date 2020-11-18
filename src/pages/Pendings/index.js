@@ -20,8 +20,8 @@ export default function Pendings() {
   async function getOngs() {
     setLoading(true);
     const config = {
-      headers: { Authorization: `Bearer ${token}` }
-    }
+      headers: { Authorization: `Bearer ${token}` },
+    };
     const response = await api.get("/admin", config);
     console.log("ongs: ", ongs);
     setOngs(response.data);
@@ -53,19 +53,19 @@ export default function Pendings() {
           ! - Clique nos cards para avaliar as Iniciativas
         </div>
         <div className="adminSpace">
-          {
-            loading ? <ClipLoader size={50} color={"#fff"} loading={true} /> :
-              <div className="pendingOngs">
-                {
-                  ongs.length > 0 ? ongs.map((ong) => {
-                    return (
-                      <OngPreview ong={ong} key={ong._id} />
-                    )
-                  }) :
-                    <p>Nenhuma iniciativa aguardando aprovação</p>
-                }
-              </div>
-          }
+          {loading ? (
+            <ClipLoader size={50} color={"#fff"} loading={true} />
+          ) : (
+            <div className="pendingOngs">
+              {ongs.length > 0 ? (
+                ongs.map((ong) => {
+                  return <OngPreview ong={ong} key={ong._id} />;
+                })
+              ) : (
+                <p>Nenhuma iniciativa aguardando aprovação</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -76,18 +76,24 @@ function AdminHeader() {
   const { logOut } = useContext(LoginContext);
   const history = useHistory();
 
-  function handleLogOut(){
+  function handleLogOut() {
     logOut();
     history.push("/");
   }
 
-  return ( 
+  return (
     <div className="adminHeader">
-      <CgLogOut className="adminLogout" size={40} onClick={(e) =>{handleLogOut()}}/>
+      <CgLogOut
+        className="adminLogout"
+        size={40}
+        onClick={(e) => {
+          handleLogOut();
+        }}
+      />
       <img src="/logos/10.png" className="adminLogo" />
       <p>Área de Administração do Bem Conectado</p>
     </div>
-  )
+  );
 }
 
 function OngPreview({ ong }) {
@@ -95,9 +101,13 @@ function OngPreview({ ong }) {
     <div className="cardContainer">
       <div className="cardName">{ong.name}</div>
       <div className="userImgContainer">
-        <img src={`https://drive.google.com/uc?id=${ong.imageSrc}`} className="userImg" alt="preview" />
+        <img
+          src={`https://drive.google.com/uc?id=${ong.imageSrc}`}
+          className="userImg"
+          alt="preview"
+        />
       </div>
       <div className="cardDescription">{ong.description}</div>
     </div>
-  )
+  );
 }
