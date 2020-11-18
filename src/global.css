@@ -9,10 +9,10 @@ body {
   font: 400 14px Poppins, sans-serif;
   background: #ececec;
   -webkit-font-smoothing: antialiased;
-  --main-color: #ff4fff;
+  --main-color: #ffcf4f;
   --dark-gray: #555;
-  --medium-gray: #fff;
-  --light-gray: #ececec;
+  --medium-gray: #dddddd;
+  --light-gray: #f7f7f7;
 }
 
 input,

@@ -23,7 +23,7 @@
 }
 
 .loginContent .loginBox .loginText {
-  color: var(--medium-gray);
+  color: var(--light-gray);
   display: flex;
   font-family: Poppins;
   font-style: normal;
@@ -38,12 +38,12 @@
 }
 
 .usuario {
-  background-color: var(--medium-gray);
+  background-color: var(--light-gray);
   border-radius: 5px;
 }
 
 .senha {
-  background-color: var(--medium-gray);
+  background-color: var(--light-gray);
   border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
